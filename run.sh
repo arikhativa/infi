@@ -1,7 +1,7 @@
 #!/usr/bin
 
 
-is_it_there(){
+pwd(){
 	find . -name $1 | wc -l
 }
 
