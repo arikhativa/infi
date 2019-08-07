@@ -1,0 +1,36 @@
+#!/bin/bash
+
+cp /media/student/MIZI/.myfuncs /home/student/infi/
+cp /media/student/MIZI/.myfuncs /home/student/git/
+
+#my normal alias
+alias ..='cd ..'
+alias MIZI='cd /media/student/MIZI'
+alias myfuncs='vim /media/student/MIZI/.myfuncs'
+alias bashrc='vim /home/student/.bashrc'
+alias new='cp /home/.main.c . ; mv .main.c'
+alias gg='cd /home/student/git'
+alias ggg='cd /home/student/git/c/ws2/ws2'
+alias ggt='cd /home/student/git/c/tests'
+alias ggr='cd /home/student/git/c/code_review'
+
+#my git alias
+alias sinstall='sudo apt-get install'
+alias farinfirep='git clone http://31.168.84.220:918/irld/haifa/hrd11/yoav-rabby.git'
+alias infirep='git clone http://git.ilrd/ilrd/haifa/hrd11/yoav-rabby.git'
+alias tmprep='git clone http://git.ilrd/ilrd/haifa/hrd11/shahar-assenheim.git'
+alias arikrep='git clone https://github.com/arikhativa/infi.git'
+alias stt='git status'
+alias add='git add .'
+alias cmt='git commit -m'
+alias push='git push'
+alias brn='git branch'
+alias co='git checkout'
+
+#init must include
+alias gd='gcc -ansi -pedantic-errors -Wall -Wextra -g'
+alias gc='gcc -ansi -pedantic-errors -Wall -Wextra -DNDEBUG -O3'
+alias gd9='gcc -std=c99 -pedantic-errors -Wall -Wextra -g'
+alias gc9='gcc -std=c99 -pedantic-errors -Wall -Wextra -DNDEBUG -O3'
+alias vlg='valgrind --leak-check=yes --track-origins=yes'
+

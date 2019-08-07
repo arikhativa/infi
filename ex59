@@ -1,1 +1,0 @@
-cat words | grep "^a" | grep "z$" | wc -l > /tmp/num_of_az
