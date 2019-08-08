@@ -4,16 +4,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <stddef.h>
 
+//char *strdup(const char *str);
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
-	int n = 0;
-	char *s = 0;
 
-	while (*s)
+	while (*env != NULL)
 	{
-		printf("%d, ", n++);
+		printf("%s\n", *env);
+		++env;
 	}
 
 	return 0;

@@ -159,44 +159,6 @@ static void CheckStrSpn(const char *s1, const char *s2)
 	++number;
 }
 
-static void CheckStrTok(char *s, const char *delim)
-{
-	static int number = 1;
-	int i = 1;
-	char *token;
-	char *token2;
-	char *tmp;
-
-	tmp = Strdup(s);
-	printf("-- input %d\n", number);
-	printf("-- s     == \"%s\"\n", s);
-	printf("-- tmp   == \"%s\"\n", tmp);
-	printf("-- delim == \"%s\"\n\n", delim);
-	token = strtok(s, delim);
-	token2 = Strtok(tmp, delim);
-	printf("-- HIMMM---\n\n");
-	printf("-- token%d == %s\n", i, token);
-	while (token != NULL)
-	{
-		token = strtok(NULL, delim);
-		printf("-- token%d == %s\n", i, token);
-		++i;
-	}
-	i = 0;
-	printf("\n-- MEEEE---\n\n");
-	printf("-- Tok%d == %s\n", i, token2);
-	while (token2 != NULL)
-	{
-		token2 = Strtok(NULL, delim);
-		printf("-- Tok%d == %s\n", i, token2);
-		++i;
-	}
-	printf("---------------------\n\n");
-	free(tmp);
-	tmp = NULL;
-	++number;
-}
-
 int main(int ac, char **av)
 {
 	char dest1[] = "12345";
@@ -297,27 +259,12 @@ int main(int ac, char **av)
 		else if (atoi(av[1]) == 11)
 		{
 			printf("-- testing StrSpn --\n\n");
-			CheckStrSpn("12aaaa", "123");
+			CheckStrSpn("12aaa6a", "123a");
 			CheckStrSpn("123123321", "123");
 			CheckStrSpn("aaaa1a", "aa");
 			CheckStrSpn("12aaaa", "");
 			CheckStrSpn("", "123");
 
-		}
-		else if (atoi(av[1]) == 12)
-		{
-			char t1[] = "abc_hhh4yyy";
-			char t2[] = "aaa";
-			char t3[] = "a1a2ab3b45bc67cc89";
-			char t4[] = "aaa8bbb-ccc";
-
-			printf("-- testing StrTok --\n\n");
-
-
-			CheckStrTok(t1, "_4");
-			CheckStrTok(t2, "a");
-			CheckStrTok(t3, "abc");
-			CheckStrTok(t4, "abc");
 		}
 	}
 	else

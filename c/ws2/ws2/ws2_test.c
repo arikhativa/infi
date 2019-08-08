@@ -7,53 +7,53 @@
 
 static void CheckIsPalindrom(const char *str)
 {
-        static int number = 1;
+	static int number = 1;
 
-        printf("-- input %d\n", number);
-        printf("-- str == \"%s\"\n", str);	
-        printf("-- Is it plaindrom..?\n\n");
-        (IsPalindrome(str)) ? printf("yes :)\n\n") : printf("no..\n\n");
-        printf("---------------------\n\n");
-        ++number;
+	printf("-- input %d\n", number);
+	printf("-- str == \"%s\"\n", str);	
+	printf("-- Is it plaindrom..?\n\n");
+	(IsPalindrome(str)) ? printf("yes :)\n\n") : printf("no..\n\n");
+	printf("---------------------\n\n");
+	++number;
 }
 
 static void CheckSevenBoom(int start, int end)
 {
-        static int number = 1;
+	static int number = 1;
 
-        printf("-- input %d\n", number);
-        printf("-- start == %d\n", start);
-        printf("-- end   == %d\n\n", end);
+	printf("-- input %d\n", number);
+	printf("-- start == %d\n", start);
+	printf("-- end   == %d\n\n", end);
 	SevenBoom(start, end);
-        printf("---------------------\n\n");
-        ++number;
+	printf("---------------------\n\n");
+	++number;
 }
 
 static void CheckSwapPointers(int *ptr1, int *ptr2)
 {
-        static int number = 1;
+	static int number = 1;
 
-        printf("-- input %d\n", number);
-        printf("-- ptr1 == %d\n", *ptr1);
-        printf("-- ptr2 == %d\n\n", *ptr2);
-        printf("-- Swap\n\n");
+	printf("-- input %d\n", number);
+	printf("-- ptr1 == %d\n", *ptr1);
+	printf("-- ptr2 == %d\n\n", *ptr2);
+	printf("-- Swap\n\n");
 	SwapPointers(&ptr1, &ptr2);
-        printf("-- ptr1 == %d\n", *ptr1);
-        printf("-- ptr2 == %d\n\n", *ptr2);
-        printf("---------------------\n\n");
-        ++number;
+	printf("-- ptr1 == %d\n", *ptr1);
+	printf("-- ptr2 == %d\n\n", *ptr2);
+	printf("---------------------\n\n");
+	++number;
 }
 
 static void CheckRmSpace(char *str)
 {
-	 static int number = 1;
+	static int number = 1;
 
-        printf("-- input %d\n", number);
-        printf("-- str before == \"%s\"\n\n", str);
+	printf("-- input %d\n", number);
+	printf("-- str before == \"%s\"\n\n", str);
 	RmSpaces(str);
-        printf("-- str after  == \"%s\"\n\n", str);
-        printf("---------------------\n\n");
-        ++number;
+	printf("-- str after  == \"%s\"\n\n", str);
+	printf("---------------------\n\n");
+	++number;
 }
 
 static void CheckStringPlusString(char *s1, char *s2)
@@ -61,14 +61,14 @@ static void CheckStringPlusString(char *s1, char *s2)
 	static int number = 1;
 	char *tmp;
 
-        printf("-- input %d\n", number);
-        printf("-- s1  == \"%s\"\n", s1);
-        printf("-- s2  == \"%s\"\n\n", s2);
+	printf("-- input %d\n", number);
+	printf("-- s1  == \"%s\"\n", s1);
+	printf("-- s2  == \"%s\"\n\n", s2);
 	printf("-- New String:\n");
-        printf("-- New == \"%s\"\n\n", tmp = StringPlusString(s1,s2));
+	printf("-- New == \"%s\"\n\n", tmp = StringPlusString(s1,s2));
 	free(tmp);
-        printf("---------------------\n\n");
-        ++number;
+	printf("---------------------\n\n");
+	++number;
 }
 
 
@@ -95,49 +95,42 @@ int main(int ac, char **av)
 	s1[0] = 5;
 	s2[0] = 7;
 
-
-	if (ac == 2)
+	if (ac != 2)
 	{
-		if (atoi(av[1]) == 1)
-		{
+		printf("one argument sbaba ahi?\n");
+		exit(EXIT_FAILURE);
+	}
+	switch (atoi(av[1]))
+	{
+		case 1:
 			printf("-- testing IsPalindrom --\n\n");
 			CheckIsPalindrom("12321");
 			CheckIsPalindrom("1");
 			CheckIsPalindrom("  ");
 			CheckIsPalindrom("123");
-		}
-		if (atoi(av[1]) == 2)
-		{
+			break ;
+		case 2:
 			printf("-- testing Seven Boom --\n\n");
 			CheckSevenBoom(-10, 30);
 			CheckSevenBoom(10, -30);
-		}
-
-		if (atoi(av[1]) == 3)
-		{
+			break ;
+		case 3:
 			printf("-- testing Swap Pointers --\n\n");
 			CheckSwapPointers(s1, s2);
-		}
-		if (atoi(av[1]) == 4)
-		{
+			break ;
+		case 4:
 			printf("-- testing RM Space --\n\n");
 
 			CheckRmSpace(str1);
 			CheckRmSpace(str2);
 			CheckRmSpace(str3);
-		}
-		if (atoi(av[1]) == 5)
-		{
+			break ;
+		case 5:
 			printf("-- testing StringPlusString --\n\n");
 			CheckStringPlusString(str4, str5);
 			CheckStringPlusString(str6, str7);
 			CheckStringPlusString(str8, str9);
-
-		}
-	}
-	else
-	{
-		printf("one argument sbaba ahi?\n");
+			break ;
 	}
 
 	return 0;

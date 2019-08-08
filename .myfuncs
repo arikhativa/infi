@@ -1,7 +1,14 @@
 #!/bin/bash
 
-cp /media/student/MIZI/.myfuncs /home/student/infi/
+if [ -e /home/student/git ]
+then
 cp /media/student/MIZI/.myfuncs /home/student/git/
+fi
+
+if [ -e /home/student/infi ]
+then
+cp /media/student/MIZI/.myfuncs /home/student/infi/
+fi
 
 #my normal alias
 alias ..='cd ..'
@@ -10,7 +17,7 @@ alias myfuncs='vim /media/student/MIZI/.myfuncs'
 alias bashrc='vim /home/student/.bashrc'
 alias new='cp /home/.main.c . ; mv .main.c'
 alias gg='cd /home/student/git'
-alias ggg='cd /home/student/git/c/ws2/ws2'
+alias ggg='cd /home/student/git/c/ws3'
 alias ggt='cd /home/student/git/c/tests'
 alias ggr='cd /home/student/git/c/code_review'
 

@@ -17,12 +17,12 @@ int IsPalindrome(const char *str)
     {
         if (*str != *end_ptr)
         {
-            return 1;
+            return 0;
         } 
         ++str;
         --end_ptr;      
         }
-    return 0;
+    return 1;
 }
 
 void SevenBoom(int start, int end)
@@ -53,55 +53,57 @@ void SwapPointers(int **ptr1, int **ptr2)
     *ptr2 = tmp;
 }
 
+
+static int IsSpace(char c)
+{
+    if(c == ' ' || c == '\t')
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
 void RmSpaces(char *str)
 {
     char *runner = str;
-    char *follower;
     
     assert(str);
     
-    if(isspace(*runner) != 0)
+    while(IsSpace(*runner))/*for empty spaces on the begining*/
     {
-        while(*runner == ' ')
-        {
-            ++runner;
-        }
+        ++runner;
+    }
     
-        while(*str && *runner != ' ')
+    while(*runner)
+    {
+        while(*runner && IsSpace(*runner) == 0)
         {
             *str = *runner;
             ++str;
             ++runner;
-        }    
-    }
-    
-    follower = runner + 1;
-    while (*str)
-    {
-        if(*runner == ' ' && *follower == ' ')
+        }
+        *str = *runner;
+        ++str; 
+        while(*runner && IsSpace(*runner))   
         {
             ++runner;
-            ++follower;
-        }
-        else
-        {
-            *str = *(runner);
-            ++str;
-            ++runner;
-            ++follower;
         }
     }
-    
-    *str = '\0';
+
+    *(str - 1) = '\0';
 }
+
 
 
 void RevStr(char *str)
 {
-    char *end = str + (strlen(str) - 1);
+    char *end = 0;
     char tmp;
     
     assert(str);
+    
+    end = str + (strlen(str) - 1);
     
     while(str < end)
     {
@@ -164,6 +166,7 @@ char *StringPlusString(char *s1, char *s2)
     
     return tmp;
 }
+
 
 
 
