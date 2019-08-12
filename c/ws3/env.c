@@ -1,11 +1,9 @@
 
 #include <stdio.h> /* printf() */
 #include <stdlib.h> /* malloc() */
-#include <string.h> /* strdup() */
-#include <ctype.h> /* tolower */
+#include <string.h> /* strlen() */
+#include <ctype.h> /* tolower() */
 #include <assert.h> /* assert */
-
-char *strdup(const char *s);
 
 static size_t Tablen(char **tab)
 {

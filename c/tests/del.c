@@ -8,14 +8,12 @@
 
 //char *strdup(const char *str);
 
-int main(int ac, char **av, char **env)
+int main(int ac)
 {
+	int x;
 
-	while (*env != NULL)
-	{
-		printf("%s\n", *env);
-		++env;
-	}
+	printf("%d\n", *(&x - 2));
+
 
 	return 0;
 }
