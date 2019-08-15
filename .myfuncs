@@ -17,7 +17,7 @@ alias myfuncs='vim /media/student/MIZI/.myfuncs'
 alias bashrc='vim /home/student/.bashrc'
 alias new='cp /home/student/.main.c . ; mv .main.c'
 alias gg='cd /home/student/git'
-alias ggg='cd /home/student/git/c/ws5'
+alias ggg='cd /home/student/git/c/ws6'
 alias ggt='cd /home/student/git/c/tests'
 alias ggr='cd /home/student/git/c/code_review'
 
