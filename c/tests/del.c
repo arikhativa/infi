@@ -1,19 +1,39 @@
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
 #include <stddef.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <assert.h>
+#include <sys/time.h>
+#include <sys/wait.h>
+#include <ctype.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+#include <pthread.h>
 
-//char *strdup(const char *str);
+#include "write_print.h"
 
-int main(int ac)
+
+
+int main()
 {
-	int x;
+	size_t i = 0;
 
-	printf("%d\n", *(&x - 2));
+	#pragma omp parallel for
 
+	for (i = 0; i < 100000000; ++i)
+	{
+
+	}
+
+	PutStr("-- heyy\n");
 
 	return 0;
 }

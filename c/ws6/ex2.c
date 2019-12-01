@@ -6,10 +6,6 @@ static unsigned int SubtractOneFromNumber(unsigned int n)
 {
         unsigned int carry = 1;
 
-        if (n == 0)
-        {
-                return 0;
-        }
         while (0 == (n & carry))
         {
                 n = n | carry;

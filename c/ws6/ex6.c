@@ -1,30 +1,29 @@
 
 #include <stdio.h> /* printf() */
 #include <stdlib.h> /* atoi() */
-#include <stddef.h> /* size_t */
 
 #define ABSOLUTE_VALUE(num) (0 > num) ? -num : num
 #define BIT_SIZE 8
 
 static void PrintBit(unsigned int bit)
 {
-        int n = BIT_SIZE - 1;
-        int str[BIT_SIZE];
+	int n = BIT_SIZE - 1;
+	int str[BIT_SIZE];
 
-        while (0 <= n)
-        {
-                str[n] = (bit % 2);
-                str[n] = ABSOLUTE_VALUE(str[n]);
-                bit = bit >> 1;
-                --n;
-        }
-        n = 0;
-        while (BIT_SIZE > n)
-        {
-                printf("%d", str[n]);
-                ++n;
-        }
-        printf("\n");
+	while (0 <= n)
+	{
+		str[n] = (bit % 2);
+		str[n] = ABSOLUTE_VALUE(str[n]);
+		bit = bit >> 1;
+		--n;
+	}
+	n = 0;
+	while (BIT_SIZE > n)
+	{
+		printf("%d", str[n]);
+		++n;
+	}
+	printf("\n");
 }
 
 static int CheckIfBothOn(unsigned char number)
@@ -53,22 +52,29 @@ static int Swap3And5(unsigned char number)
 	return (number);
 }
 
-int main(int ac, char **av)
+int main()
 {
-	unsigned int number = 2147483648;
+	unsigned int number1 = 34;
+	unsigned int number2 = 7;
+	unsigned int number3 = 19;
 
-	if (2 == ac)
-	{
-		number = (unsigned int)atoi(av[1]);
-		printf("-- Number is %u - ", number);
-		PrintBit(number);
-		//printf("-- Both are %d\n", CheckIfBothOn(number));
-		//printf("-- At least one is %d\n", CheckIfOneIsOn(number));
-		printf("-- Swap the 5th bit and the 3rd bit\n-- New number   - ");
-		//Swap3And5(number);
-		PrintBit(Swap3And5(number));
-		
-	}
+	printf("\n-- Part one\n");
+	printf("-- Number is %u - ", number1);
+	PrintBit(number1);
+	printf("-- Both are %d\n", CheckIfBothOn(number1));
+
+	printf("\n-- Part two\n");
+	printf("-- Number is %u - ", number2);
+	PrintBit(number2);
+	printf("-- At least one is %d\n", CheckIfOneIsOn(number2));
+
+	printf("\n-- Part three\n");
+	printf("-- Swap the 5th bit and the 3rd bit\n");
+	printf("-- Before  - ");
+	PrintBit(number3);
+	Swap3And5(number3);
+	printf("-- After   - ");
+	PrintBit(Swap3And5(number3));
 
 	return 0;
 }

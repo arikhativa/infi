@@ -1,0 +1,69 @@
+
+#include <stdio.h>	/* printf()	*/
+#include <stdlib.h>	/* malloc()	*/
+#include <unistd.h>	/* ssize_t	*/
+
+const char con_g = 'a';
+char tmp_g = 'a';
+const static char con_stat_g = 'b';
+static int tmp_stat_g = 0;
+
+extern char etext; 
+extern char edata; 
+extern char end; 
+
+static void StaticFunc(void)
+{
+	int b = 0;
+	++tmp_stat_g;
+
+	printf("-- end stack		%p\n", &(b));
+	if (tmp_stat_g < 10)
+		StaticFunc();
+
+}
+
+void ExternFunc(void)
+{
+
+}
+
+
+int main(int ac, char **av, char **env)
+{
+	unsigned int (*fp1)(unsigned int);
+	ssize_t (*fp2)(int, const void*, size_t);
+	char *heap = 0;
+	char *heap1 = 0;
+
+	char *string_l = "asdasdas";
+	const char con_l = 'c';
+	char tmp_l = 'c';
+	const static char con_stat_l = 'd';
+	static char tmp_stat_l = 'd';
+	int stack = 0;
+
+	
+	fp1 = &alarm;
+	fp2 = &write;
+
+	printf("-- end of heap		%p\n", sbrk(0));
+	printf("-- end of bss		%p\n\n", &end);
+
+	heap = malloc(20);
+	heap1 = malloc(20);
+	printf("-- end of heap		%p\n", sbrk(0));
+	printf("-- heap1		%p\n", heap1);
+	printf("-- heap			%p\n", heap);
+	printf("-- end of bss		%p\n\n\n", &end);
+
+	printf("-- start stack		%p\n", &(env));
+	printf("-- end stack		%p\n\n", &(stack));
+
+	StaticFunc();
+
+	free(heap);
+	free(heap1);
+
+	return 0;
+}
