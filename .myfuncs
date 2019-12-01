@@ -13,6 +13,12 @@ fi
 # Set core generation to unlimited
 #ulimit -c unlimited
 
+#c++
+alias pc='g++ -std=c++98 -pedantic -DNDEBUG'
+alias pd='g++ -std=c++98 -pedantic -g'
+alias pc1='g++ -std=c++11 -DNDEBUG'
+alias pd1='g++ -std=c++11 -g'
+
 #my normal alias
 alias ..='cd ..'
 alias MIZI='cd /media/student/MIZI'

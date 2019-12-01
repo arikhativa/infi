@@ -1,0 +1,4 @@
+pc = 'g++ -std=c++98 -pedantic -DNDEBUG'
+pd = 'g++ -std=c++98 -pedantic -g'
+pc1 = 'g++ -std=c++11 -DNDEBUG'
+pd1 = 'g++ -std=c++11 -g'
