@@ -14,10 +14,10 @@ fi
 #ulimit -c unlimited
 
 #c++
-alias pc='g++ -std=c++98 -pedantic -DNDEBUG'
-alias pd='g++ -std=c++98 -pedantic -g'
-alias pc1='g++ -std=c++11 -DNDEBUG'
-alias pd1='g++ -std=c++11 -g'
+alias gcpp='g++ -std=c++98 -pedantic-errors -DNDEBUG'
+alias gdpp='g++ -std=c++98 -pedantic-errors -g'
+alias gcpp11='g++ -std=c++11 -DNDEBUG'
+alias gdpp11='g++ -std=c++11 -g'
 
 #my normal alias
 alias ..='cd ..'
