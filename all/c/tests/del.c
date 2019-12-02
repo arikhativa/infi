@@ -24,16 +24,6 @@
 
 int main()
 {
-	size_t i = 0;
-
-	#pragma omp parallel for
-
-	for (i = 0; i < 100000000; ++i)
-	{
-
-	}
-
-	PutStr("-- heyy\n");
-
+	fprintf(stderr, "%s", "hey\n");
 	return 0;
 }
