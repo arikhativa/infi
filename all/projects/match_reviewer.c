@@ -9,16 +9,13 @@
 
 typedef enum chair
 {
-	Elyashiv = 0,
-	Michael,
-	Yoav,
-	Shahar,
-	Galit,
 	Aviv,
-	Gal,
 	Shlomit,
-	Hadas,
+	Yoav,
+	Elyashiv,
+	Galit,
 	Yoni,
+	Shahar,
 	Max
 } chair_t;
 
@@ -27,12 +24,12 @@ int *MakeReviewList(int *arr, size_t seed)
 {
 	chair_t i = 0;
 
-	if (2 > seed || 5 == seed || 10 <= seed)
+	if (Max <= seed)
 		return NULL;
 	for (; i != Max; ++i)
 	{
-		if (10 <= i + seed)
-			arr[i] = i + seed - 10;
+		if (Max <= i + seed)
+			arr[i] = i + seed - Max;
 		else
 			arr[i] = i + seed;
 	}
@@ -55,26 +52,22 @@ void PrintReviewList(int *arr, char **names)
 int main(int ac, char **av)
 {
 	int *arr = 0;
-	char *names[] = 
+	char *names[] =
 	{
-		"Elyashiv",
-		"Michael ",
-		"Yoav    ",
-		"Shahar  ",
-		"Galit   ",
-		"Aviv    ",
-		"Gal     ",
-		"Shlomit ",
-		"Hadas   ",
-		"Yoni    "
+		"Aviv		",
+		"Shlomit	",
+		"Yoav		",
+		"Elyashiv	",
+		"Galit		",
+		"Yoni		",
+		"Shahar		"
 	};
 
-	if (!(arr = (int*)malloc(sizeof(int) * 10)))
+	if (!(arr = (int*)malloc(sizeof(int) * Max)))
 		return 0;
-	arr = MakeReviewList(arr, 6);
+	arr = MakeReviewList(arr, 4);
 	PrintReviewList(arr, names);
 
 
 	return 0;
 }
-

@@ -24,6 +24,13 @@
 
 int main()
 {
-	fprintf(stderr, "%s", "hey\n");
+	int number = 666;
+
+	printf(" %+d \n", number);
+	printf(" %+d \n\n", -number);
+	printf(" %-10d \n", number);
+    printf(" %010d \n", number);
+    printf(" %-#10x \n", number);
+    printf(" %#x \n", number);
 	return 0;
 }
