@@ -1,17 +1,13 @@
 
-#include <sstream>
-
-
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 
-#include "complex.hpp"
+#include "slist.hpp"
 #include "color.h"
 
 using namespace hrd11;
-using namespace std;
 
 typedef void (*convert_t)(char *dest, unsigned char src[4]);
 
@@ -31,7 +27,7 @@ static int g_fail = 0;
 static char test_name[40];
 static int add_test_name = 1;
 
-static void SetTest(int n, const char *name)
+static void SetTest(int n, char *name)
 {
 	sprintf(test_name,"\n\n-- "CYAN"(%d) Test %s:\n\n"RESET, n, name);
 
@@ -47,7 +43,7 @@ static void Pass()
 	++t_index;
 }
 
-static void PrintFail(const char *dis, int line, char *value, char *bad_value)
+static void PrintFail(char *dis, int line, char *value, char *bad_value)
 {
 	if (add_test_name)
 	{
@@ -86,23 +82,20 @@ static void PrintSummery(void)
 	}
 }
 
-
-template <typename T>
-static void ReturnComper(T obj1, T obj2, const char *dis, int line)
+static void ReturnComper(ssize_t num1, ssize_t num2, char *dis, int line)
 {
-	 char value[20] = {0};
-	 char bad_value[20] = {0};
+	char value[20] = {0};
+	char bad_value[20] = {0};
 
-	if (obj1 == obj2)
+	if (num1 == num2)
 		Pass();
 	else
 	{
-		value << obj1;
-		bad_value << obj2;
+		sprintf(value, "%ld", num1);
+		sprintf(bad_value, "%ld", num2);
 		PrintFail(dis, line, value, bad_value);
 	}
 }
-
 /*
 static void MemoryComper(void *mem1, void *mem2, size_t n, convert_t conv ,char *dis, int line)
 {
@@ -119,54 +112,72 @@ static void MemoryComper(void *mem1, void *mem2, size_t n, convert_t conv ,char 
 	}
 }
 */
-namespace hrd11
+
+
+
+void TestCreateAndDestroy()
 {
-	void operator<<(char* str, Complex& complex)
-	{
-		sprintf(str, "(%.3f, %.3f)", complex.m_real, complex.m_img);
-	}
+    SList<int> list;
 }
 
-void TestBasicOperators()
+void TestPush()
 {
-	SetTest(1, "BasicOperators");
+    SList<int> list;
+    int ret = 0;
+    char dis[] = "-- Pushing '1' and compering using the ret value of Head().";
+    char dis2[] = "-- Pushing '1' and compering using the ret value of Head().";
 
-	{
-		Complex a(1.7,1.5);
-		Complex b(6.3, 1.5);
-		Complex correct(8, 3);
-		a += b;
-		ReturnComper<Complex>(correct, a, "Operator +=", __LINE__);
-	}
-	{
-		Complex a(1.7,1.5);
-		Complex b(0.7, 0.5);
-		Complex correct(1, 1);
-		a -= b;
-		ReturnComper<Complex>(correct, a, "Operator -=", __LINE__);
-	}
-	{
-		Complex a(5.5,1.5);
-		Complex correct(28, 16.5);
-		a *= a;
-		ReturnComper<Complex>(correct, a, "Operator *=", __LINE__);
-	}
-	{
-		Complex a(5.5,1.5);
-		Complex correct(1, 0);
-		a /= a;
-		ReturnComper<Complex>(correct, a, "Operator /=", __LINE__);
-	}
-	{
-		Complex a;
-		Complex b(5.5, 1.5);
-		Complex correct(8.5, 1.5);
-		a = b + 3;
-		ReturnComper<Complex>(correct, a, "Operator /=", __LINE__);
-		a = 3 + b;
-		ReturnComper<Complex>(correct, a, "Operator /=", __LINE__);
-	}
 
+    list.PushFront(1);
+    ret = list.Head();
+	ReturnComper(1, ret, dis, __LINE__);
+
+	list.PopFront();
+	list.PopFront();
+	list.PopFront();
+	ret = list.Head();
+
+    ReturnComper(SList<int>::empty, ret, dis2, __LINE__);
+}
+
+void TestPop()
+{
+    SList<int> list;
+	bool ret = 0;
+    size_t ret2 = 0;
+    char dis[] = "-- Pushing and Poping cheaking with IsEmpty()";
+    char dis2[] = "-- Poping a lot and cheaking with IsEmpty()";
+
+
+    list.PushFront(1);
+    list.PopFront();
+    ret = list.IsEmpty();
+
+    ReturnComper(1, ret, dis, __LINE__);
+	list.PopFront();
+	list.PopFront();
+	list.PopFront();
+
+	ret = list.Size();
+	ReturnComper(0, ret2, dis2, __LINE__);
+}
+
+void TestSize()
+{
+    SList<int> list;
+    size_t ret = 0;
+    char dis[] = "-- Pushing 6 times and poping once. comparing ret of Size()";
+
+    for (int i = 0; i < 5; ++i)
+    {
+        list.PushFront(i);
+    }
+    list.PopFront();
+    list.PushFront(66);
+
+    ret = list.Size();
+
+    ReturnComper(5, ret, dis, __LINE__);
 }
 
 int main(int ac, char **av)
@@ -180,29 +191,37 @@ int main(int ac, char **av)
     switch (test)
 	{
 		case 1:
-			TestBasicOperators();
-		break ;
+            TestCreateAndDestroy();
+			break ;
 		case 2:
-		break ;
+            TestPush();
+			break ;
 		case 3:
-		break ;
+            TestPop();
+			break ;
 		case 4:
-		break ;
-		case 5:
-		break ;
-		case 6:
-		break ;
-		case 7:
-		break ;
-		case 8:
-		break ;
-		case 9:
-		break ;
+            TestSize();
+			break ;
 
+		case 5:
+			break ;
+		case 6:
+			break ;
+		case 7:
+			break ;
+		case 8:
+			break ;
+		case 9:
+			break ;
 		default:
-			TestBasicOperators();
+		TestCreateAndDestroy();
+        TestPush();
+        TestPop();
+        TestSize();
+
+
+
 	}
 	PrintSummery();
 
-	return 0;
 }
