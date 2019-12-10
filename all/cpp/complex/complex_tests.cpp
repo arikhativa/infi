@@ -210,10 +210,6 @@ static void TestIO()
 		Complex num(2, 2);
 		std::cin >> num;
 		std::cout << num;
-		/*std::cin >> num;
-		std::cout << num;
-		std::cin >> num;
-		std::cout << num;*/
 	}
 }
 

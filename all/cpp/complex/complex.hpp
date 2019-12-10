@@ -14,7 +14,7 @@
 #ifndef __HRD11_Complex_HPP__
 #define __HRD11_Complex_HPP__
 
-#include <iostream> //iostream, ostream
+#include <iostream> //istream, ostream
 
 namespace hrd11
 {
