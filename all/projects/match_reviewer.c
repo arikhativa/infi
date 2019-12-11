@@ -65,7 +65,7 @@ int main(int ac, char **av)
 
 	if (!(arr = (int*)malloc(sizeof(int) * Max)))
 		return 0;
-	arr = MakeReviewList(arr, 6);
+	arr = MakeReviewList(arr, 1);
 	PrintReviewList(arr, names);
 
 

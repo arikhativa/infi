@@ -20,17 +20,24 @@
 
 #include "write_print.h"
 
+class X
+{
+private:
+	int m_a;
+public:
+	static void Foo(X* x);
+};
 
+void X::Foo(X* x)
+{
+	x->m_a = 0;
+}
 
 int main()
 {
-	int number = 666;
+	X x;
 
-	printf(" %+d \n", number);
-	printf(" %+d \n\n", -number);
-	printf(" %-10d \n", number);
-    printf(" %010d \n", number);
-    printf(" %-#10x \n", number);
-    printf(" %#x \n", number);
+	X::Foo(&x);
+
 	return 0;
 }
