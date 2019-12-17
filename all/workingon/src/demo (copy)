@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <mcheck.h>
+
+#include "glut_utils.h"
+
+
+int drawCircle = 1;
+int xCircle = 250;
+int yCircle = 100;
+int xPoly = 0;
+int yPoly = 0;
+double rCircle = 100;
+
+static void DrawFunction();
+static int KeyboardFunction(unsigned char key, int x, int y);
+static int MouseFunction(int button, int state, int x, int y);
+static int MotionFunction(int x, int y);
+static int TimerFunction();
+
+int ac;
+char **av;
+
+int main(int argc, char** argv)
+{
+    /*--------------------------- mtrace(); */
+
+ac = argc;
+av = argv;
+    DrawInit(argc, argv, 1000, 1000, DrawFunction);
+
+    /* advanced: extra functionality */
+    DrawSetKeyboardFunc(KeyboardFunction);
+    DrawSetMouseFunc(MouseFunction);
+    DrawSetMotionFunc(MotionFunction);
+    DrawSetTimerFunc(TimerFunction, 5);
+
+    DrawMainLoop();
+    
+    DrawInit(ac, av, 100, 100, DrawFunction);
+
+    DrawMainLoop();
+
+    printf("exit\n");
+
+    return 0;
+}
+
+int d = 0;
+int width = 10;
+int height = 20;
+int *data = &d;
+
+static void DrawFunction()
+{
+    /* printf("Drawing\n"); */
+
+    /* draw rectangle */
+    DrawPolygon(COLOR_MAGENTA, 3, (int)150 + xPoly, (int)400, (int)150 + xPoly, (int)650, (int)300 + xPoly, (int)650);
+
+     //DrawTexture(width, height, data);
+
+    if (drawCircle)
+        DrawCircle(COLOR_GREEN, xCircle, yCircle, rCircle);
+}
+
+
+static int KeyboardFunction(unsigned char key, int x, int y)
+{
+    printf("Keyboard: %02x,%d,%d\n", key, x, y);
+
+    if (key == 0x1b /* ESC */)
+        return -1;
+
+    return 0;
+}
+
+
+static int MouseFunction(int button, int state, int x, int y)
+{
+    /* printf("Mouse: %d,%d,%d,%d\n", button, state, x, y); */
+
+    if (state == 1 && button == MOUSE_WHEEL_UP)
+    {
+        rCircle *= 1.1;
+        return 1;
+    }
+    if (state == 1 && button == MOUSE_WHEEL_DOWN)
+    {
+        rCircle *= 0.9;
+        return 1;
+    }
+
+    if (button == MOUSE_LEFT)
+    {
+        drawCircle = state;
+        return 1;
+    }
+
+    return 0;
+}
+
+
+static int MotionFunction(int x, int y)
+{
+    printf("Mouse: %d,%d\n", x, y);
+
+    return 0;
+}
+
+
+static int TimerFunction()
+{
+    if (xCircle > 500)
+    {
+        xCircle = 0;
+        yCircle = 0;
+        return 0;
+
+
+
+    }
+
+    xCircle += 1;
+    yCircle += 1;
+    xPoly += 1;
+
+    return 1;  /* draw */
+}

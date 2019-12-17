@@ -1,45 +1,34 @@
 
-WATCHDOG = watchdog.out
-USER = user.out
+NAME = test.out
+LIB = ./lib/libpoint.a
 
-LIB = libwatchdog.so
-LIB_PATH = /home/student/git/workingon
+LIB_PATH = /home/student/git/workingon/lib
+SRC_DIR = src
 
-SRC =  *.c
-OBJ = $(SRC:.c=.o)
-
-SRC_WD = watchdog.c
-SRC_U = user.c
+SRC = $(SRC_DIR)/*.cpp
+OBJ = $(SRC:.cpp=.o)
 
 HED_DIR = include
 
-CC = gcc
-CFLAGS = -fPIC -c
-LFLAGS = -shared
-DLFLAGS = -lw -lpthread
+CC = g++
+CFLAGS = -c -std=c++98 -pedantic-errors -Wall -Wextra -g
+DLFLAGS = -lglut_utils
 
 .SECONDARY: $(wildcard *.o)
 .SUFFIXES:
 .PHONY: all clean re
 
-all: $(WATCHDOG) $(USER) $(LIB)
+all: $(NAME)
 
-%.o:
-	$(CC) $(CFLAGS) $(@:.o=.c) -I $(HED_DIR)
+%.o: $(SRC)
+	$(CC) $(CFLAGS) $(@:.o=.cpp) -I $(HED_DIR)
+	mv *.o $(SRC_DIR)
 
-$(LIB): $(OBJ)
-	$(CC) $(LFLAGS) $^ $(DLFLAGS) -o $@
-
-$(USER): $(SRC_U)
-	$(CC) $< $(DLFLAGS) -lwatchdog -o $@ -I $(HED_DIR)
-
-$(WATCHDOG): $(SRC_WD)
-	$(CC) $< $(DLFLAGS) -lwatchdog -o $@ -I $(HED_DIR)
+%.out: $(OBJ) $(LIB)
+	$(CC) -L$(LIB_PATH) -Wl,-rpath=$(LIB_PATH) $(^) $(DLFLAGS) -o $@ -I $(HED_DIR)
 
 clean:
-	rm $(WATCHDOG)
-	rm $(USER)
-	rm $(LIB)
-	rm $(OBJ)
+	rm *.out
+	rm src/*.o
 
 re: clean all

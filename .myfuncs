@@ -13,6 +13,10 @@ fi
 # Set core generation to unlimited
 #ulimit -c unlimited
 
+#glut_utils
+export LD_LIBRARY_PATH=.
+alias ggpp='g++ -ansi -pedantic-errors main_test.c -L. -lglut_utils'
+
 #c++
 alias gcpp='g++ -std=c++98 -pedantic-errors -Wall -Wextra -DNDEBUG -O3'
 alias gdpp='g++ -std=c++98 -pedantic-errors -Wall -Wextra -g'
