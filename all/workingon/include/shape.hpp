@@ -14,6 +14,7 @@
 #ifndef __HRD11_SHAPES_HPP__
 #define __HRD11_SHAPES_HPP__
 
+#include "glut_utils.h" // COLOR
 #include "point.hpp"  // ilrd::Point
 
 namespace hrd11
@@ -31,11 +32,15 @@ public:
     virtual Shape& Move(double x, double y);
     // positive number will be clockwise
     virtual Shape& Rotate(double angle);
-    virtual Shape& Revolve(double angle, const ilrd::Point& pivot) = 0;
+    virtual Shape& Revolve(double angle, const ilrd::Point& pivot);
+
+    virtual double CalculateArea() = 0;
 
     void SetColor(COLORS color);
 
 protected:
+    static ilrd::Point GetCenter(const Shape& shape);
+
     COLORS m_color;
     ilrd::Point m_center;
     double m_angle;

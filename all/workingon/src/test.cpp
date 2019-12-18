@@ -1,10 +1,15 @@
+
+
+#include <iostream>
 #include <stdio.h>
 #include <mcheck.h>
 
 #include "glut_utils.h"
 
+#include "group.hpp"    // Group
 #include "shape.hpp"    // Shape
 #include "circle.hpp"   // Circle
+#include "rectangle.hpp"   // Rectangle
 
 using namespace hrd11;
 using namespace ilrd;
@@ -22,38 +27,78 @@ static int MouseFunction(int button, int state, int x, int y);
 static int MotionFunction(int x, int y);
 static int TimerFunction();
 
-static Shape* all;
+static Shape* s1;
+static Shape* s2;
+static Shape* s3;
+static Shape* s4;
+static Shape* s5;
+static Shape* s6;
 
 int main(int argc, char** argv)
 {
-    /*--------------------------- mtrace(); */
+    Point p1(0, 0);
+    Point p2(200, 200);
+    Point arr[2];
+    arr[0] = p1;
+    arr[1] = p2;
+
+    size_t rad = 20;
+    size_t bbb = 200;
+
+    Group* tmp = 0;
+
+    //s1 = new Rectangle(arr, COLOR_BLUE);
+    s2 = new Circle(rad, COLOR_BLUE);
+
+    // std::cout << s1->CalculateArea();
+    // std::cout << std::endl;
+
+    s3 = new Circle(rad, COLOR_GREEN);
+    s3->Move(bbb/2, bbb);
+    s4 = new Circle(rad, COLOR_RED);
+    s4->Move(bbb, bbb);
+    s5 = new Circle(rad, COLOR_WHITE);
+    s5->Move(bbb/2, 0);
+    s6 = new Circle(rad / 5, COLOR_CYAN);
+    s6->Move(bbb / 2, bbb / 2);
+
+    tmp = new Group(s2);
+    tmp->Add(s3);
+    tmp->Add(s4);
+    tmp->Add(s5);
+    tmp->Add(s6);
+    s1 = tmp;
+
+    s1->Move(100, 100);
+    // tmp->CalculateCenter();
 
     DrawInit(argc, argv, 1000, 1000, DrawFunction);
-
-    /* advanced: extra functionality */
     DrawSetKeyboardFunc(KeyboardFunction);
     DrawSetMouseFunc(MouseFunction);
     DrawSetMotionFunc(MotionFunction);
-    DrawSetTimerFunc(TimerFunction, 5);
-
+    DrawSetTimerFunc(TimerFunction, 10);
     DrawMainLoop();
-
-    printf("exit\n");
-
-    delete all;
 
     return 0;
 }
 
 static void DrawFunction()
 {
-    all = new Circle(100, COLOR_RED);
+    s1->Draw();
+}
 
-    all->Draw();
+static int TimerFunction()
+{
+    static double i = 30;
+
+    s1->Rotate(i);
+
+    //s1->Revolve(i, Point(400, 400));
 
 
-    DrawPolygon(COLOR_MAGENTA, 3, (int)150 + xPoly, (int)400, (int)150 + xPoly, (int)650, (int)300 + xPoly, (int)650);
+    // xPoly += 10;
 
+    return 1;  /* draw */
 }
 
 
@@ -106,14 +151,4 @@ static int MotionFunction(int x, int y)
     printf("Mouse: %d,%d\n", x, y);
 
     return 0;
-}
-
-
-static int TimerFunction()
-{
-    all->Move(55, 55);
-
-    xPoly += 10;
-
-    return 1;  /* draw */
 }

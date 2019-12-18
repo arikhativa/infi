@@ -1,6 +1,9 @@
 
+#include <iostream> //delllllllllll
+
+
 #include "glut_utils.h"     // DrawCircle()
-#include "point.hpp"          // ilrd::Point
+#include "point.hpp"        // ilrd::Point
 #include "shape.hpp"        // Shape
 #include "circle.hpp"       // Circle
 
@@ -16,18 +19,28 @@ Circle::Circle(size_t radius, COLORS color) :
 
 Shape& Circle::Draw()
 {
-    DrawCircle(m_color, static_cast<int>(m_center.GetX()),
-                static_cast<int>(m_center.GetY()), static_cast<int>(m_radius));
+    int x = static_cast<int>(m_center.GetX());
+    int y = static_cast<int>(m_center.GetY());
+
+    DrawCircle(m_color, x, y, static_cast<int>(m_radius));
 
     return *this;
 }
 
-Shape& Circle::Revolve(double angle, const Point& pivot)
+double Circle::CalculateArea()
 {
-    (void)angle;
-    (void)pivot;
-
-    return *this;
+    return (m_radius * m_radius) * GetPi();
 }
+
+double Circle::GetPi()
+{
+    static const double s_pi = (double)3.14159265359;
+
+    return s_pi;
+}
+
+
+
+
 
 } // namespace hrd11

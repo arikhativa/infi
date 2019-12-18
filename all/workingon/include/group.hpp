@@ -1,10 +1,12 @@
 #ifndef __HRD11_GROUP_HPP__
 #define __HRD11_GROUP_HPP__
 
-#include <sys/types.h> // ssize_t
+#include <sys/types.h>  // ssize_t
 
-#include "point.hpp"  // ilrd::Point
-#include "shape.hpp"  // Shape
+#include "point.hpp"    // ilrd::Point
+#include "shape.hpp"    // Shape
+
+#include <vector>
 
 namespace hrd11
 {
@@ -20,9 +22,13 @@ public:
     virtual Shape& Move(double x, double y);
     virtual Shape& Rotate(double angle);
     virtual Shape& Revolve(double angle, const ilrd::Point& pivot);
+    virtual double CalculateArea();
+
 
     void Add(Shape* shape);
     void Remove(Shape* shape);
+
+    void CalculateCenter();
 
 private:
     Group(const Group& other);

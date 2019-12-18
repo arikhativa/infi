@@ -16,7 +16,9 @@ public:
     explicit Circle(size_t radius = 50, COLORS color = COLOR_WHITE);
 
     virtual Shape& Draw();
-    virtual Shape& Revolve(double angle, const ilrd::Point& pivot);
+    virtual double CalculateArea();
+
+    double GetPi();
 
 private:
     Circle(const Circle& other);

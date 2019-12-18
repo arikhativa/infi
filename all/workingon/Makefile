@@ -21,7 +21,7 @@ DLFLAGS = -lglut_utils
 all: $(NAME)
 
 %.o: $(SRC)
-	$(CC) $(CFLAGS) $(@:.o=.cpp) -I $(HED_DIR)
+	$(CC) $(CFLAGS) $(^) -I $(HED_DIR)
 	mv *.o $(SRC_DIR)
 
 %.out: $(OBJ) $(LIB)
@@ -29,6 +29,6 @@ all: $(NAME)
 
 clean:
 	rm *.out
-	rm src/*.o
+	rm $(OBJ)
 
 re: clean all

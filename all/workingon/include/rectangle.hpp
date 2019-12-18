@@ -12,15 +12,13 @@ namespace hrd11
 class Rectangle : public Shape
 {
 public:
-    static const s_points = 2;
+    static const size_t s_points = 2;
 
-    explicit Rectangle(ilrd::Point arr[s_points]);
-    virtual ~Rectangle();
+    explicit Rectangle(ilrd::Point arr[s_points], COLORS color = COLOR_WHITE);
 
     virtual Shape& Draw();
-    virtual Shape& Move(double x, double y);
-    virtual Shape& Rotate(double angle);
-    virtual Shape& Revolve(double angle, const ilrd::Point& pivot);
+    virtual double CalculateArea();
+
 
 private:
     Rectangle(const Rectangle& other);
