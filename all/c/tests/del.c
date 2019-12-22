@@ -20,24 +20,44 @@
 
 #include "write_print.h"
 
-class X
+class Animal
 {
-private:
-	int m_a;
 public:
-	static void Foo(X* x);
+
+	virtual void Foo()
+	{
+		printf("-- Animal \n");
+	}
 };
 
-void X::Foo(X* x)
+class Dog : public Animal
 {
-	x->m_a = 0;
-}
+public:
+
+	virtual void Foo()
+	{
+		printf("-- Dog \n");
+	}
+};
+
+class Cat : public Animal
+{
+public:
+	virtual void Foo()
+	{
+		printf("-- Cat \n");
+	}
+};
 
 int main()
 {
-	X x;
+	Dog d;
+	Dog* ptr;
 
-	X::Foo(&x);
+	Animal* c = (&d);
+	ptr = dynamic_cast<Dog*>(c);
+
+	ptr->Foo();
 
 	return 0;
 }
