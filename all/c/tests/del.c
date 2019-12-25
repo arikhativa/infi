@@ -20,44 +20,21 @@
 
 #include "write_print.h"
 
-class Animal
-{
-public:
 
-	virtual void Foo()
-	{
-		printf("-- Animal \n");
-	}
-};
-
-class Dog : public Animal
-{
-public:
-
-	virtual void Foo()
-	{
-		printf("-- Dog \n");
-	}
-};
-
-class Cat : public Animal
-{
-public:
-	virtual void Foo()
-	{
-		printf("-- Cat \n");
-	}
-};
-
+class
 int main()
 {
-	Dog d;
-	Dog* ptr;
+	StackMin stack;
 
-	Animal* c = (&d);
-	ptr = dynamic_cast<Dog*>(c);
+	stack.Push(1);
+	stack.Push(2);
+	stack.Push(3);
+	stack.Push(-5);
 
-	ptr->Foo();
+	stack.Pop();
+	stack.Pop();
+
+	printf("-- min %d\n", stack.MinPeek());
 
 	return 0;
 }

@@ -62,8 +62,8 @@ Shape& Group::Rotate(double angle)
 {
     for (size_t i = 0; i < m_shapes.size(); ++i)
     {
-        m_shapes[i]->Rotate(angle);
         m_shapes[i]->Revolve(angle, m_center);
+        m_shapes[i]->Rotate(angle);
     }
 
     return *this;
@@ -75,8 +75,8 @@ Shape& Group::Revolve(double angle, const ilrd::Point& pivot)
 
     for (size_t i = 0; i < m_shapes.size(); ++i)
     {
-        m_shapes[i]->Rotate(angle);
         m_shapes[i]->Revolve(angle, pivot);
+        m_shapes[i]->Rotate(angle);
     }
 
     return *this;

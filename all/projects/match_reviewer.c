@@ -13,7 +13,6 @@ typedef enum chair
 	Shlomit,
 	Yoav,
 	Elyashiv,
-	Galit,
 	Yoni,
 	Shahar,
 	Max
@@ -58,14 +57,13 @@ int main(int ac, char **av)
 		"Shlomit	",
 		"Yoav		",
 		"Elyashiv	",
-		"Galit		",
 		"Yoni		",
 		"Shahar		"
 	};
 
 	if (!(arr = (int*)malloc(sizeof(int) * Max)))
 		return 0;
-	arr = MakeReviewList(arr, 2);
+	arr = MakeReviewList(arr, 3);
 	PrintReviewList(arr, names);
 
 

@@ -1,0 +1,1893 @@
+
+a.out:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000000d78 <_init>:
+ d78:	48 83 ec 08          	sub    $0x8,%rsp
+ d7c:	48 8b 05 65 32 20 00 	mov    0x203265(%rip),%rax        # 203fe8 <__gmon_start__>
+ d83:	48 85 c0             	test   %rax,%rax
+ d86:	74 02                	je     d8a <_init+0x12>
+ d88:	ff d0                	callq  *%rax
+ d8a:	48 83 c4 08          	add    $0x8,%rsp
+ d8e:	c3                   	retq   
+
+Disassembly of section .plt:
+
+0000000000000d90 <.plt>:
+ d90:	ff 35 ca 31 20 00    	pushq  0x2031ca(%rip)        # 203f60 <_GLOBAL_OFFSET_TABLE_+0x8>
+ d96:	ff 25 cc 31 20 00    	jmpq   *0x2031cc(%rip)        # 203f68 <_GLOBAL_OFFSET_TABLE_+0x10>
+ d9c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000000da0 <operator new[](unsigned long)@plt>:
+ da0:	ff 25 ca 31 20 00    	jmpq   *0x2031ca(%rip)        # 203f70 <operator new[](unsigned long)@GLIBCXX_3.4>
+ da6:	68 00 00 00 00       	pushq  $0x0
+ dab:	e9 e0 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000db0 <__cxa_atexit@plt>:
+ db0:	ff 25 c2 31 20 00    	jmpq   *0x2031c2(%rip)        # 203f78 <__cxa_atexit@GLIBC_2.2.5>
+ db6:	68 01 00 00 00       	pushq  $0x1
+ dbb:	e9 d0 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>:
+ dc0:	ff 25 ba 31 20 00    	jmpq   *0x2031ba(%rip)        # 203f80 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@GLIBCXX_3.4>
+ dc6:	68 02 00 00 00       	pushq  $0x2
+ dcb:	e9 c0 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000dd0 <operator new(unsigned long)@plt>:
+ dd0:	ff 25 b2 31 20 00    	jmpq   *0x2031b2(%rip)        # 203f88 <operator new(unsigned long)@GLIBCXX_3.4>
+ dd6:	68 03 00 00 00       	pushq  $0x3
+ ddb:	e9 b0 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000de0 <operator delete(void*, unsigned long)@plt>:
+ de0:	ff 25 aa 31 20 00    	jmpq   *0x2031aa(%rip)        # 203f90 <operator delete(void*, unsigned long)@CXXABI_1.3.9>
+ de6:	68 04 00 00 00       	pushq  $0x4
+ deb:	e9 a0 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>:
+ df0:	ff 25 a2 31 20 00    	jmpq   *0x2031a2(%rip)        # 203f98 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@GLIBCXX_3.4>
+ df6:	68 05 00 00 00       	pushq  $0x5
+ dfb:	e9 90 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000e00 <__stack_chk_fail@plt>:
+ e00:	ff 25 9a 31 20 00    	jmpq   *0x20319a(%rip)        # 203fa0 <__stack_chk_fail@GLIBC_2.4>
+ e06:	68 06 00 00 00       	pushq  $0x6
+ e0b:	e9 80 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000e10 <std::ios_base::Init::Init()@plt>:
+ e10:	ff 25 92 31 20 00    	jmpq   *0x203192(%rip)        # 203fa8 <std::ios_base::Init::Init()@GLIBCXX_3.4>
+ e16:	68 07 00 00 00       	pushq  $0x7
+ e1b:	e9 70 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000e20 <std::ostream::operator<<(int)@plt>:
+ e20:	ff 25 8a 31 20 00    	jmpq   *0x20318a(%rip)        # 203fb0 <std::ostream::operator<<(int)@GLIBCXX_3.4>
+ e26:	68 08 00 00 00       	pushq  $0x8
+ e2b:	e9 60 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000e30 <_Unwind_Resume@plt>:
+ e30:	ff 25 82 31 20 00    	jmpq   *0x203182(%rip)        # 203fb8 <_Unwind_Resume@GCC_3.0>
+ e36:	68 09 00 00 00       	pushq  $0x9
+ e3b:	e9 50 ff ff ff       	jmpq   d90 <.plt>
+
+0000000000000e40 <operator delete[](void*, unsigned long)@plt>:
+ e40:	ff 25 7a 31 20 00    	jmpq   *0x20317a(%rip)        # 203fc0 <operator delete[](void*, unsigned long)@CXXABI_1.3.9>
+ e46:	68 0a 00 00 00       	pushq  $0xa
+ e4b:	e9 40 ff ff ff       	jmpq   d90 <.plt>
+
+Disassembly of section .plt.got:
+
+0000000000000e50 <__cxa_finalize@plt>:
+ e50:	ff 25 72 31 20 00    	jmpq   *0x203172(%rip)        # 203fc8 <__cxa_finalize@GLIBC_2.2.5>
+ e56:	66 90                	xchg   %ax,%ax
+
+Disassembly of section .text:
+
+0000000000000e60 <_start>:
+     e60:	31 ed                	xor    %ebp,%ebp
+     e62:	49 89 d1             	mov    %rdx,%r9
+     e65:	5e                   	pop    %rsi
+     e66:	48 89 e2             	mov    %rsp,%rdx
+     e69:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+     e6d:	50                   	push   %rax
+     e6e:	54                   	push   %rsp
+     e6f:	4c 8d 05 6a 15 00 00 	lea    0x156a(%rip),%r8        # 23e0 <__libc_csu_fini>
+     e76:	48 8d 0d f3 14 00 00 	lea    0x14f3(%rip),%rcx        # 2370 <__libc_csu_init>
+     e7d:	48 8d 3d ee 01 00 00 	lea    0x1ee(%rip),%rdi        # 1072 <main>
+     e84:	ff 15 56 31 20 00    	callq  *0x203156(%rip)        # 203fe0 <__libc_start_main@GLIBC_2.2.5>
+     e8a:	f4                   	hlt    
+     e8b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000e90 <deregister_tm_clones>:
+     e90:	48 8d 3d 81 31 20 00 	lea    0x203181(%rip),%rdi        # 204018 <__TMC_END__>
+     e97:	55                   	push   %rbp
+     e98:	48 8d 05 79 31 20 00 	lea    0x203179(%rip),%rax        # 204018 <__TMC_END__>
+     e9f:	48 39 f8             	cmp    %rdi,%rax
+     ea2:	48 89 e5             	mov    %rsp,%rbp
+     ea5:	74 19                	je     ec0 <deregister_tm_clones+0x30>
+     ea7:	48 8b 05 2a 31 20 00 	mov    0x20312a(%rip),%rax        # 203fd8 <_ITM_deregisterTMCloneTable>
+     eae:	48 85 c0             	test   %rax,%rax
+     eb1:	74 0d                	je     ec0 <deregister_tm_clones+0x30>
+     eb3:	5d                   	pop    %rbp
+     eb4:	ff e0                	jmpq   *%rax
+     eb6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     ebd:	00 00 00 
+     ec0:	5d                   	pop    %rbp
+     ec1:	c3                   	retq   
+     ec2:	0f 1f 40 00          	nopl   0x0(%rax)
+     ec6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     ecd:	00 00 00 
+
+0000000000000ed0 <register_tm_clones>:
+     ed0:	48 8d 3d 41 31 20 00 	lea    0x203141(%rip),%rdi        # 204018 <__TMC_END__>
+     ed7:	48 8d 35 3a 31 20 00 	lea    0x20313a(%rip),%rsi        # 204018 <__TMC_END__>
+     ede:	55                   	push   %rbp
+     edf:	48 29 fe             	sub    %rdi,%rsi
+     ee2:	48 89 e5             	mov    %rsp,%rbp
+     ee5:	48 c1 fe 03          	sar    $0x3,%rsi
+     ee9:	48 89 f0             	mov    %rsi,%rax
+     eec:	48 c1 e8 3f          	shr    $0x3f,%rax
+     ef0:	48 01 c6             	add    %rax,%rsi
+     ef3:	48 d1 fe             	sar    %rsi
+     ef6:	74 18                	je     f10 <register_tm_clones+0x40>
+     ef8:	48 8b 05 f1 30 20 00 	mov    0x2030f1(%rip),%rax        # 203ff0 <_ITM_registerTMCloneTable>
+     eff:	48 85 c0             	test   %rax,%rax
+     f02:	74 0c                	je     f10 <register_tm_clones+0x40>
+     f04:	5d                   	pop    %rbp
+     f05:	ff e0                	jmpq   *%rax
+     f07:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+     f0e:	00 00 
+     f10:	5d                   	pop    %rbp
+     f11:	c3                   	retq   
+     f12:	0f 1f 40 00          	nopl   0x0(%rax)
+     f16:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     f1d:	00 00 00 
+
+0000000000000f20 <__do_global_dtors_aux>:
+     f20:	80 3d 09 32 20 00 00 	cmpb   $0x0,0x203209(%rip)        # 204130 <completed.7697>
+     f27:	75 2f                	jne    f58 <__do_global_dtors_aux+0x38>
+     f29:	48 83 3d 97 30 20 00 	cmpq   $0x0,0x203097(%rip)        # 203fc8 <__cxa_finalize@GLIBC_2.2.5>
+     f30:	00 
+     f31:	55                   	push   %rbp
+     f32:	48 89 e5             	mov    %rsp,%rbp
+     f35:	74 0c                	je     f43 <__do_global_dtors_aux+0x23>
+     f37:	48 8b 3d ca 30 20 00 	mov    0x2030ca(%rip),%rdi        # 204008 <__dso_handle>
+     f3e:	e8 0d ff ff ff       	callq  e50 <__cxa_finalize@plt>
+     f43:	e8 48 ff ff ff       	callq  e90 <deregister_tm_clones>
+     f48:	c6 05 e1 31 20 00 01 	movb   $0x1,0x2031e1(%rip)        # 204130 <completed.7697>
+     f4f:	5d                   	pop    %rbp
+     f50:	c3                   	retq   
+     f51:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+     f58:	f3 c3                	repz retq 
+     f5a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000f60 <frame_dummy>:
+     f60:	55                   	push   %rbp
+     f61:	48 89 e5             	mov    %rsp,%rbp
+     f64:	5d                   	pop    %rbp
+     f65:	e9 66 ff ff ff       	jmpq   ed0 <register_tm_clones>
+
+0000000000000f6a <PrintInfo(Public_Transport&)>:
+  Public_Transport *m_pt2;
+  Minibus m_m;
+  Taxi m_t;
+};
+
+void PrintInfo(Public_Transport &a) { a.Display(); }
+     f6a:	55                   	push   %rbp
+     f6b:	48 89 e5             	mov    %rsp,%rbp
+     f6e:	48 83 ec 10          	sub    $0x10,%rsp
+     f72:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+     f76:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     f7a:	48 8b 00             	mov    (%rax),%rax
+     f7d:	48 83 c0 10          	add    $0x10,%rax
+     f81:	48 8b 00             	mov    (%rax),%rax
+     f84:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+     f88:	48 89 d7             	mov    %rdx,%rdi
+     f8b:	ff d0                	callq  *%rax
+     f8d:	90                   	nop
+     f8e:	c9                   	leaveq 
+     f8f:	c3                   	retq   
+
+0000000000000f90 <PrintInfo()>:
+void PrintInfo() { Public_Transport::PrintCount(); }
+     f90:	55                   	push   %rbp
+     f91:	48 89 e5             	mov    %rsp,%rbp
+     f94:	e8 a0 0a 00 00       	callq  1a39 <Public_Transport::PrintCount()>
+     f99:	90                   	nop
+     f9a:	5d                   	pop    %rbp
+     f9b:	c3                   	retq   
+
+0000000000000f9c <PrintInfo(int)>:
+
+Public_Transport PrintInfo(int i)
+{
+     f9c:	55                   	push   %rbp
+     f9d:	48 89 e5             	mov    %rsp,%rbp
+     fa0:	53                   	push   %rbx
+     fa1:	48 83 ec 38          	sub    $0x38,%rsp
+     fa5:	48 89 7d c8          	mov    %rdi,-0x38(%rbp)
+     fa9:	89 75 c4             	mov    %esi,-0x3c(%rbp)
+     fac:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+     fb3:	00 00 
+     fb5:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+     fb9:	31 c0                	xor    %eax,%eax
+	(void)i;
+
+	Minibus ret;
+     fbb:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
+     fbf:	48 89 c7             	mov    %rax,%rdi
+     fc2:	e8 c7 0a 00 00       	callq  1a8e <Minibus::Minibus()>
+	cout<<"PrintInfo(int i)"<<endl;
+     fc7:	48 8d 35 86 15 00 00 	lea    0x1586(%rip),%rsi        # 2554 <std::piecewise_construct+0x160>
+     fce:	48 8d 3d 4b 30 20 00 	lea    0x20304b(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+     fd5:	e8 e6 fd ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+     fda:	48 89 c2             	mov    %rax,%rdx
+     fdd:	48 8b 05 ec 2f 20 00 	mov    0x202fec(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+     fe4:	48 89 c6             	mov    %rax,%rsi
+     fe7:	48 89 d7             	mov    %rdx,%rdi
+     fea:	e8 01 fe ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	ret.Display();
+     fef:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
+     ff3:	48 89 c7             	mov    %rax,%rdi
+     ff6:	e8 1b 0c 00 00       	callq  1c16 <Minibus::Display()>
+	return ret;
+     ffb:	48 8d 55 d0          	lea    -0x30(%rbp),%rdx
+     fff:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+    1003:	48 89 d6             	mov    %rdx,%rsi
+    1006:	48 89 c7             	mov    %rax,%rdi
+    1009:	e8 66 09 00 00       	callq  1974 <Public_Transport::Public_Transport(Public_Transport const&)>
+    100e:	90                   	nop
+	Minibus ret;
+    100f:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
+    1013:	48 89 c7             	mov    %rax,%rdi
+    1016:	e8 7d 0b 00 00       	callq  1b98 <Minibus::~Minibus()>
+	return ret;
+    101b:	90                   	nop
+}
+    101c:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+    1020:	48 8b 4d e8          	mov    -0x18(%rbp),%rcx
+    1024:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+    102b:	00 00 
+    102d:	74 21                	je     1050 <PrintInfo(int)+0xb4>
+    102f:	eb 1a                	jmp    104b <PrintInfo(int)+0xaf>
+    1031:	48 89 c3             	mov    %rax,%rbx
+	Minibus ret;
+    1034:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
+    1038:	48 89 c7             	mov    %rax,%rdi
+    103b:	e8 58 0b 00 00       	callq  1b98 <Minibus::~Minibus()>
+    1040:	48 89 d8             	mov    %rbx,%rax
+    1043:	48 89 c7             	mov    %rax,%rdi
+    1046:	e8 e5 fd ff ff       	callq  e30 <_Unwind_Resume@plt>
+}
+    104b:	e8 b0 fd ff ff       	callq  e00 <__stack_chk_fail@plt>
+    1050:	48 83 c4 38          	add    $0x38,%rsp
+    1054:	5b                   	pop    %rbx
+    1055:	5d                   	pop    %rbp
+    1056:	c3                   	retq   
+
+0000000000001057 <TaxiDisplay(Taxi)>:
+
+void TaxiDisplay(Taxi s)
+{
+    1057:	55                   	push   %rbp
+    1058:	48 89 e5             	mov    %rsp,%rbp
+    105b:	48 83 ec 10          	sub    $0x10,%rsp
+    105f:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+	s.Display();
+    1063:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1067:	48 89 c7             	mov    %rax,%rdi
+    106a:	e8 e9 0d 00 00       	callq  1e58 <Taxi::Display()>
+}
+    106f:	90                   	nop
+    1070:	c9                   	leaveq 
+    1071:	c3                   	retq   
+
+0000000000001072 <main>:
+
+int main(int argc, char **argv, char **envp)
+{
+    1072:	55                   	push   %rbp
+    1073:	48 89 e5             	mov    %rsp,%rbp
+    1076:	41 56                	push   %r14
+    1078:	41 55                	push   %r13
+    107a:	41 54                	push   %r12
+    107c:	53                   	push   %rbx
+    107d:	48 81 ec 30 01 00 00 	sub    $0x130,%rsp
+    1084:	89 bd cc fe ff ff    	mov    %edi,-0x134(%rbp)
+    108a:	48 89 b5 c0 fe ff ff 	mov    %rsi,-0x140(%rbp)
+    1091:	48 89 95 b8 fe ff ff 	mov    %rdx,-0x148(%rbp)
+    1098:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    109f:	00 00 
+    10a1:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+    10a5:	31 c0                	xor    %eax,%eax
+	(void)argc;
+	(void)argv;
+	(void)envp;
+
+	Minibus m;
+    10a7:	48 8d 85 00 ff ff ff 	lea    -0x100(%rbp),%rax
+    10ae:	48 89 c7             	mov    %rax,%rdi
+    10b1:	e8 d8 09 00 00       	callq  1a8e <Minibus::Minibus()>
+	PrintInfo(m);
+    10b6:	48 8d 85 00 ff ff ff 	lea    -0x100(%rbp),%rax
+    10bd:	48 89 c7             	mov    %rax,%rdi
+    10c0:	e8 a5 fe ff ff       	callq  f6a <PrintInfo(Public_Transport&)>
+	PrintInfo(3).Display();
+    10c5:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    10cc:	be 03 00 00 00       	mov    $0x3,%esi
+    10d1:	48 89 c7             	mov    %rax,%rdi
+    10d4:	e8 c3 fe ff ff       	callq  f9c <PrintInfo(int)>
+    10d9:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    10e0:	48 89 c7             	mov    %rax,%rdi
+    10e3:	e8 06 09 00 00       	callq  19ee <Public_Transport::Display()>
+    10e8:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    10ef:	48 89 c7             	mov    %rax,%rdi
+    10f2:	e8 e9 07 00 00       	callq  18e0 <Public_Transport::~Public_Transport()>
+
+	Public_Transport *array[] =
+	{
+		new Minibus(),
+    10f7:	bf 10 00 00 00       	mov    $0x10,%edi
+    10fc:	e8 cf fc ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    1101:	48 89 c3             	mov    %rax,%rbx
+    1104:	48 89 df             	mov    %rbx,%rdi
+    1107:	e8 82 09 00 00       	callq  1a8e <Minibus::Minibus()>
+		new Taxi(),
+		new Minibus()
+	};
+    110c:	48 89 9d 40 ff ff ff 	mov    %rbx,-0xc0(%rbp)
+		new Taxi(),
+    1113:	bf 10 00 00 00       	mov    $0x10,%edi
+    1118:	e8 b3 fc ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    111d:	48 89 c3             	mov    %rax,%rbx
+    1120:	48 89 df             	mov    %rbx,%rdi
+    1123:	e8 c2 0b 00 00       	callq  1cea <Taxi::Taxi()>
+	};
+    1128:	48 89 9d 48 ff ff ff 	mov    %rbx,-0xb8(%rbp)
+		new Minibus()
+    112f:	bf 10 00 00 00       	mov    $0x10,%edi
+    1134:	e8 97 fc ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    1139:	48 89 c3             	mov    %rax,%rbx
+    113c:	48 89 df             	mov    %rbx,%rdi
+    113f:	e8 4a 09 00 00       	callq  1a8e <Minibus::Minibus()>
+	};
+    1144:	48 89 9d 50 ff ff ff 	mov    %rbx,-0xb0(%rbp)
+
+	for(int i = 0; i < 3; ++i) array[i]->Display();
+    114b:	c7 85 dc fe ff ff 00 	movl   $0x0,-0x124(%rbp)
+    1152:	00 00 00 
+    1155:	83 bd dc fe ff ff 02 	cmpl   $0x2,-0x124(%rbp)
+    115c:	7f 38                	jg     1196 <main+0x124>
+    115e:	8b 85 dc fe ff ff    	mov    -0x124(%rbp),%eax
+    1164:	48 98                	cltq   
+    1166:	48 8b 94 c5 40 ff ff 	mov    -0xc0(%rbp,%rax,8),%rdx
+    116d:	ff 
+    116e:	8b 85 dc fe ff ff    	mov    -0x124(%rbp),%eax
+    1174:	48 98                	cltq   
+    1176:	48 8b 84 c5 40 ff ff 	mov    -0xc0(%rbp,%rax,8),%rax
+    117d:	ff 
+    117e:	48 8b 00             	mov    (%rax),%rax
+    1181:	48 83 c0 10          	add    $0x10,%rax
+    1185:	48 8b 00             	mov    (%rax),%rax
+    1188:	48 89 d7             	mov    %rdx,%rdi
+    118b:	ff d0                	callq  *%rax
+    118d:	83 85 dc fe ff ff 01 	addl   $0x1,-0x124(%rbp)
+    1194:	eb bf                	jmp    1155 <main+0xe3>
+	for(int i = 0; i < 3; ++i) delete array[i];
+    1196:	c7 85 e0 fe ff ff 00 	movl   $0x0,-0x120(%rbp)
+    119d:	00 00 00 
+    11a0:	83 bd e0 fe ff ff 02 	cmpl   $0x2,-0x120(%rbp)
+    11a7:	7f 4d                	jg     11f6 <main+0x184>
+    11a9:	8b 85 e0 fe ff ff    	mov    -0x120(%rbp),%eax
+    11af:	48 98                	cltq   
+    11b1:	48 8b 84 c5 40 ff ff 	mov    -0xc0(%rbp,%rax,8),%rax
+    11b8:	ff 
+    11b9:	48 85 c0             	test   %rax,%rax
+    11bc:	74 2f                	je     11ed <main+0x17b>
+    11be:	8b 85 e0 fe ff ff    	mov    -0x120(%rbp),%eax
+    11c4:	48 98                	cltq   
+    11c6:	48 8b 94 c5 40 ff ff 	mov    -0xc0(%rbp,%rax,8),%rdx
+    11cd:	ff 
+    11ce:	8b 85 e0 fe ff ff    	mov    -0x120(%rbp),%eax
+    11d4:	48 98                	cltq   
+    11d6:	48 8b 84 c5 40 ff ff 	mov    -0xc0(%rbp,%rax,8),%rax
+    11dd:	ff 
+    11de:	48 8b 00             	mov    (%rax),%rax
+    11e1:	48 83 c0 08          	add    $0x8,%rax
+    11e5:	48 8b 00             	mov    (%rax),%rax
+    11e8:	48 89 d7             	mov    %rdx,%rdi
+    11eb:	ff d0                	callq  *%rax
+    11ed:	83 85 e0 fe ff ff 01 	addl   $0x1,-0x120(%rbp)
+    11f4:	eb aa                	jmp    11a0 <main+0x12e>
+	Public_Transport arr2[] =
+	{
+		Minibus(),
+		Taxi(),
+		Public_Transport()
+	};
+    11f6:	48 8d 9d 60 ff ff ff 	lea    -0xa0(%rbp),%rbx
+    11fd:	41 bc 02 00 00 00    	mov    $0x2,%r12d
+		Minibus(),
+    1203:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    120a:	48 89 c7             	mov    %rax,%rdi
+    120d:	e8 7c 08 00 00       	callq  1a8e <Minibus::Minibus()>
+	};
+    1212:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1219:	48 89 c6             	mov    %rax,%rsi
+    121c:	48 89 df             	mov    %rbx,%rdi
+    121f:	e8 50 07 00 00       	callq  1974 <Public_Transport::Public_Transport(Public_Transport const&)>
+		Minibus(),
+    1224:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    122b:	48 89 c7             	mov    %rax,%rdi
+    122e:	e8 65 09 00 00       	callq  1b98 <Minibus::~Minibus()>
+	};
+    1233:	4c 8d 6b 10          	lea    0x10(%rbx),%r13
+    1237:	49 83 ec 01          	sub    $0x1,%r12
+		Taxi(),
+    123b:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1242:	48 89 c7             	mov    %rax,%rdi
+    1245:	e8 a0 0a 00 00       	callq  1cea <Taxi::Taxi()>
+	};
+    124a:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1251:	48 89 c6             	mov    %rax,%rsi
+    1254:	4c 89 ef             	mov    %r13,%rdi
+    1257:	e8 18 07 00 00       	callq  1974 <Public_Transport::Public_Transport(Public_Transport const&)>
+		Taxi(),
+    125c:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1263:	48 89 c7             	mov    %rax,%rdi
+    1266:	e8 6f 0b 00 00       	callq  1dda <Taxi::~Taxi()>
+	};
+    126b:	49 8d 45 10          	lea    0x10(%r13),%rax
+    126f:	49 83 ec 01          	sub    $0x1,%r12
+    1273:	48 89 c7             	mov    %rax,%rdi
+    1276:	e8 ef 05 00 00       	callq  186a <Public_Transport::Public_Transport()>
+
+
+	for(int i = 0; i < 3; ++i)
+    127b:	c7 85 e4 fe ff ff 00 	movl   $0x0,-0x11c(%rbp)
+    1282:	00 00 00 
+    1285:	83 bd e4 fe ff ff 02 	cmpl   $0x2,-0x11c(%rbp)
+    128c:	7f 46                	jg     12d4 <main+0x262>
+	{
+		arr2[i].Display();
+    128e:	48 8d 85 60 ff ff ff 	lea    -0xa0(%rbp),%rax
+    1295:	8b 95 e4 fe ff ff    	mov    -0x11c(%rbp),%edx
+    129b:	48 63 d2             	movslq %edx,%rdx
+    129e:	48 c1 e2 04          	shl    $0x4,%rdx
+    12a2:	48 01 c2             	add    %rax,%rdx
+    12a5:	8b 85 e4 fe ff ff    	mov    -0x11c(%rbp),%eax
+    12ab:	48 98                	cltq   
+    12ad:	48 c1 e0 04          	shl    $0x4,%rax
+    12b1:	48 8d 4d e0          	lea    -0x20(%rbp),%rcx
+    12b5:	48 01 c8             	add    %rcx,%rax
+    12b8:	48 83 c0 80          	add    $0xffffffffffffff80,%rax
+    12bc:	48 8b 00             	mov    (%rax),%rax
+    12bf:	48 83 c0 10          	add    $0x10,%rax
+    12c3:	48 8b 00             	mov    (%rax),%rax
+    12c6:	48 89 d7             	mov    %rdx,%rdi
+    12c9:	ff d0                	callq  *%rax
+	for(int i = 0; i < 3; ++i)
+    12cb:	83 85 e4 fe ff ff 01 	addl   $0x1,-0x11c(%rbp)
+    12d2:	eb b1                	jmp    1285 <main+0x213>
+	}
+
+	Public_Transport::PrintCount();
+    12d4:	e8 60 07 00 00       	callq  1a39 <Public_Transport::PrintCount()>
+	Minibus m2;
+    12d9:	48 8d 85 10 ff ff ff 	lea    -0xf0(%rbp),%rax
+    12e0:	48 89 c7             	mov    %rax,%rdi
+    12e3:	e8 a6 07 00 00       	callq  1a8e <Minibus::Minibus()>
+	m2.PrintCount();
+    12e8:	e8 4c 07 00 00       	callq  1a39 <Public_Transport::PrintCount()>
+
+	Minibus arr3[4];
+    12ed:	4c 8d 65 90          	lea    -0x70(%rbp),%r12
+    12f1:	bb 03 00 00 00       	mov    $0x3,%ebx
+    12f6:	4d 89 e5             	mov    %r12,%r13
+    12f9:	48 85 db             	test   %rbx,%rbx
+    12fc:	78 12                	js     1310 <main+0x29e>
+    12fe:	4c 89 ef             	mov    %r13,%rdi
+    1301:	e8 88 07 00 00       	callq  1a8e <Minibus::Minibus()>
+    1306:	49 83 c5 10          	add    $0x10,%r13
+    130a:	48 83 eb 01          	sub    $0x1,%rbx
+    130e:	eb e9                	jmp    12f9 <main+0x287>
+
+	Taxi *arr4 = new Taxi[4];
+    1310:	bf 48 00 00 00       	mov    $0x48,%edi
+    1315:	e8 86 fa ff ff       	callq  da0 <operator new[](unsigned long)@plt>
+    131a:	49 89 c5             	mov    %rax,%r13
+    131d:	49 c7 45 00 04 00 00 	movq   $0x4,0x0(%r13)
+    1324:	00 
+    1325:	4d 8d 65 08          	lea    0x8(%r13),%r12
+    1329:	bb 03 00 00 00       	mov    $0x3,%ebx
+    132e:	4d 89 e6             	mov    %r12,%r14
+    1331:	48 85 db             	test   %rbx,%rbx
+    1334:	78 12                	js     1348 <main+0x2d6>
+    1336:	4c 89 f7             	mov    %r14,%rdi
+    1339:	e8 ac 09 00 00       	callq  1cea <Taxi::Taxi()>
+    133e:	49 83 c6 10          	add    $0x10,%r14
+    1342:	48 83 eb 01          	sub    $0x1,%rbx
+    1346:	eb e9                	jmp    1331 <main+0x2bf>
+    1348:	49 8d 45 08          	lea    0x8(%r13),%rax
+    134c:	48 89 85 e8 fe ff ff 	mov    %rax,-0x118(%rbp)
+	delete [] arr4;
+    1353:	48 83 bd e8 fe ff ff 	cmpq   $0x0,-0x118(%rbp)
+    135a:	00 
+    135b:	74 66                	je     13c3 <main+0x351>
+    135d:	48 8b 85 e8 fe ff ff 	mov    -0x118(%rbp),%rax
+    1364:	48 83 e8 08          	sub    $0x8,%rax
+    1368:	48 8b 00             	mov    (%rax),%rax
+    136b:	48 c1 e0 04          	shl    $0x4,%rax
+    136f:	48 89 c2             	mov    %rax,%rdx
+    1372:	48 8b 85 e8 fe ff ff 	mov    -0x118(%rbp),%rax
+    1379:	48 8d 1c 02          	lea    (%rdx,%rax,1),%rbx
+    137d:	48 3b 9d e8 fe ff ff 	cmp    -0x118(%rbp),%rbx
+    1384:	74 11                	je     1397 <main+0x325>
+    1386:	48 83 eb 10          	sub    $0x10,%rbx
+    138a:	48 8b 03             	mov    (%rbx),%rax
+    138d:	48 8b 00             	mov    (%rax),%rax
+    1390:	48 89 df             	mov    %rbx,%rdi
+    1393:	ff d0                	callq  *%rax
+    1395:	eb e6                	jmp    137d <main+0x30b>
+    1397:	48 8b 85 e8 fe ff ff 	mov    -0x118(%rbp),%rax
+    139e:	48 83 e8 08          	sub    $0x8,%rax
+    13a2:	48 8b 00             	mov    (%rax),%rax
+    13a5:	48 c1 e0 04          	shl    $0x4,%rax
+    13a9:	48 8d 50 08          	lea    0x8(%rax),%rdx
+    13ad:	48 8b 85 e8 fe ff ff 	mov    -0x118(%rbp),%rax
+    13b4:	48 83 e8 08          	sub    $0x8,%rax
+    13b8:	48 89 d6             	mov    %rdx,%rsi
+    13bb:	48 89 c7             	mov    %rax,%rdi
+    13be:	e8 7d fa ff ff       	callq  e40 <operator delete[](void*, unsigned long)@plt>
+
+	std::cout<<maxFunc<int>(1,2)<<std::endl;
+    13c3:	c7 85 30 ff ff ff 02 	movl   $0x2,-0xd0(%rbp)
+    13ca:	00 00 00 
+    13cd:	c7 85 20 ff ff ff 01 	movl   $0x1,-0xe0(%rbp)
+    13d4:	00 00 00 
+    13d7:	48 8d 95 30 ff ff ff 	lea    -0xd0(%rbp),%rdx
+    13de:	48 8d 85 20 ff ff ff 	lea    -0xe0(%rbp),%rax
+    13e5:	48 89 d6             	mov    %rdx,%rsi
+    13e8:	48 89 c7             	mov    %rax,%rdi
+    13eb:	e8 45 0f 00 00       	callq  2335 <int maxFunc<int>(int const&, int const&)>
+    13f0:	89 c6                	mov    %eax,%esi
+    13f2:	48 8d 3d 27 2c 20 00 	lea    0x202c27(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    13f9:	e8 22 fa ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    13fe:	48 89 c2             	mov    %rax,%rdx
+    1401:	48 8b 05 c8 2b 20 00 	mov    0x202bc8(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1408:	48 89 c6             	mov    %rax,%rsi
+    140b:	48 89 d7             	mov    %rdx,%rdi
+    140e:	e8 dd f9 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	Special_Taxi st;
+    1413:	48 8d 85 20 ff ff ff 	lea    -0xe0(%rbp),%rax
+    141a:	48 89 c7             	mov    %rax,%rdi
+    141d:	e8 8c 0a 00 00       	callq  1eae <Special_Taxi::Special_Taxi()>
+	TaxiDisplay(st);
+    1422:	48 8d 95 20 ff ff ff 	lea    -0xe0(%rbp),%rdx
+    1429:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1430:	48 89 d6             	mov    %rdx,%rsi
+    1433:	48 89 c7             	mov    %rax,%rdi
+    1436:	e8 21 09 00 00       	callq  1d5c <Taxi::Taxi(Taxi const&)>
+    143b:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1442:	48 89 c7             	mov    %rax,%rdi
+    1445:	e8 0d fc ff ff       	callq  1057 <TaxiDisplay(Taxi)>
+    144a:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1451:	48 89 c7             	mov    %rax,%rdi
+    1454:	e8 81 09 00 00       	callq  1dda <Taxi::~Taxi()>
+
+
+	// std::cout << "\n\n\n";
+
+
+	Public_Convoy *ts1 = new Public_Convoy();
+    1459:	bf 40 00 00 00       	mov    $0x40,%edi
+    145e:	e8 6d f9 ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    1463:	48 89 c3             	mov    %rax,%rbx
+    1466:	48 89 df             	mov    %rbx,%rdi
+    1469:	e8 86 0b 00 00       	callq  1ff4 <Public_Convoy::Public_Convoy()>
+    146e:	48 89 9d f0 fe ff ff 	mov    %rbx,-0x110(%rbp)
+
+	Public_Convoy *ts2 = new Public_Convoy(*ts1);
+    1475:	bf 40 00 00 00       	mov    $0x40,%edi
+    147a:	e8 51 f9 ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    147f:	48 89 c3             	mov    %rax,%rbx
+    1482:	48 8b 85 f0 fe ff ff 	mov    -0x110(%rbp),%rax
+    1489:	48 89 c6             	mov    %rax,%rsi
+    148c:	48 89 df             	mov    %rbx,%rdi
+    148f:	e8 48 0c 00 00       	callq  20dc <Public_Convoy::Public_Convoy(Public_Convoy const&)>
+    1494:	48 89 9d f8 fe ff ff 	mov    %rbx,-0x108(%rbp)
+
+	ts1->Display();
+    149b:	48 8b 85 f0 fe ff ff 	mov    -0x110(%rbp),%rax
+    14a2:	48 8b 00             	mov    (%rax),%rax
+    14a5:	48 83 c0 10          	add    $0x10,%rax
+    14a9:	48 8b 00             	mov    (%rax),%rax
+    14ac:	48 8b 95 f0 fe ff ff 	mov    -0x110(%rbp),%rdx
+    14b3:	48 89 d7             	mov    %rdx,%rdi
+    14b6:	ff d0                	callq  *%rax
+	ts2->Display();
+    14b8:	48 8b 85 f8 fe ff ff 	mov    -0x108(%rbp),%rax
+    14bf:	48 8b 00             	mov    (%rax),%rax
+    14c2:	48 83 c0 10          	add    $0x10,%rax
+    14c6:	48 8b 00             	mov    (%rax),%rax
+    14c9:	48 8b 95 f8 fe ff ff 	mov    -0x108(%rbp),%rdx
+    14d0:	48 89 d7             	mov    %rdx,%rdi
+    14d3:	ff d0                	callq  *%rax
+
+	delete ts1;
+    14d5:	48 83 bd f0 fe ff ff 	cmpq   $0x0,-0x110(%rbp)
+    14dc:	00 
+    14dd:	74 1d                	je     14fc <main+0x48a>
+    14df:	48 8b 85 f0 fe ff ff 	mov    -0x110(%rbp),%rax
+    14e6:	48 8b 00             	mov    (%rax),%rax
+    14e9:	48 83 c0 08          	add    $0x8,%rax
+    14ed:	48 8b 00             	mov    (%rax),%rax
+    14f0:	48 8b 95 f0 fe ff ff 	mov    -0x110(%rbp),%rdx
+    14f7:	48 89 d7             	mov    %rdx,%rdi
+    14fa:	ff d0                	callq  *%rax
+
+	ts2->Display(); // this crashes. fix the bug!
+    14fc:	48 8b 85 f8 fe ff ff 	mov    -0x108(%rbp),%rax
+    1503:	48 8b 00             	mov    (%rax),%rax
+    1506:	48 83 c0 10          	add    $0x10,%rax
+    150a:	48 8b 00             	mov    (%rax),%rax
+    150d:	48 8b 95 f8 fe ff ff 	mov    -0x108(%rbp),%rdx
+    1514:	48 89 d7             	mov    %rdx,%rdi
+    1517:	ff d0                	callq  *%rax
+	delete ts2;
+    1519:	48 83 bd f8 fe ff ff 	cmpq   $0x0,-0x108(%rbp)
+    1520:	00 
+    1521:	74 1d                	je     1540 <main+0x4ce>
+    1523:	48 8b 85 f8 fe ff ff 	mov    -0x108(%rbp),%rax
+    152a:	48 8b 00             	mov    (%rax),%rax
+    152d:	48 83 c0 08          	add    $0x8,%rax
+    1531:	48 8b 00             	mov    (%rax),%rax
+    1534:	48 8b 95 f8 fe ff ff 	mov    -0x108(%rbp),%rdx
+    153b:	48 89 d7             	mov    %rdx,%rdi
+    153e:	ff d0                	callq  *%rax
+
+	return 0;
+    1540:	41 bc 00 00 00 00    	mov    $0x0,%r12d
+	Special_Taxi st;
+    1546:	48 8d 85 20 ff ff ff 	lea    -0xe0(%rbp),%rax
+    154d:	48 89 c7             	mov    %rax,%rdi
+    1550:	e8 cb 09 00 00       	callq  1f20 <Special_Taxi::~Special_Taxi()>
+	Minibus arr3[4];
+    1555:	48 8d 5d 90          	lea    -0x70(%rbp),%rbx
+    1559:	48 83 c3 40          	add    $0x40,%rbx
+    155d:	48 8d 45 90          	lea    -0x70(%rbp),%rax
+    1561:	48 39 c3             	cmp    %rax,%rbx
+    1564:	74 11                	je     1577 <main+0x505>
+    1566:	48 83 eb 10          	sub    $0x10,%rbx
+    156a:	48 8b 03             	mov    (%rbx),%rax
+    156d:	48 8b 00             	mov    (%rax),%rax
+    1570:	48 89 df             	mov    %rbx,%rdi
+    1573:	ff d0                	callq  *%rax
+    1575:	eb e6                	jmp    155d <main+0x4eb>
+	Minibus m2;
+    1577:	48 8d 85 10 ff ff ff 	lea    -0xf0(%rbp),%rax
+    157e:	48 89 c7             	mov    %rax,%rdi
+    1581:	e8 12 06 00 00       	callq  1b98 <Minibus::~Minibus()>
+	};
+    1586:	48 8d 9d 60 ff ff ff 	lea    -0xa0(%rbp),%rbx
+    158d:	48 83 c3 30          	add    $0x30,%rbx
+    1591:	48 8d 85 60 ff ff ff 	lea    -0xa0(%rbp),%rax
+    1598:	48 39 c3             	cmp    %rax,%rbx
+    159b:	74 11                	je     15ae <main+0x53c>
+    159d:	48 83 eb 10          	sub    $0x10,%rbx
+    15a1:	48 8b 03             	mov    (%rbx),%rax
+    15a4:	48 8b 00             	mov    (%rax),%rax
+    15a7:	48 89 df             	mov    %rbx,%rdi
+    15aa:	ff d0                	callq  *%rax
+    15ac:	eb e3                	jmp    1591 <main+0x51f>
+	Minibus m;
+    15ae:	48 8d 85 00 ff ff ff 	lea    -0x100(%rbp),%rax
+    15b5:	48 89 c7             	mov    %rax,%rdi
+    15b8:	e8 db 05 00 00       	callq  1b98 <Minibus::~Minibus()>
+    15bd:	44 89 e0             	mov    %r12d,%eax
+}
+    15c0:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx
+    15c4:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+    15cb:	00 00 
+    15cd:	0f 84 29 02 00 00    	je     17fc <main+0x78a>
+    15d3:	e9 1f 02 00 00       	jmpq   17f7 <main+0x785>
+    15d8:	48 89 c3             	mov    %rax,%rbx
+	PrintInfo(3).Display();
+    15db:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    15e2:	48 89 c7             	mov    %rax,%rdi
+    15e5:	e8 f6 02 00 00       	callq  18e0 <Public_Transport::~Public_Transport()>
+    15ea:	e9 ee 01 00 00       	jmpq   17dd <main+0x76b>
+    15ef:	49 89 c4             	mov    %rax,%r12
+		new Minibus(),
+    15f2:	be 10 00 00 00       	mov    $0x10,%esi
+    15f7:	48 89 df             	mov    %rbx,%rdi
+    15fa:	e8 e1 f7 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    15ff:	4c 89 e3             	mov    %r12,%rbx
+    1602:	e9 d6 01 00 00       	jmpq   17dd <main+0x76b>
+    1607:	49 89 c4             	mov    %rax,%r12
+		new Taxi(),
+    160a:	be 10 00 00 00       	mov    $0x10,%esi
+    160f:	48 89 df             	mov    %rbx,%rdi
+    1612:	e8 c9 f7 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    1617:	4c 89 e3             	mov    %r12,%rbx
+    161a:	e9 be 01 00 00       	jmpq   17dd <main+0x76b>
+    161f:	49 89 c4             	mov    %rax,%r12
+		new Minibus()
+    1622:	be 10 00 00 00       	mov    $0x10,%esi
+    1627:	48 89 df             	mov    %rbx,%rdi
+    162a:	e8 b1 f7 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    162f:	4c 89 e3             	mov    %r12,%rbx
+    1632:	e9 a6 01 00 00       	jmpq   17dd <main+0x76b>
+    1637:	49 89 c5             	mov    %rax,%r13
+		Minibus(),
+    163a:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1641:	48 89 c7             	mov    %rax,%rdi
+    1644:	e8 4f 05 00 00       	callq  1b98 <Minibus::~Minibus()>
+    1649:	eb 17                	jmp    1662 <main+0x5f0>
+    164b:	49 89 c5             	mov    %rax,%r13
+		Taxi(),
+    164e:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    1655:	48 89 c7             	mov    %rax,%rdi
+    1658:	e8 7d 07 00 00       	callq  1dda <Taxi::~Taxi()>
+    165d:	eb 03                	jmp    1662 <main+0x5f0>
+    165f:	49 89 c5             	mov    %rax,%r13
+    1662:	48 85 db             	test   %rbx,%rbx
+    1665:	74 27                	je     168e <main+0x61c>
+	};
+    1667:	b8 02 00 00 00       	mov    $0x2,%eax
+    166c:	4c 29 e0             	sub    %r12,%rax
+    166f:	48 c1 e0 04          	shl    $0x4,%rax
+    1673:	4c 8d 24 03          	lea    (%rbx,%rax,1),%r12
+    1677:	49 39 dc             	cmp    %rbx,%r12
+    167a:	74 12                	je     168e <main+0x61c>
+    167c:	49 83 ec 10          	sub    $0x10,%r12
+    1680:	49 8b 04 24          	mov    (%r12),%rax
+    1684:	48 8b 00             	mov    (%rax),%rax
+    1687:	4c 89 e7             	mov    %r12,%rdi
+    168a:	ff d0                	callq  *%rax
+    168c:	eb e9                	jmp    1677 <main+0x605>
+    168e:	4c 89 eb             	mov    %r13,%rbx
+    1691:	e9 47 01 00 00       	jmpq   17dd <main+0x76b>
+    1696:	49 89 c5             	mov    %rax,%r13
+    1699:	4d 85 e4             	test   %r12,%r12
+    169c:	74 26                	je     16c4 <main+0x652>
+	Minibus arr3[4];
+    169e:	b8 03 00 00 00       	mov    $0x3,%eax
+    16a3:	48 29 d8             	sub    %rbx,%rax
+    16a6:	48 c1 e0 04          	shl    $0x4,%rax
+    16aa:	49 8d 1c 04          	lea    (%r12,%rax,1),%rbx
+    16ae:	4c 39 e3             	cmp    %r12,%rbx
+    16b1:	74 11                	je     16c4 <main+0x652>
+    16b3:	48 83 eb 10          	sub    $0x10,%rbx
+    16b7:	48 8b 03             	mov    (%rbx),%rax
+    16ba:	48 8b 00             	mov    (%rax),%rax
+    16bd:	48 89 df             	mov    %rbx,%rdi
+    16c0:	ff d0                	callq  *%rax
+    16c2:	eb ea                	jmp    16ae <main+0x63c>
+    16c4:	4c 89 eb             	mov    %r13,%rbx
+    16c7:	e9 ca 00 00 00       	jmpq   1796 <main+0x724>
+    16cc:	49 89 c6             	mov    %rax,%r14
+    16cf:	4d 85 e4             	test   %r12,%r12
+    16d2:	74 26                	je     16fa <main+0x688>
+	Taxi *arr4 = new Taxi[4];
+    16d4:	b8 03 00 00 00       	mov    $0x3,%eax
+    16d9:	48 29 d8             	sub    %rbx,%rax
+    16dc:	48 c1 e0 04          	shl    $0x4,%rax
+    16e0:	49 8d 1c 04          	lea    (%r12,%rax,1),%rbx
+    16e4:	4c 39 e3             	cmp    %r12,%rbx
+    16e7:	74 11                	je     16fa <main+0x688>
+    16e9:	48 83 eb 10          	sub    $0x10,%rbx
+    16ed:	48 8b 03             	mov    (%rbx),%rax
+    16f0:	48 8b 00             	mov    (%rax),%rax
+    16f3:	48 89 df             	mov    %rbx,%rdi
+    16f6:	ff d0                	callq  *%rax
+    16f8:	eb ea                	jmp    16e4 <main+0x672>
+    16fa:	4c 89 f3             	mov    %r14,%rbx
+    16fd:	be 48 00 00 00       	mov    $0x48,%esi
+    1702:	4c 89 ef             	mov    %r13,%rdi
+    1705:	e8 36 f7 ff ff       	callq  e40 <operator delete[](void*, unsigned long)@plt>
+    170a:	49 89 dc             	mov    %rbx,%r12
+    170d:	eb 5d                	jmp    176c <main+0x6fa>
+    170f:	49 89 c4             	mov    %rax,%r12
+    1712:	eb 58                	jmp    176c <main+0x6fa>
+    1714:	48 89 c3             	mov    %rax,%rbx
+	TaxiDisplay(st);
+    1717:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    171e:	48 89 c7             	mov    %rax,%rdi
+    1721:	e8 b4 06 00 00       	callq  1dda <Taxi::~Taxi()>
+    1726:	eb 2d                	jmp    1755 <main+0x6e3>
+    1728:	49 89 c4             	mov    %rax,%r12
+	Public_Convoy *ts1 = new Public_Convoy();
+    172b:	be 40 00 00 00       	mov    $0x40,%esi
+    1730:	48 89 df             	mov    %rbx,%rdi
+    1733:	e8 a8 f6 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    1738:	4c 89 e3             	mov    %r12,%rbx
+    173b:	eb 18                	jmp    1755 <main+0x6e3>
+    173d:	49 89 c4             	mov    %rax,%r12
+	Public_Convoy *ts2 = new Public_Convoy(*ts1);
+    1740:	be 40 00 00 00       	mov    $0x40,%esi
+    1745:	48 89 df             	mov    %rbx,%rdi
+    1748:	e8 93 f6 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    174d:	4c 89 e3             	mov    %r12,%rbx
+    1750:	eb 03                	jmp    1755 <main+0x6e3>
+    1752:	48 89 c3             	mov    %rax,%rbx
+	Special_Taxi st;
+    1755:	48 8d 85 20 ff ff ff 	lea    -0xe0(%rbp),%rax
+    175c:	48 89 c7             	mov    %rax,%rdi
+    175f:	e8 bc 07 00 00       	callq  1f20 <Special_Taxi::~Special_Taxi()>
+    1764:	49 89 dc             	mov    %rbx,%r12
+    1767:	eb 03                	jmp    176c <main+0x6fa>
+    1769:	49 89 c4             	mov    %rax,%r12
+	Minibus arr3[4];
+    176c:	48 8d 5d 90          	lea    -0x70(%rbp),%rbx
+    1770:	48 83 c3 40          	add    $0x40,%rbx
+    1774:	48 8d 45 90          	lea    -0x70(%rbp),%rax
+    1778:	48 39 c3             	cmp    %rax,%rbx
+    177b:	74 11                	je     178e <main+0x71c>
+    177d:	48 83 eb 10          	sub    $0x10,%rbx
+    1781:	48 8b 03             	mov    (%rbx),%rax
+    1784:	48 8b 00             	mov    (%rax),%rax
+    1787:	48 89 df             	mov    %rbx,%rdi
+    178a:	ff d0                	callq  *%rax
+    178c:	eb e6                	jmp    1774 <main+0x702>
+    178e:	4c 89 e3             	mov    %r12,%rbx
+    1791:	eb 03                	jmp    1796 <main+0x724>
+    1793:	48 89 c3             	mov    %rax,%rbx
+	Minibus m2;
+    1796:	48 8d 85 10 ff ff ff 	lea    -0xf0(%rbp),%rax
+    179d:	48 89 c7             	mov    %rax,%rdi
+    17a0:	e8 f3 03 00 00       	callq  1b98 <Minibus::~Minibus()>
+    17a5:	49 89 dc             	mov    %rbx,%r12
+    17a8:	eb 03                	jmp    17ad <main+0x73b>
+    17aa:	49 89 c4             	mov    %rax,%r12
+	};
+    17ad:	48 8d 9d 60 ff ff ff 	lea    -0xa0(%rbp),%rbx
+    17b4:	48 83 c3 30          	add    $0x30,%rbx
+    17b8:	48 8d 85 60 ff ff ff 	lea    -0xa0(%rbp),%rax
+    17bf:	48 39 c3             	cmp    %rax,%rbx
+    17c2:	74 11                	je     17d5 <main+0x763>
+    17c4:	48 83 eb 10          	sub    $0x10,%rbx
+    17c8:	48 8b 03             	mov    (%rbx),%rax
+    17cb:	48 8b 00             	mov    (%rax),%rax
+    17ce:	48 89 df             	mov    %rbx,%rdi
+    17d1:	ff d0                	callq  *%rax
+    17d3:	eb e3                	jmp    17b8 <main+0x746>
+    17d5:	4c 89 e3             	mov    %r12,%rbx
+    17d8:	eb 03                	jmp    17dd <main+0x76b>
+    17da:	48 89 c3             	mov    %rax,%rbx
+	Minibus m;
+    17dd:	48 8d 85 00 ff ff ff 	lea    -0x100(%rbp),%rax
+    17e4:	48 89 c7             	mov    %rax,%rdi
+    17e7:	e8 ac 03 00 00       	callq  1b98 <Minibus::~Minibus()>
+    17ec:	48 89 d8             	mov    %rbx,%rax
+    17ef:	48 89 c7             	mov    %rax,%rdi
+    17f2:	e8 39 f6 ff ff       	callq  e30 <_Unwind_Resume@plt>
+}
+    17f7:	e8 04 f6 ff ff       	callq  e00 <__stack_chk_fail@plt>
+    17fc:	48 81 c4 30 01 00 00 	add    $0x130,%rsp
+    1803:	5b                   	pop    %rbx
+    1804:	41 5c                	pop    %r12
+    1806:	41 5d                	pop    %r13
+    1808:	41 5e                	pop    %r14
+    180a:	5d                   	pop    %rbp
+    180b:	c3                   	retq   
+
+000000000000180c <__static_initialization_and_destruction_0(int, int)>:
+    180c:	55                   	push   %rbp
+    180d:	48 89 e5             	mov    %rsp,%rbp
+    1810:	48 83 ec 10          	sub    $0x10,%rsp
+    1814:	89 7d fc             	mov    %edi,-0x4(%rbp)
+    1817:	89 75 f8             	mov    %esi,-0x8(%rbp)
+    181a:	83 7d fc 01          	cmpl   $0x1,-0x4(%rbp)
+    181e:	75 32                	jne    1852 <__static_initialization_and_destruction_0(int, int)+0x46>
+    1820:	81 7d f8 ff ff 00 00 	cmpl   $0xffff,-0x8(%rbp)
+    1827:	75 29                	jne    1852 <__static_initialization_and_destruction_0(int, int)+0x46>
+  extern wostream wclog;	/// Linked to standard error (buffered)
+#endif
+  //@}
+
+  // For construction of filebuffers for cout, cin, cerr, clog et. al.
+  static ios_base::Init __ioinit;
+    1829:	48 8d 3d 08 29 20 00 	lea    0x202908(%rip),%rdi        # 204138 <std::__ioinit>
+    1830:	e8 db f5 ff ff       	callq  e10 <std::ios_base::Init::Init()@plt>
+    1835:	48 8d 15 cc 27 20 00 	lea    0x2027cc(%rip),%rdx        # 204008 <__dso_handle>
+    183c:	48 8d 35 f5 28 20 00 	lea    0x2028f5(%rip),%rsi        # 204138 <std::__ioinit>
+    1843:	48 8b 05 ae 27 20 00 	mov    0x2027ae(%rip),%rax        # 203ff8 <std::ios_base::Init::~Init()@GLIBCXX_3.4>
+    184a:	48 89 c7             	mov    %rax,%rdi
+    184d:	e8 5e f5 ff ff       	callq  db0 <__cxa_atexit@plt>
+    1852:	90                   	nop
+    1853:	c9                   	leaveq 
+    1854:	c3                   	retq   
+
+0000000000001855 <_GLOBAL__sub_I__ZN16Public_Transport7s_countE>:
+    1855:	55                   	push   %rbp
+    1856:	48 89 e5             	mov    %rsp,%rbp
+    1859:	be ff ff 00 00       	mov    $0xffff,%esi
+    185e:	bf 01 00 00 00       	mov    $0x1,%edi
+    1863:	e8 a4 ff ff ff       	callq  180c <__static_initialization_and_destruction_0(int, int)>
+    1868:	5d                   	pop    %rbp
+    1869:	c3                   	retq   
+
+000000000000186a <Public_Transport::Public_Transport()>:
+	Public_Transport() : m_license_plate(++s_count)
+    186a:	55                   	push   %rbp
+    186b:	48 89 e5             	mov    %rsp,%rbp
+    186e:	48 83 ec 10          	sub    $0x10,%rsp
+    1872:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1876:	48 8d 15 43 24 20 00 	lea    0x202443(%rip),%rdx        # 203cc0 <vtable for Public_Transport+0x10>
+    187d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1881:	48 89 10             	mov    %rdx,(%rax)
+    1884:	8b 05 aa 28 20 00    	mov    0x2028aa(%rip),%eax        # 204134 <Public_Transport::s_count>
+    188a:	83 c0 01             	add    $0x1,%eax
+    188d:	89 05 a1 28 20 00    	mov    %eax,0x2028a1(%rip)        # 204134 <Public_Transport::s_count>
+    1893:	8b 15 9b 28 20 00    	mov    0x20289b(%rip),%edx        # 204134 <Public_Transport::s_count>
+    1899:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    189d:	89 50 08             	mov    %edx,0x8(%rax)
+		cout << "Public_Transport::Ctor()" << m_license_plate << endl;
+    18a0:	48 8d 35 4e 0b 00 00 	lea    0xb4e(%rip),%rsi        # 23f5 <std::piecewise_construct+0x1>
+    18a7:	48 8d 3d 72 27 20 00 	lea    0x202772(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    18ae:	e8 0d f5 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    18b3:	48 89 c2             	mov    %rax,%rdx
+    18b6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    18ba:	8b 40 08             	mov    0x8(%rax),%eax
+    18bd:	89 c6                	mov    %eax,%esi
+    18bf:	48 89 d7             	mov    %rdx,%rdi
+    18c2:	e8 59 f5 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    18c7:	48 89 c2             	mov    %rax,%rdx
+    18ca:	48 8b 05 ff 26 20 00 	mov    0x2026ff(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    18d1:	48 89 c6             	mov    %rax,%rsi
+    18d4:	48 89 d7             	mov    %rdx,%rdi
+    18d7:	e8 14 f5 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    18dc:	90                   	nop
+    18dd:	c9                   	leaveq 
+    18de:	c3                   	retq   
+    18df:	90                   	nop
+
+00000000000018e0 <Public_Transport::~Public_Transport()>:
+	virtual ~Public_Transport() //dest
+    18e0:	55                   	push   %rbp
+    18e1:	48 89 e5             	mov    %rsp,%rbp
+    18e4:	48 83 ec 10          	sub    $0x10,%rsp
+    18e8:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+	{
+    18ec:	48 8d 15 cd 23 20 00 	lea    0x2023cd(%rip),%rdx        # 203cc0 <vtable for Public_Transport+0x10>
+    18f3:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    18f7:	48 89 10             	mov    %rdx,(%rax)
+		--s_count;
+    18fa:	8b 05 34 28 20 00    	mov    0x202834(%rip),%eax        # 204134 <Public_Transport::s_count>
+    1900:	83 e8 01             	sub    $0x1,%eax
+    1903:	89 05 2b 28 20 00    	mov    %eax,0x20282b(%rip)        # 204134 <Public_Transport::s_count>
+		cout << "Public_Transport::Dtor()" << m_license_plate  << endl;
+    1909:	48 8d 35 fe 0a 00 00 	lea    0xafe(%rip),%rsi        # 240e <std::piecewise_construct+0x1a>
+    1910:	48 8d 3d 09 27 20 00 	lea    0x202709(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1917:	e8 a4 f4 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    191c:	48 89 c2             	mov    %rax,%rdx
+    191f:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1923:	8b 40 08             	mov    0x8(%rax),%eax
+    1926:	89 c6                	mov    %eax,%esi
+    1928:	48 89 d7             	mov    %rdx,%rdi
+    192b:	e8 f0 f4 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1930:	48 89 c2             	mov    %rax,%rdx
+    1933:	48 8b 05 96 26 20 00 	mov    0x202696(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    193a:	48 89 c6             	mov    %rax,%rsi
+    193d:	48 89 d7             	mov    %rdx,%rdi
+    1940:	e8 ab f4 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    1945:	90                   	nop
+    1946:	c9                   	leaveq 
+    1947:	c3                   	retq   
+
+0000000000001948 <Public_Transport::~Public_Transport()>:
+	virtual ~Public_Transport() //dest
+    1948:	55                   	push   %rbp
+    1949:	48 89 e5             	mov    %rsp,%rbp
+    194c:	48 83 ec 10          	sub    $0x10,%rsp
+    1950:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+	}
+    1954:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1958:	48 89 c7             	mov    %rax,%rdi
+    195b:	e8 80 ff ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1960:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1964:	be 10 00 00 00       	mov    $0x10,%esi
+    1969:	48 89 c7             	mov    %rax,%rdi
+    196c:	e8 6f f4 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    1971:	c9                   	leaveq 
+    1972:	c3                   	retq   
+    1973:	90                   	nop
+
+0000000000001974 <Public_Transport::Public_Transport(Public_Transport const&)>:
+	Public_Transport(const Public_Transport &other) : m_license_plate(++s_count)
+    1974:	55                   	push   %rbp
+    1975:	48 89 e5             	mov    %rsp,%rbp
+    1978:	48 83 ec 10          	sub    $0x10,%rsp
+    197c:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1980:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+    1984:	48 8d 15 35 23 20 00 	lea    0x202335(%rip),%rdx        # 203cc0 <vtable for Public_Transport+0x10>
+    198b:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    198f:	48 89 10             	mov    %rdx,(%rax)
+    1992:	8b 05 9c 27 20 00    	mov    0x20279c(%rip),%eax        # 204134 <Public_Transport::s_count>
+    1998:	83 c0 01             	add    $0x1,%eax
+    199b:	89 05 93 27 20 00    	mov    %eax,0x202793(%rip)        # 204134 <Public_Transport::s_count>
+    19a1:	8b 15 8d 27 20 00    	mov    0x20278d(%rip),%edx        # 204134 <Public_Transport::s_count>
+    19a7:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    19ab:	89 50 08             	mov    %edx,0x8(%rax)
+		cout << "Public_Transport::CCtor() " << m_license_plate << endl;
+    19ae:	48 8d 35 72 0a 00 00 	lea    0xa72(%rip),%rsi        # 2427 <std::piecewise_construct+0x33>
+    19b5:	48 8d 3d 64 26 20 00 	lea    0x202664(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    19bc:	e8 ff f3 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    19c1:	48 89 c2             	mov    %rax,%rdx
+    19c4:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    19c8:	8b 40 08             	mov    0x8(%rax),%eax
+    19cb:	89 c6                	mov    %eax,%esi
+    19cd:	48 89 d7             	mov    %rdx,%rdi
+    19d0:	e8 4b f4 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    19d5:	48 89 c2             	mov    %rax,%rdx
+    19d8:	48 8b 05 f1 25 20 00 	mov    0x2025f1(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    19df:	48 89 c6             	mov    %rax,%rsi
+    19e2:	48 89 d7             	mov    %rdx,%rdi
+    19e5:	e8 06 f4 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    19ea:	90                   	nop
+    19eb:	c9                   	leaveq 
+    19ec:	c3                   	retq   
+    19ed:	90                   	nop
+
+00000000000019ee <Public_Transport::Display()>:
+	virtual void Display() //virtual
+    19ee:	55                   	push   %rbp
+    19ef:	48 89 e5             	mov    %rsp,%rbp
+    19f2:	48 83 ec 10          	sub    $0x10,%rsp
+    19f6:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+		cout << "Public_Transport::Display(): " << m_license_plate << endl;
+    19fa:	48 8d 35 41 0a 00 00 	lea    0xa41(%rip),%rsi        # 2442 <std::piecewise_construct+0x4e>
+    1a01:	48 8d 3d 18 26 20 00 	lea    0x202618(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1a08:	e8 b3 f3 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1a0d:	48 89 c2             	mov    %rax,%rdx
+    1a10:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1a14:	8b 40 08             	mov    0x8(%rax),%eax
+    1a17:	89 c6                	mov    %eax,%esi
+    1a19:	48 89 d7             	mov    %rdx,%rdi
+    1a1c:	e8 ff f3 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1a21:	48 89 c2             	mov    %rax,%rdx
+    1a24:	48 8b 05 a5 25 20 00 	mov    0x2025a5(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1a2b:	48 89 c6             	mov    %rax,%rsi
+    1a2e:	48 89 d7             	mov    %rdx,%rdi
+    1a31:	e8 ba f3 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    1a36:	90                   	nop
+    1a37:	c9                   	leaveq 
+    1a38:	c3                   	retq   
+
+0000000000001a39 <Public_Transport::PrintCount()>:
+	static void PrintCount() { cout << "s_count: " << s_count << endl;}
+    1a39:	55                   	push   %rbp
+    1a3a:	48 89 e5             	mov    %rsp,%rbp
+    1a3d:	48 8d 35 1c 0a 00 00 	lea    0xa1c(%rip),%rsi        # 2460 <std::piecewise_construct+0x6c>
+    1a44:	48 8d 3d d5 25 20 00 	lea    0x2025d5(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1a4b:	e8 70 f3 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1a50:	48 89 c2             	mov    %rax,%rdx
+    1a53:	8b 05 db 26 20 00    	mov    0x2026db(%rip),%eax        # 204134 <Public_Transport::s_count>
+    1a59:	89 c6                	mov    %eax,%esi
+    1a5b:	48 89 d7             	mov    %rdx,%rdi
+    1a5e:	e8 bd f3 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1a63:	48 89 c2             	mov    %rax,%rdx
+    1a66:	48 8b 05 63 25 20 00 	mov    0x202563(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1a6d:	48 89 c6             	mov    %rax,%rsi
+    1a70:	48 89 d7             	mov    %rdx,%rdi
+    1a73:	e8 78 f3 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1a78:	90                   	nop
+    1a79:	5d                   	pop    %rbp
+    1a7a:	c3                   	retq   
+    1a7b:	90                   	nop
+
+0000000000001a7c <Public_Transport::GetID()>:
+	int GetID() { return m_license_plate; }
+    1a7c:	55                   	push   %rbp
+    1a7d:	48 89 e5             	mov    %rsp,%rbp
+    1a80:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1a84:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1a88:	8b 40 08             	mov    0x8(%rax),%eax
+    1a8b:	5d                   	pop    %rbp
+    1a8c:	c3                   	retq   
+    1a8d:	90                   	nop
+
+0000000000001a8e <Minibus::Minibus()>:
+	Minibus()
+    1a8e:	55                   	push   %rbp
+    1a8f:	48 89 e5             	mov    %rsp,%rbp
+    1a92:	53                   	push   %rbx
+    1a93:	48 83 ec 18          	sub    $0x18,%rsp
+    1a97:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+	: m_numSeats(20)
+    1a9b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1a9f:	48 89 c7             	mov    %rax,%rdi
+    1aa2:	e8 c3 fd ff ff       	callq  186a <Public_Transport::Public_Transport()>
+    1aa7:	48 8d 15 e2 21 20 00 	lea    0x2021e2(%rip),%rdx        # 203c90 <vtable for Minibus+0x10>
+    1aae:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1ab2:	48 89 10             	mov    %rdx,(%rax)
+    1ab5:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1ab9:	c7 40 0c 14 00 00 00 	movl   $0x14,0xc(%rax)
+		cout << "Minibus::Ctor()" << endl;
+    1ac0:	48 8d 35 a3 09 00 00 	lea    0x9a3(%rip),%rsi        # 246a <std::piecewise_construct+0x76>
+    1ac7:	48 8d 3d 52 25 20 00 	lea    0x202552(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1ace:	e8 ed f2 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1ad3:	48 89 c2             	mov    %rax,%rdx
+    1ad6:	48 8b 05 f3 24 20 00 	mov    0x2024f3(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1add:	48 89 c6             	mov    %rax,%rsi
+    1ae0:	48 89 d7             	mov    %rdx,%rdi
+    1ae3:	e8 08 f3 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    1ae8:	eb 1a                	jmp    1b04 <Minibus::Minibus()+0x76>
+    1aea:	48 89 c3             	mov    %rax,%rbx
+	: m_numSeats(20)
+    1aed:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1af1:	48 89 c7             	mov    %rax,%rdi
+    1af4:	e8 e7 fd ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1af9:	48 89 d8             	mov    %rbx,%rax
+    1afc:	48 89 c7             	mov    %rax,%rdi
+    1aff:	e8 2c f3 ff ff       	callq  e30 <_Unwind_Resume@plt>
+	}
+    1b04:	48 83 c4 18          	add    $0x18,%rsp
+    1b08:	5b                   	pop    %rbx
+    1b09:	5d                   	pop    %rbp
+    1b0a:	c3                   	retq   
+    1b0b:	90                   	nop
+
+0000000000001b0c <Minibus::Minibus(Minibus const&)>:
+	Minibus(const Minibus &other )
+    1b0c:	55                   	push   %rbp
+    1b0d:	48 89 e5             	mov    %rsp,%rbp
+    1b10:	53                   	push   %rbx
+    1b11:	48 83 ec 18          	sub    $0x18,%rsp
+    1b15:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1b19:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+	  m_numSeats(other.m_numSeats)
+    1b1d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1b21:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+    1b25:	48 89 d6             	mov    %rdx,%rsi
+    1b28:	48 89 c7             	mov    %rax,%rdi
+    1b2b:	e8 44 fe ff ff       	callq  1974 <Public_Transport::Public_Transport(Public_Transport const&)>
+    1b30:	48 8d 15 59 21 20 00 	lea    0x202159(%rip),%rdx        # 203c90 <vtable for Minibus+0x10>
+    1b37:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1b3b:	48 89 10             	mov    %rdx,(%rax)
+    1b3e:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1b42:	8b 50 0c             	mov    0xc(%rax),%edx
+    1b45:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1b49:	89 50 0c             	mov    %edx,0xc(%rax)
+		cout << "Minibus::CCtor()" << endl;
+    1b4c:	48 8d 35 27 09 00 00 	lea    0x927(%rip),%rsi        # 247a <std::piecewise_construct+0x86>
+    1b53:	48 8d 3d c6 24 20 00 	lea    0x2024c6(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1b5a:	e8 61 f2 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1b5f:	48 89 c2             	mov    %rax,%rdx
+    1b62:	48 8b 05 67 24 20 00 	mov    0x202467(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1b69:	48 89 c6             	mov    %rax,%rsi
+    1b6c:	48 89 d7             	mov    %rdx,%rdi
+    1b6f:	e8 7c f2 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    1b74:	eb 1a                	jmp    1b90 <Minibus::Minibus(Minibus const&)+0x84>
+    1b76:	48 89 c3             	mov    %rax,%rbx
+	  m_numSeats(other.m_numSeats)
+    1b79:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1b7d:	48 89 c7             	mov    %rax,%rdi
+    1b80:	e8 5b fd ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1b85:	48 89 d8             	mov    %rbx,%rax
+    1b88:	48 89 c7             	mov    %rax,%rdi
+    1b8b:	e8 a0 f2 ff ff       	callq  e30 <_Unwind_Resume@plt>
+	}
+    1b90:	48 83 c4 18          	add    $0x18,%rsp
+    1b94:	5b                   	pop    %rbx
+    1b95:	5d                   	pop    %rbp
+    1b96:	c3                   	retq   
+    1b97:	90                   	nop
+
+0000000000001b98 <Minibus::~Minibus()>:
+   ~Minibus() { cout << "Minibus::dtor()" << endl; }
+    1b98:	55                   	push   %rbp
+    1b99:	48 89 e5             	mov    %rsp,%rbp
+    1b9c:	48 83 ec 10          	sub    $0x10,%rsp
+    1ba0:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1ba4:	48 8d 15 e5 20 20 00 	lea    0x2020e5(%rip),%rdx        # 203c90 <vtable for Minibus+0x10>
+    1bab:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1baf:	48 89 10             	mov    %rdx,(%rax)
+    1bb2:	48 8d 35 d2 08 00 00 	lea    0x8d2(%rip),%rsi        # 248b <std::piecewise_construct+0x97>
+    1bb9:	48 8d 3d 60 24 20 00 	lea    0x202460(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1bc0:	e8 fb f1 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1bc5:	48 89 c2             	mov    %rax,%rdx
+    1bc8:	48 8b 05 01 24 20 00 	mov    0x202401(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1bcf:	48 89 c6             	mov    %rax,%rsi
+    1bd2:	48 89 d7             	mov    %rdx,%rdi
+    1bd5:	e8 16 f2 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1bda:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1bde:	48 89 c7             	mov    %rax,%rdi
+    1be1:	e8 fa fc ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1be6:	90                   	nop
+    1be7:	c9                   	leaveq 
+    1be8:	c3                   	retq   
+    1be9:	90                   	nop
+
+0000000000001bea <Minibus::~Minibus()>:
+    1bea:	55                   	push   %rbp
+    1beb:	48 89 e5             	mov    %rsp,%rbp
+    1bee:	48 83 ec 10          	sub    $0x10,%rsp
+    1bf2:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1bf6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1bfa:	48 89 c7             	mov    %rax,%rdi
+    1bfd:	e8 96 ff ff ff       	callq  1b98 <Minibus::~Minibus()>
+    1c02:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c06:	be 10 00 00 00       	mov    $0x10,%esi
+    1c0b:	48 89 c7             	mov    %rax,%rdi
+    1c0e:	e8 cd f1 ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    1c13:	c9                   	leaveq 
+    1c14:	c3                   	retq   
+    1c15:	90                   	nop
+
+0000000000001c16 <Minibus::Display()>:
+	void Display()
+    1c16:	55                   	push   %rbp
+    1c17:	48 89 e5             	mov    %rsp,%rbp
+    1c1a:	53                   	push   %rbx
+    1c1b:	48 83 ec 18          	sub    $0x18,%rsp
+    1c1f:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+		cout << "Minibus::Display() ID:"<<GetID();
+    1c23:	48 8d 35 71 08 00 00 	lea    0x871(%rip),%rsi        # 249b <std::piecewise_construct+0xa7>
+    1c2a:	48 8d 3d ef 23 20 00 	lea    0x2023ef(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1c31:	e8 8a f1 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1c36:	48 89 c3             	mov    %rax,%rbx
+    1c39:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1c3d:	48 89 c7             	mov    %rax,%rdi
+    1c40:	e8 37 fe ff ff       	callq  1a7c <Public_Transport::GetID()>
+    1c45:	89 c6                	mov    %eax,%esi
+    1c47:	48 89 df             	mov    %rbx,%rdi
+    1c4a:	e8 d1 f1 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+		cout << " num seats:" << m_numSeats << endl;
+    1c4f:	48 8d 35 5c 08 00 00 	lea    0x85c(%rip),%rsi        # 24b2 <std::piecewise_construct+0xbe>
+    1c56:	48 8d 3d c3 23 20 00 	lea    0x2023c3(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1c5d:	e8 5e f1 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1c62:	48 89 c2             	mov    %rax,%rdx
+    1c65:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1c69:	8b 40 0c             	mov    0xc(%rax),%eax
+    1c6c:	89 c6                	mov    %eax,%esi
+    1c6e:	48 89 d7             	mov    %rdx,%rdi
+    1c71:	e8 aa f1 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1c76:	48 89 c2             	mov    %rax,%rdx
+    1c79:	48 8b 05 50 23 20 00 	mov    0x202350(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1c80:	48 89 c6             	mov    %rax,%rsi
+    1c83:	48 89 d7             	mov    %rdx,%rdi
+    1c86:	e8 65 f1 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+	}
+    1c8b:	90                   	nop
+    1c8c:	48 83 c4 18          	add    $0x18,%rsp
+    1c90:	5b                   	pop    %rbx
+    1c91:	5d                   	pop    %rbp
+    1c92:	c3                   	retq   
+    1c93:	90                   	nop
+
+0000000000001c94 <Minibus::Wash()>:
+	virtual void Wash() { cout << "Minibus::Wash() ID:"<<GetID() << endl; }
+    1c94:	55                   	push   %rbp
+    1c95:	48 89 e5             	mov    %rsp,%rbp
+    1c98:	53                   	push   %rbx
+    1c99:	48 83 ec 18          	sub    $0x18,%rsp
+    1c9d:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1ca1:	48 8d 35 16 08 00 00 	lea    0x816(%rip),%rsi        # 24be <std::piecewise_construct+0xca>
+    1ca8:	48 8d 3d 71 23 20 00 	lea    0x202371(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1caf:	e8 0c f1 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1cb4:	48 89 c3             	mov    %rax,%rbx
+    1cb7:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1cbb:	48 89 c7             	mov    %rax,%rdi
+    1cbe:	e8 b9 fd ff ff       	callq  1a7c <Public_Transport::GetID()>
+    1cc3:	89 c6                	mov    %eax,%esi
+    1cc5:	48 89 df             	mov    %rbx,%rdi
+    1cc8:	e8 53 f1 ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1ccd:	48 89 c2             	mov    %rax,%rdx
+    1cd0:	48 8b 05 f9 22 20 00 	mov    0x2022f9(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1cd7:	48 89 c6             	mov    %rax,%rsi
+    1cda:	48 89 d7             	mov    %rdx,%rdi
+    1cdd:	e8 0e f1 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1ce2:	90                   	nop
+    1ce3:	48 83 c4 18          	add    $0x18,%rsp
+    1ce7:	5b                   	pop    %rbx
+    1ce8:	5d                   	pop    %rbp
+    1ce9:	c3                   	retq   
+
+0000000000001cea <Taxi::Taxi()>:
+	Taxi() { cout << "Taxi::Ctor()" << endl; }
+    1cea:	55                   	push   %rbp
+    1ceb:	48 89 e5             	mov    %rsp,%rbp
+    1cee:	53                   	push   %rbx
+    1cef:	48 83 ec 18          	sub    $0x18,%rsp
+    1cf3:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1cf7:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1cfb:	48 89 c7             	mov    %rax,%rdi
+    1cfe:	e8 67 fb ff ff       	callq  186a <Public_Transport::Public_Transport()>
+    1d03:	48 8d 15 5e 1f 20 00 	lea    0x201f5e(%rip),%rdx        # 203c68 <vtable for Taxi+0x10>
+    1d0a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1d0e:	48 89 10             	mov    %rdx,(%rax)
+    1d11:	48 8d 35 ba 07 00 00 	lea    0x7ba(%rip),%rsi        # 24d2 <std::piecewise_construct+0xde>
+    1d18:	48 8d 3d 01 23 20 00 	lea    0x202301(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1d1f:	e8 9c f0 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1d24:	48 89 c2             	mov    %rax,%rdx
+    1d27:	48 8b 05 a2 22 20 00 	mov    0x2022a2(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1d2e:	48 89 c6             	mov    %rax,%rsi
+    1d31:	48 89 d7             	mov    %rdx,%rdi
+    1d34:	e8 b7 f0 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1d39:	eb 1a                	jmp    1d55 <Taxi::Taxi()+0x6b>
+    1d3b:	48 89 c3             	mov    %rax,%rbx
+    1d3e:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1d42:	48 89 c7             	mov    %rax,%rdi
+    1d45:	e8 96 fb ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1d4a:	48 89 d8             	mov    %rbx,%rax
+    1d4d:	48 89 c7             	mov    %rax,%rdi
+    1d50:	e8 db f0 ff ff       	callq  e30 <_Unwind_Resume@plt>
+    1d55:	48 83 c4 18          	add    $0x18,%rsp
+    1d59:	5b                   	pop    %rbx
+    1d5a:	5d                   	pop    %rbp
+    1d5b:	c3                   	retq   
+
+0000000000001d5c <Taxi::Taxi(Taxi const&)>:
+	Taxi(const Taxi &other ): Public_Transport(other) { cout << "Taxi::CCtor()" << endl; }
+    1d5c:	55                   	push   %rbp
+    1d5d:	48 89 e5             	mov    %rsp,%rbp
+    1d60:	53                   	push   %rbx
+    1d61:	48 83 ec 18          	sub    $0x18,%rsp
+    1d65:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1d69:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+    1d6d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1d71:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+    1d75:	48 89 d6             	mov    %rdx,%rsi
+    1d78:	48 89 c7             	mov    %rax,%rdi
+    1d7b:	e8 f4 fb ff ff       	callq  1974 <Public_Transport::Public_Transport(Public_Transport const&)>
+    1d80:	48 8d 15 e1 1e 20 00 	lea    0x201ee1(%rip),%rdx        # 203c68 <vtable for Taxi+0x10>
+    1d87:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1d8b:	48 89 10             	mov    %rdx,(%rax)
+    1d8e:	48 8d 35 4a 07 00 00 	lea    0x74a(%rip),%rsi        # 24df <std::piecewise_construct+0xeb>
+    1d95:	48 8d 3d 84 22 20 00 	lea    0x202284(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1d9c:	e8 1f f0 ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1da1:	48 89 c2             	mov    %rax,%rdx
+    1da4:	48 8b 05 25 22 20 00 	mov    0x202225(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1dab:	48 89 c6             	mov    %rax,%rsi
+    1dae:	48 89 d7             	mov    %rdx,%rdi
+    1db1:	e8 3a f0 ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1db6:	eb 1a                	jmp    1dd2 <Taxi::Taxi(Taxi const&)+0x76>
+    1db8:	48 89 c3             	mov    %rax,%rbx
+    1dbb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1dbf:	48 89 c7             	mov    %rax,%rdi
+    1dc2:	e8 19 fb ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1dc7:	48 89 d8             	mov    %rbx,%rax
+    1dca:	48 89 c7             	mov    %rax,%rdi
+    1dcd:	e8 5e f0 ff ff       	callq  e30 <_Unwind_Resume@plt>
+    1dd2:	48 83 c4 18          	add    $0x18,%rsp
+    1dd6:	5b                   	pop    %rbx
+    1dd7:	5d                   	pop    %rbp
+    1dd8:	c3                   	retq   
+    1dd9:	90                   	nop
+
+0000000000001dda <Taxi::~Taxi()>:
+   ~Taxi() { cout << "Taxi::dtor()" << endl; }
+    1dda:	55                   	push   %rbp
+    1ddb:	48 89 e5             	mov    %rsp,%rbp
+    1dde:	48 83 ec 10          	sub    $0x10,%rsp
+    1de2:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1de6:	48 8d 15 7b 1e 20 00 	lea    0x201e7b(%rip),%rdx        # 203c68 <vtable for Taxi+0x10>
+    1ded:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1df1:	48 89 10             	mov    %rdx,(%rax)
+    1df4:	48 8d 35 f2 06 00 00 	lea    0x6f2(%rip),%rsi        # 24ed <std::piecewise_construct+0xf9>
+    1dfb:	48 8d 3d 1e 22 20 00 	lea    0x20221e(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1e02:	e8 b9 ef ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1e07:	48 89 c2             	mov    %rax,%rdx
+    1e0a:	48 8b 05 bf 21 20 00 	mov    0x2021bf(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1e11:	48 89 c6             	mov    %rax,%rsi
+    1e14:	48 89 d7             	mov    %rdx,%rdi
+    1e17:	e8 d4 ef ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1e1c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1e20:	48 89 c7             	mov    %rax,%rdi
+    1e23:	e8 b8 fa ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    1e28:	90                   	nop
+    1e29:	c9                   	leaveq 
+    1e2a:	c3                   	retq   
+    1e2b:	90                   	nop
+
+0000000000001e2c <Taxi::~Taxi()>:
+    1e2c:	55                   	push   %rbp
+    1e2d:	48 89 e5             	mov    %rsp,%rbp
+    1e30:	48 83 ec 10          	sub    $0x10,%rsp
+    1e34:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1e38:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1e3c:	48 89 c7             	mov    %rax,%rdi
+    1e3f:	e8 96 ff ff ff       	callq  1dda <Taxi::~Taxi()>
+    1e44:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1e48:	be 10 00 00 00       	mov    $0x10,%esi
+    1e4d:	48 89 c7             	mov    %rax,%rdi
+    1e50:	e8 8b ef ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    1e55:	c9                   	leaveq 
+    1e56:	c3                   	retq   
+    1e57:	90                   	nop
+
+0000000000001e58 <Taxi::Display()>:
+	void Display() { cout << "Taxi::Display() ID:"<<GetID()<< endl; }
+    1e58:	55                   	push   %rbp
+    1e59:	48 89 e5             	mov    %rsp,%rbp
+    1e5c:	53                   	push   %rbx
+    1e5d:	48 83 ec 18          	sub    $0x18,%rsp
+    1e61:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1e65:	48 8d 35 8e 06 00 00 	lea    0x68e(%rip),%rsi        # 24fa <std::piecewise_construct+0x106>
+    1e6c:	48 8d 3d ad 21 20 00 	lea    0x2021ad(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1e73:	e8 48 ef ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1e78:	48 89 c3             	mov    %rax,%rbx
+    1e7b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1e7f:	48 89 c7             	mov    %rax,%rdi
+    1e82:	e8 f5 fb ff ff       	callq  1a7c <Public_Transport::GetID()>
+    1e87:	89 c6                	mov    %eax,%esi
+    1e89:	48 89 df             	mov    %rbx,%rdi
+    1e8c:	e8 8f ef ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1e91:	48 89 c2             	mov    %rax,%rdx
+    1e94:	48 8b 05 35 21 20 00 	mov    0x202135(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1e9b:	48 89 c6             	mov    %rax,%rsi
+    1e9e:	48 89 d7             	mov    %rdx,%rdi
+    1ea1:	e8 4a ef ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1ea6:	90                   	nop
+    1ea7:	48 83 c4 18          	add    $0x18,%rsp
+    1eab:	5b                   	pop    %rbx
+    1eac:	5d                   	pop    %rbp
+    1ead:	c3                   	retq   
+
+0000000000001eae <Special_Taxi::Special_Taxi()>:
+	Special_Taxi() { cout << "Special_Taxi::Ctor()" << endl; }
+    1eae:	55                   	push   %rbp
+    1eaf:	48 89 e5             	mov    %rsp,%rbp
+    1eb2:	53                   	push   %rbx
+    1eb3:	48 83 ec 18          	sub    $0x18,%rsp
+    1eb7:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1ebb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1ebf:	48 89 c7             	mov    %rax,%rdi
+    1ec2:	e8 23 fe ff ff       	callq  1cea <Taxi::Taxi()>
+    1ec7:	48 8d 15 72 1d 20 00 	lea    0x201d72(%rip),%rdx        # 203c40 <vtable for Special_Taxi+0x10>
+    1ece:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1ed2:	48 89 10             	mov    %rdx,(%rax)
+    1ed5:	48 8d 35 32 06 00 00 	lea    0x632(%rip),%rsi        # 250e <std::piecewise_construct+0x11a>
+    1edc:	48 8d 3d 3d 21 20 00 	lea    0x20213d(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1ee3:	e8 d8 ee ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1ee8:	48 89 c2             	mov    %rax,%rdx
+    1eeb:	48 8b 05 de 20 20 00 	mov    0x2020de(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1ef2:	48 89 c6             	mov    %rax,%rsi
+    1ef5:	48 89 d7             	mov    %rdx,%rdi
+    1ef8:	e8 f3 ee ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1efd:	eb 1a                	jmp    1f19 <Special_Taxi::Special_Taxi()+0x6b>
+    1eff:	48 89 c3             	mov    %rax,%rbx
+    1f02:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1f06:	48 89 c7             	mov    %rax,%rdi
+    1f09:	e8 cc fe ff ff       	callq  1dda <Taxi::~Taxi()>
+    1f0e:	48 89 d8             	mov    %rbx,%rax
+    1f11:	48 89 c7             	mov    %rax,%rdi
+    1f14:	e8 17 ef ff ff       	callq  e30 <_Unwind_Resume@plt>
+    1f19:	48 83 c4 18          	add    $0x18,%rsp
+    1f1d:	5b                   	pop    %rbx
+    1f1e:	5d                   	pop    %rbp
+    1f1f:	c3                   	retq   
+
+0000000000001f20 <Special_Taxi::~Special_Taxi()>:
+   ~Special_Taxi() { cout << "Special_Taxi::dtor()" << endl; }
+    1f20:	55                   	push   %rbp
+    1f21:	48 89 e5             	mov    %rsp,%rbp
+    1f24:	48 83 ec 10          	sub    $0x10,%rsp
+    1f28:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1f2c:	48 8d 15 0d 1d 20 00 	lea    0x201d0d(%rip),%rdx        # 203c40 <vtable for Special_Taxi+0x10>
+    1f33:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1f37:	48 89 10             	mov    %rdx,(%rax)
+    1f3a:	48 8d 35 e2 05 00 00 	lea    0x5e2(%rip),%rsi        # 2523 <std::piecewise_construct+0x12f>
+    1f41:	48 8d 3d d8 20 20 00 	lea    0x2020d8(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1f48:	e8 73 ee ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1f4d:	48 89 c2             	mov    %rax,%rdx
+    1f50:	48 8b 05 79 20 20 00 	mov    0x202079(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1f57:	48 89 c6             	mov    %rax,%rsi
+    1f5a:	48 89 d7             	mov    %rdx,%rdi
+    1f5d:	e8 8e ee ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1f62:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1f66:	48 89 c7             	mov    %rax,%rdi
+    1f69:	e8 6c fe ff ff       	callq  1dda <Taxi::~Taxi()>
+    1f6e:	90                   	nop
+    1f6f:	c9                   	leaveq 
+    1f70:	c3                   	retq   
+    1f71:	90                   	nop
+
+0000000000001f72 <Special_Taxi::~Special_Taxi()>:
+    1f72:	55                   	push   %rbp
+    1f73:	48 89 e5             	mov    %rsp,%rbp
+    1f76:	48 83 ec 10          	sub    $0x10,%rsp
+    1f7a:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1f7e:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1f82:	48 89 c7             	mov    %rax,%rdi
+    1f85:	e8 96 ff ff ff       	callq  1f20 <Special_Taxi::~Special_Taxi()>
+    1f8a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1f8e:	be 10 00 00 00       	mov    $0x10,%esi
+    1f93:	48 89 c7             	mov    %rax,%rdi
+    1f96:	e8 45 ee ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    1f9b:	c9                   	leaveq 
+    1f9c:	c3                   	retq   
+    1f9d:	90                   	nop
+
+0000000000001f9e <Special_Taxi::Display()>:
+	void Display() { cout << "Special_Taxi::Display() ID:"<<GetID()<<endl;}
+    1f9e:	55                   	push   %rbp
+    1f9f:	48 89 e5             	mov    %rsp,%rbp
+    1fa2:	53                   	push   %rbx
+    1fa3:	48 83 ec 18          	sub    $0x18,%rsp
+    1fa7:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1fab:	48 8d 35 86 05 00 00 	lea    0x586(%rip),%rsi        # 2538 <std::piecewise_construct+0x144>
+    1fb2:	48 8d 3d 67 20 20 00 	lea    0x202067(%rip),%rdi        # 204020 <std::cout@@GLIBCXX_3.4>
+    1fb9:	e8 02 ee ff ff       	callq  dc0 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>
+    1fbe:	48 89 c3             	mov    %rax,%rbx
+    1fc1:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1fc5:	48 89 c7             	mov    %rax,%rdi
+    1fc8:	e8 af fa ff ff       	callq  1a7c <Public_Transport::GetID()>
+    1fcd:	89 c6                	mov    %eax,%esi
+    1fcf:	48 89 df             	mov    %rbx,%rdi
+    1fd2:	e8 49 ee ff ff       	callq  e20 <std::ostream::operator<<(int)@plt>
+    1fd7:	48 89 c2             	mov    %rax,%rdx
+    1fda:	48 8b 05 ef 1f 20 00 	mov    0x201fef(%rip),%rax        # 203fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+    1fe1:	48 89 c6             	mov    %rax,%rsi
+    1fe4:	48 89 d7             	mov    %rdx,%rdi
+    1fe7:	e8 04 ee ff ff       	callq  df0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>
+    1fec:	90                   	nop
+    1fed:	48 83 c4 18          	add    $0x18,%rsp
+    1ff1:	5b                   	pop    %rbx
+    1ff2:	5d                   	pop    %rbp
+    1ff3:	c3                   	retq   
+
+0000000000001ff4 <Public_Convoy::Public_Convoy()>:
+	Public_Convoy()
+    1ff4:	55                   	push   %rbp
+    1ff5:	48 89 e5             	mov    %rsp,%rbp
+    1ff8:	41 54                	push   %r12
+    1ffa:	53                   	push   %rbx
+    1ffb:	48 83 ec 10          	sub    $0x10,%rsp
+    1fff:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+	: m_pt1(new Minibus()), m_pt2(new Taxi())
+    2003:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2007:	48 89 c7             	mov    %rax,%rdi
+    200a:	e8 5b f8 ff ff       	callq  186a <Public_Transport::Public_Transport()>
+    200f:	48 8d 15 02 1c 20 00 	lea    0x201c02(%rip),%rdx        # 203c18 <vtable for Public_Convoy+0x10>
+    2016:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    201a:	48 89 10             	mov    %rdx,(%rax)
+    201d:	bf 10 00 00 00       	mov    $0x10,%edi
+    2022:	e8 a9 ed ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    2027:	48 89 c3             	mov    %rax,%rbx
+    202a:	48 89 df             	mov    %rbx,%rdi
+    202d:	e8 5c fa ff ff       	callq  1a8e <Minibus::Minibus()>
+    2032:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2036:	48 89 58 10          	mov    %rbx,0x10(%rax)
+    203a:	bf 10 00 00 00       	mov    $0x10,%edi
+    203f:	e8 8c ed ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    2044:	48 89 c3             	mov    %rax,%rbx
+    2047:	48 89 df             	mov    %rbx,%rdi
+    204a:	e8 9b fc ff ff       	callq  1cea <Taxi::Taxi()>
+    204f:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2053:	48 89 58 18          	mov    %rbx,0x18(%rax)
+    2057:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    205b:	48 83 c0 20          	add    $0x20,%rax
+    205f:	48 89 c7             	mov    %rax,%rdi
+    2062:	e8 27 fa ff ff       	callq  1a8e <Minibus::Minibus()>
+    2067:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    206b:	48 83 c0 30          	add    $0x30,%rax
+    206f:	48 89 c7             	mov    %rax,%rdi
+    2072:	e8 73 fc ff ff       	callq  1cea <Taxi::Taxi()>
+	{  }
+    2077:	eb 59                	jmp    20d2 <Public_Convoy::Public_Convoy()+0xde>
+    2079:	49 89 c4             	mov    %rax,%r12
+	: m_pt1(new Minibus()), m_pt2(new Taxi())
+    207c:	be 10 00 00 00       	mov    $0x10,%esi
+    2081:	48 89 df             	mov    %rbx,%rdi
+    2084:	e8 57 ed ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    2089:	4c 89 e3             	mov    %r12,%rbx
+    208c:	eb 2d                	jmp    20bb <Public_Convoy::Public_Convoy()+0xc7>
+    208e:	49 89 c4             	mov    %rax,%r12
+    2091:	be 10 00 00 00       	mov    $0x10,%esi
+    2096:	48 89 df             	mov    %rbx,%rdi
+    2099:	e8 42 ed ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    209e:	4c 89 e3             	mov    %r12,%rbx
+    20a1:	eb 18                	jmp    20bb <Public_Convoy::Public_Convoy()+0xc7>
+    20a3:	48 89 c3             	mov    %rax,%rbx
+    20a6:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    20aa:	48 83 c0 20          	add    $0x20,%rax
+    20ae:	48 89 c7             	mov    %rax,%rdi
+    20b1:	e8 e2 fa ff ff       	callq  1b98 <Minibus::~Minibus()>
+    20b6:	eb 03                	jmp    20bb <Public_Convoy::Public_Convoy()+0xc7>
+    20b8:	48 89 c3             	mov    %rax,%rbx
+    20bb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    20bf:	48 89 c7             	mov    %rax,%rdi
+    20c2:	e8 19 f8 ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    20c7:	48 89 d8             	mov    %rbx,%rax
+    20ca:	48 89 c7             	mov    %rax,%rdi
+    20cd:	e8 5e ed ff ff       	callq  e30 <_Unwind_Resume@plt>
+	{  }
+    20d2:	48 83 c4 10          	add    $0x10,%rsp
+    20d6:	5b                   	pop    %rbx
+    20d7:	41 5c                	pop    %r12
+    20d9:	5d                   	pop    %rbp
+    20da:	c3                   	retq   
+    20db:	90                   	nop
+
+00000000000020dc <Public_Convoy::Public_Convoy(Public_Convoy const&)>:
+	Public_Convoy(const Public_Convoy& other) :
+    20dc:	55                   	push   %rbp
+    20dd:	48 89 e5             	mov    %rsp,%rbp
+    20e0:	41 54                	push   %r12
+    20e2:	53                   	push   %rbx
+    20e3:	48 83 ec 10          	sub    $0x10,%rsp
+    20e7:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    20eb:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+	m_t(other.m_t)
+    20ef:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    20f3:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+    20f7:	48 89 d6             	mov    %rdx,%rsi
+    20fa:	48 89 c7             	mov    %rax,%rdi
+    20fd:	e8 72 f8 ff ff       	callq  1974 <Public_Transport::Public_Transport(Public_Transport const&)>
+    2102:	48 8d 15 0f 1b 20 00 	lea    0x201b0f(%rip),%rdx        # 203c18 <vtable for Public_Convoy+0x10>
+    2109:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    210d:	48 89 10             	mov    %rdx,(%rax)
+	m_pt1(new Minibus(*(static_cast<Minibus*>(other.m_pt1)))),
+    2110:	bf 10 00 00 00       	mov    $0x10,%edi
+    2115:	e8 b6 ec ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    211a:	48 89 c3             	mov    %rax,%rbx
+    211d:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    2121:	48 8b 40 10          	mov    0x10(%rax),%rax
+    2125:	48 89 c6             	mov    %rax,%rsi
+    2128:	48 89 df             	mov    %rbx,%rdi
+    212b:	e8 dc f9 ff ff       	callq  1b0c <Minibus::Minibus(Minibus const&)>
+	m_t(other.m_t)
+    2130:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2134:	48 89 58 10          	mov    %rbx,0x10(%rax)
+	m_pt2(new Taxi(*(static_cast<Taxi*>(other.m_pt2)))),
+    2138:	bf 10 00 00 00       	mov    $0x10,%edi
+    213d:	e8 8e ec ff ff       	callq  dd0 <operator new(unsigned long)@plt>
+    2142:	48 89 c3             	mov    %rax,%rbx
+    2145:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    2149:	48 8b 40 18          	mov    0x18(%rax),%rax
+    214d:	48 89 c6             	mov    %rax,%rsi
+    2150:	48 89 df             	mov    %rbx,%rdi
+    2153:	e8 04 fc ff ff       	callq  1d5c <Taxi::Taxi(Taxi const&)>
+	m_t(other.m_t)
+    2158:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    215c:	48 89 58 18          	mov    %rbx,0x18(%rax)
+    2160:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2164:	48 83 c0 20          	add    $0x20,%rax
+    2168:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+    216c:	48 83 c2 20          	add    $0x20,%rdx
+    2170:	48 89 d6             	mov    %rdx,%rsi
+    2173:	48 89 c7             	mov    %rax,%rdi
+    2176:	e8 91 f9 ff ff       	callq  1b0c <Minibus::Minibus(Minibus const&)>
+    217b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    217f:	48 83 c0 30          	add    $0x30,%rax
+    2183:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+    2187:	48 83 c2 30          	add    $0x30,%rdx
+    218b:	48 89 d6             	mov    %rdx,%rsi
+    218e:	48 89 c7             	mov    %rax,%rdi
+    2191:	e8 c6 fb ff ff       	callq  1d5c <Taxi::Taxi(Taxi const&)>
+	{	}
+    2196:	eb 59                	jmp    21f1 <Public_Convoy::Public_Convoy(Public_Convoy const&)+0x115>
+    2198:	49 89 c4             	mov    %rax,%r12
+	m_pt1(new Minibus(*(static_cast<Minibus*>(other.m_pt1)))),
+    219b:	be 10 00 00 00       	mov    $0x10,%esi
+    21a0:	48 89 df             	mov    %rbx,%rdi
+    21a3:	e8 38 ec ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    21a8:	4c 89 e3             	mov    %r12,%rbx
+    21ab:	eb 2d                	jmp    21da <Public_Convoy::Public_Convoy(Public_Convoy const&)+0xfe>
+    21ad:	49 89 c4             	mov    %rax,%r12
+	m_pt2(new Taxi(*(static_cast<Taxi*>(other.m_pt2)))),
+    21b0:	be 10 00 00 00       	mov    $0x10,%esi
+    21b5:	48 89 df             	mov    %rbx,%rdi
+    21b8:	e8 23 ec ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    21bd:	4c 89 e3             	mov    %r12,%rbx
+    21c0:	eb 18                	jmp    21da <Public_Convoy::Public_Convoy(Public_Convoy const&)+0xfe>
+    21c2:	48 89 c3             	mov    %rax,%rbx
+	m_t(other.m_t)
+    21c5:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    21c9:	48 83 c0 20          	add    $0x20,%rax
+    21cd:	48 89 c7             	mov    %rax,%rdi
+    21d0:	e8 c3 f9 ff ff       	callq  1b98 <Minibus::~Minibus()>
+    21d5:	eb 03                	jmp    21da <Public_Convoy::Public_Convoy(Public_Convoy const&)+0xfe>
+    21d7:	48 89 c3             	mov    %rax,%rbx
+    21da:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    21de:	48 89 c7             	mov    %rax,%rdi
+    21e1:	e8 fa f6 ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+    21e6:	48 89 d8             	mov    %rbx,%rax
+    21e9:	48 89 c7             	mov    %rax,%rdi
+    21ec:	e8 3f ec ff ff       	callq  e30 <_Unwind_Resume@plt>
+	{	}
+    21f1:	48 83 c4 10          	add    $0x10,%rsp
+    21f5:	5b                   	pop    %rbx
+    21f6:	41 5c                	pop    %r12
+    21f8:	5d                   	pop    %rbp
+    21f9:	c3                   	retq   
+
+00000000000021fa <Public_Convoy::~Public_Convoy()>:
+	~Public_Convoy()
+    21fa:	55                   	push   %rbp
+    21fb:	48 89 e5             	mov    %rsp,%rbp
+    21fe:	48 83 ec 10          	sub    $0x10,%rsp
+    2202:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+	{
+    2206:	48 8d 15 0b 1a 20 00 	lea    0x201a0b(%rip),%rdx        # 203c18 <vtable for Public_Convoy+0x10>
+    220d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2211:	48 89 10             	mov    %rdx,(%rax)
+		delete m_pt1;
+    2214:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2218:	48 8b 40 10          	mov    0x10(%rax),%rax
+    221c:	48 85 c0             	test   %rax,%rax
+    221f:	74 1f                	je     2240 <Public_Convoy::~Public_Convoy()+0x46>
+    2221:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2225:	48 8b 50 10          	mov    0x10(%rax),%rdx
+    2229:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    222d:	48 8b 40 10          	mov    0x10(%rax),%rax
+    2231:	48 8b 00             	mov    (%rax),%rax
+    2234:	48 83 c0 08          	add    $0x8,%rax
+    2238:	48 8b 00             	mov    (%rax),%rax
+    223b:	48 89 d7             	mov    %rdx,%rdi
+    223e:	ff d0                	callq  *%rax
+		delete m_pt2;
+    2240:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2244:	48 8b 40 18          	mov    0x18(%rax),%rax
+    2248:	48 85 c0             	test   %rax,%rax
+    224b:	74 1f                	je     226c <Public_Convoy::~Public_Convoy()+0x72>
+    224d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2251:	48 8b 50 18          	mov    0x18(%rax),%rdx
+    2255:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2259:	48 8b 40 18          	mov    0x18(%rax),%rax
+    225d:	48 8b 00             	mov    (%rax),%rax
+    2260:	48 83 c0 08          	add    $0x8,%rax
+    2264:	48 8b 00             	mov    (%rax),%rax
+    2267:	48 89 d7             	mov    %rdx,%rdi
+    226a:	ff d0                	callq  *%rax
+	{
+    226c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2270:	48 83 c0 30          	add    $0x30,%rax
+    2274:	48 89 c7             	mov    %rax,%rdi
+    2277:	e8 5e fb ff ff       	callq  1dda <Taxi::~Taxi()>
+    227c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2280:	48 83 c0 20          	add    $0x20,%rax
+    2284:	48 89 c7             	mov    %rax,%rdi
+    2287:	e8 0c f9 ff ff       	callq  1b98 <Minibus::~Minibus()>
+    228c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2290:	48 89 c7             	mov    %rax,%rdi
+    2293:	e8 48 f6 ff ff       	callq  18e0 <Public_Transport::~Public_Transport()>
+	}
+    2298:	90                   	nop
+    2299:	c9                   	leaveq 
+    229a:	c3                   	retq   
+    229b:	90                   	nop
+
+000000000000229c <Public_Convoy::~Public_Convoy()>:
+	~Public_Convoy()
+    229c:	55                   	push   %rbp
+    229d:	48 89 e5             	mov    %rsp,%rbp
+    22a0:	48 83 ec 10          	sub    $0x10,%rsp
+    22a4:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+	}
+    22a8:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    22ac:	48 89 c7             	mov    %rax,%rdi
+    22af:	e8 46 ff ff ff       	callq  21fa <Public_Convoy::~Public_Convoy()>
+    22b4:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    22b8:	be 40 00 00 00       	mov    $0x40,%esi
+    22bd:	48 89 c7             	mov    %rax,%rdi
+    22c0:	e8 1b eb ff ff       	callq  de0 <operator delete(void*, unsigned long)@plt>
+    22c5:	c9                   	leaveq 
+    22c6:	c3                   	retq   
+    22c7:	90                   	nop
+
+00000000000022c8 <Public_Convoy::Display()>:
+	void Display()
+    22c8:	55                   	push   %rbp
+    22c9:	48 89 e5             	mov    %rsp,%rbp
+    22cc:	48 83 ec 10          	sub    $0x10,%rsp
+    22d0:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+		m_pt1->Display();
+    22d4:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    22d8:	48 8b 50 10          	mov    0x10(%rax),%rdx
+    22dc:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    22e0:	48 8b 40 10          	mov    0x10(%rax),%rax
+    22e4:	48 8b 00             	mov    (%rax),%rax
+    22e7:	48 83 c0 10          	add    $0x10,%rax
+    22eb:	48 8b 00             	mov    (%rax),%rax
+    22ee:	48 89 d7             	mov    %rdx,%rdi
+    22f1:	ff d0                	callq  *%rax
+		m_pt2->Display();
+    22f3:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    22f7:	48 8b 50 18          	mov    0x18(%rax),%rdx
+    22fb:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    22ff:	48 8b 40 18          	mov    0x18(%rax),%rax
+    2303:	48 8b 00             	mov    (%rax),%rax
+    2306:	48 83 c0 10          	add    $0x10,%rax
+    230a:	48 8b 00             	mov    (%rax),%rax
+    230d:	48 89 d7             	mov    %rdx,%rdi
+    2310:	ff d0                	callq  *%rax
+		m_m.Display();
+    2312:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2316:	48 83 c0 20          	add    $0x20,%rax
+    231a:	48 89 c7             	mov    %rax,%rdi
+    231d:	e8 f4 f8 ff ff       	callq  1c16 <Minibus::Display()>
+		m_t.Display();
+    2322:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2326:	48 83 c0 30          	add    $0x30,%rax
+    232a:	48 89 c7             	mov    %rax,%rdi
+    232d:	e8 26 fb ff ff       	callq  1e58 <Taxi::Display()>
+	}
+    2332:	90                   	nop
+    2333:	c9                   	leaveq 
+    2334:	c3                   	retq   
+
+0000000000002335 <int maxFunc<int>(int const&, int const&)>:
+inline T maxFunc(const T &t1, const T &t2)
+    2335:	55                   	push   %rbp
+    2336:	48 89 e5             	mov    %rsp,%rbp
+    2339:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    233d:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+	return ((t1 > t2)? t1: t2);
+    2341:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2345:	8b 10                	mov    (%rax),%edx
+    2347:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    234b:	8b 00                	mov    (%rax),%eax
+    234d:	39 c2                	cmp    %eax,%edx
+    234f:	7e 08                	jle    2359 <int maxFunc<int>(int const&, int const&)+0x24>
+    2351:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2355:	8b 00                	mov    (%rax),%eax
+    2357:	eb 06                	jmp    235f <int maxFunc<int>(int const&, int const&)+0x2a>
+    2359:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    235d:	8b 00                	mov    (%rax),%eax
+}
+    235f:	5d                   	pop    %rbp
+    2360:	c3                   	retq   
+    2361:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    2368:	00 00 00 
+    236b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000002370 <__libc_csu_init>:
+    2370:	41 57                	push   %r15
+    2372:	41 56                	push   %r14
+    2374:	49 89 d7             	mov    %rdx,%r15
+    2377:	41 55                	push   %r13
+    2379:	41 54                	push   %r12
+    237b:	4c 8d 25 6e 18 20 00 	lea    0x20186e(%rip),%r12        # 203bf0 <__frame_dummy_init_array_entry>
+    2382:	55                   	push   %rbp
+    2383:	48 8d 2d 76 18 20 00 	lea    0x201876(%rip),%rbp        # 203c00 <__init_array_end>
+    238a:	53                   	push   %rbx
+    238b:	41 89 fd             	mov    %edi,%r13d
+    238e:	49 89 f6             	mov    %rsi,%r14
+    2391:	4c 29 e5             	sub    %r12,%rbp
+    2394:	48 83 ec 08          	sub    $0x8,%rsp
+    2398:	48 c1 fd 03          	sar    $0x3,%rbp
+    239c:	e8 d7 e9 ff ff       	callq  d78 <_init>
+    23a1:	48 85 ed             	test   %rbp,%rbp
+    23a4:	74 20                	je     23c6 <__libc_csu_init+0x56>
+    23a6:	31 db                	xor    %ebx,%ebx
+    23a8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+    23af:	00 
+    23b0:	4c 89 fa             	mov    %r15,%rdx
+    23b3:	4c 89 f6             	mov    %r14,%rsi
+    23b6:	44 89 ef             	mov    %r13d,%edi
+    23b9:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+    23bd:	48 83 c3 01          	add    $0x1,%rbx
+    23c1:	48 39 dd             	cmp    %rbx,%rbp
+    23c4:	75 ea                	jne    23b0 <__libc_csu_init+0x40>
+    23c6:	48 83 c4 08          	add    $0x8,%rsp
+    23ca:	5b                   	pop    %rbx
+    23cb:	5d                   	pop    %rbp
+    23cc:	41 5c                	pop    %r12
+    23ce:	41 5d                	pop    %r13
+    23d0:	41 5e                	pop    %r14
+    23d2:	41 5f                	pop    %r15
+    23d4:	c3                   	retq   
+    23d5:	90                   	nop
+    23d6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    23dd:	00 00 00 
+
+00000000000023e0 <__libc_csu_fini>:
+    23e0:	f3 c3                	repz retq 
+
+Disassembly of section .fini:
+
+00000000000023e4 <_fini>:
+    23e4:	48 83 ec 08          	sub    $0x8,%rsp
+    23e8:	48 83 c4 08          	add    $0x8,%rsp
+    23ec:	c3                   	retq   
