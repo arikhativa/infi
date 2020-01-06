@@ -17,16 +17,33 @@
 #include <termios.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <iostream>
 
 #include "write_print.h"
 
-class Base
+class Base0
+{
+public:
+	virtual ~Base0()
+	{
+		std::cout << "-- Base0 Dtor\n";
+	}
+private:
+};
+
+class Base : public Base0
 {
 public:
 	int m_a;
+private:
+	~Base()
+	{
+		std::cout << "-- Base Dtor\n";
+	}
 };
 
 class Derive : public Base
+// class Derive
 {
 public:
 	double m_b;
@@ -34,23 +51,9 @@ public:
 
 int main()
 {
-	Base b1;
-	Derive d2;
+	Base0* p = new Base();
 
-	b1 = d2;
-
-	try
-	{
-		throw Derive();
-	}
-	// catch (Derive)
-	// {
-	// 	printf("-- catch Derive\n");
-	// }
-	catch (Base)
-	{
-		printf("-- catch Base\n");
-	}
+	delete p;
 
 	return 0;
 }

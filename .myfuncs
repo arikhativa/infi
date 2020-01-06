@@ -20,6 +20,7 @@ alias gcpp11='g++ -std=c++11 -DNDEBUG -O3'
 alias gdpp11='g++ -std=c++11 -g'
 
 #my normal alias
+alias todo='atom /home/student/git/.todo.txt'
 alias ..='cd ..'
 alias MIZI='cd /media/student/MIZI'
 alias myfuncs='vim /media/student/MIZI/.myfuncs'

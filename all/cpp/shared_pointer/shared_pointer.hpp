@@ -27,17 +27,14 @@ namespace hrd11
 template <typename T>
 class SharedPointer
 {
-// private:
-//     template <typename TDerive>
-//     class SharedPointer<TDerive>;
 public:
     // create example - SharedPointer<X> x_ptr(new X(...))
     // should avoid - X* p1 = new X(...);
     //                SharedPointer<X> x_ptr(p1);
     explicit SharedPointer(T* ptr = 0);
 
-    // template <typename TDerive>
-    // SharedPointer(SharedPointer<TDerive>* derive);
+    template <typename TDerive>
+    SharedPointer(const SharedPointer<TDerive>& derive);
 
     ~SharedPointer();
     SharedPointer(const SharedPointer& other);
@@ -49,12 +46,15 @@ public:
     T& operator *() const;
     T* operator ->() const;
 
-    template <typename TBase>
-    operator SharedPointer<TBase>();
+    // template <typename TBase>
+    // operator SharedPointer<TBase>();
 
     T* GetPtr() const; // for backwards compatible
 
 private:
+    template <typename>
+    friend class SharedPointer;
+
     void Detach();
 
     T* m_data;
@@ -68,14 +68,6 @@ template <typename T>
 SharedPointer<T>::SharedPointer(T* ptr) : m_data(ptr), m_count(new size_t(1))
 {}
 
-// template <typename T>
-// template <typename TDerive>
-// SharedPointer<T>::SharedPointer(SharedPointer<TDerive> derive)
-// {
-//     T* tmp = m_data;
-//
-// }
-
 template <typename T>
 SharedPointer<T>::~SharedPointer()
 {
@@ -83,11 +75,10 @@ SharedPointer<T>::~SharedPointer()
 }
 
 template <typename T>
-SharedPointer<T>::SharedPointer(const SharedPointer<T>& other)
+SharedPointer<T>::SharedPointer(const SharedPointer<T>& other) :
+    m_data(other.m_data),
+    m_count(other.m_count)
 {
-    m_data = other.m_data;
-    m_count = other.m_count;
-
     ++(*m_count);
 }
 
@@ -145,14 +136,23 @@ void SharedPointer<T>::Detach()
     }
 }
 
-template <typename T>
-template <typename TBase>
-SharedPointer<T>::operator SharedPointer<TBase>()
-{
-    TBase* tmp = m_data;
-    (void)tmp;
+// template <typename T>
+// template <typename TBase>
+// SharedPointer<T>::operator SharedPointer<TBase>()
+// {
+//     TBase* tmp = m_data;
+//     (void)tmp;
+//
+//     return *(reinterpret_cast<SharedPointer<TBase>*>(this));
+// }
 
-    return *(reinterpret_cast<SharedPointer<TBase>*>(this));
+template <typename T>
+template <typename TDerive>
+SharedPointer<T>::SharedPointer(const SharedPointer<TDerive>& derive) :
+    m_data(derive.m_data),
+    m_count(derive.m_count)
+{
+    ++(*m_count);
 }
 
 }   // namespace hrd11
