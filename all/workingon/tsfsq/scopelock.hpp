@@ -93,6 +93,6 @@ void Scopelock<T>::Unlock()
     Tamplate_Unlock(m_mutex);
 }
 
-#endif // __HRD11_SCOPELOCK_HPP__
-
 } // namespace hrd11
+
+#endif // __HRD11_SCOPELOCK_HPP__

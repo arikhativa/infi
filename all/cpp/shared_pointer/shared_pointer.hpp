@@ -65,8 +65,18 @@ private:
 // *********************************************************** Special Members:
 
 template <typename T>
-SharedPointer<T>::SharedPointer(T* ptr) : m_data(ptr), m_count(new size_t(1))
-{}
+SharedPointer<T>::SharedPointer(T* ptr) : m_data(ptr)
+{
+    try
+    {
+        m_count = new size_t(1);
+    }
+    catch (std::bad_alloc& e)
+    {
+        delete ptr;
+        throw e;
+    }
+}
 
 template <typename T>
 SharedPointer<T>::~SharedPointer()

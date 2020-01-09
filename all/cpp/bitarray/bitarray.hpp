@@ -33,12 +33,19 @@
 namespace hrd11
 {
 
-
 // **************************************************************** Global var:
 static const size_t SIZE_OF_LUT = 256;
 static const size_t SIZE_T_BITS = 64;
 static const unsigned char s_lut[SIZE_OF_LUT] = { COUNT_BITS };
 
+// ******************************* Declartion *********************************
+
+// ******************************* Static Funcs *******************************
+static void PrintWordSize(size_t byte,  std::ostream& os);
+static void PrintByBit(size_t byte, size_t* size, std::ostream& os);
+static size_t FuncAND(size_t byte1, size_t byte2);
+static size_t FuncOR(size_t byte1, size_t byte2);
+static size_t FuncXOR(size_t byte1, size_t byte2);
 
 // ********************************************************** Class Declartion:
 template <size_t Size>
@@ -53,6 +60,10 @@ class BitArray
 private:
     // Design pattern Proxy
     class BitProxy;
+
+    struct FunctorCount;
+    struct FunctorPrint;
+    struct FunctorShiftBitsLeft;
 
 public:
     // Generated dtor, cctor, copy=
@@ -71,14 +82,13 @@ public:
 
     size_t CountTrueBits() const;
 
-    template <size_t S>
-    friend std::ostream& operator << (std::ostream& os, const BitArray<S>& arr);
+    friend std::ostream& operator << <Size> (std::ostream& os, const BitArray& arr);
 
 private:
     void SetBit(size_t index, bool value);
     bool GetBit(size_t index) const;
 
-    static const size_t s_vec_size = (Size / (SIZE_T_BITS + 1)) + 1;
+    static const size_t S_VEC_SIZE = (Size / (SIZE_T_BITS + 1)) + 1;
     std::vector<size_t> m_vec;
 
 };
@@ -120,24 +130,58 @@ struct ArrayIndex
 };
 
 
-// ******************************************************** Functor Declartion:
-class FunctorCount
+// ******************************************************************* Functor:
+
+template <size_t Size>
+struct BitArray<Size>::FunctorCount
 {
 public:
-    FunctorCount();
-    void operator()(size_t byte);
-    size_t GetCount();
+    FunctorCount() : m_count(0)
+    {}
+
+    void operator()(size_t byte)
+    {
+    	unsigned char tmp = 0;
+
+    	while (byte)
+    	{
+    		tmp = static_cast<unsigned char>(byte);
+    		m_count += s_lut[tmp];
+    		byte >>= __CHAR_BIT__;
+    	}
+    }
+
+    size_t GetCount()
+    {
+        return m_count;
+    }
 
 private:
     size_t m_count;
 
 };
 
-class FunctorPrint
+template <size_t Size>
+struct BitArray<Size>::FunctorPrint
 {
 public:
-    FunctorPrint(size_t size, std::ostream& os);
-    void operator()(size_t byte);
+    FunctorPrint(size_t size, std::ostream& os) : m_size(size), m_os(os)
+    {}
+
+    void operator()(size_t byte)
+    {
+        if (SIZE_T_BITS <= m_size)
+        {
+            PrintWordSize(byte, m_os);
+            m_size -= SIZE_T_BITS;
+        }
+        else
+        {
+            PrintByBit(byte, &m_size, m_os);
+        }
+
+        m_os << std::endl;
+    }
 
 private:
     size_t m_size;
@@ -145,11 +189,22 @@ private:
 
 };
 
-class FunctorShiftBitsLeft
+template <size_t Size>
+struct BitArray<Size>::FunctorShiftBitsLeft
 {
 public:
-    FunctorShiftBitsLeft(size_t shift);
-    void operator()(size_t& byte);
+    FunctorShiftBitsLeft(size_t shift) : m_shift(shift), m_overflow(0)
+    {}
+
+    void operator()(size_t& byte)
+    {
+        size_t bits_in_danger = byte >> (SIZE_T_BITS - m_shift);
+
+        byte <<= m_shift;
+        byte |= m_overflow;
+
+        m_overflow = bits_in_danger;
+    }
 
 private:
     size_t m_shift;
@@ -157,22 +212,11 @@ private:
 
 };
 
-
-// ******************************* Declartion *********************************
-
-// ******************************* Static Funcs *******************************
-static void PrintWordSize(size_t byte,  std::ostream& os);
-static void PrintByBit(size_t byte, size_t* size, std::ostream& os);
-static size_t FuncAND(size_t byte1, size_t byte2);
-static size_t FuncOR(size_t byte1, size_t byte2);
-static size_t FuncXOR(size_t byte1, size_t byte2);
-
-
 // ******************************* BitArray ***********************************
 
 // *********************************************************** BitArray Public:
 template <size_t Size>
-BitArray<Size>::BitArray() : m_vec(s_vec_size, 0)
+BitArray<Size>::BitArray() : m_vec(S_VEC_SIZE, 0)
 {}
 
 template <size_t Size>
@@ -252,7 +296,7 @@ typename BitArray<Size>::BitProxy BitArray<Size>::operator[] (size_t index)
 template <size_t Size>
 size_t BitArray<Size>::CountTrueBits() const
 {
-    return std::for_each(m_vec.begin(), m_vec.end(), FunctorCount()).GetCount();
+    return std::for_each(m_vec.begin(), m_vec.end(), BitArray<Size>::FunctorCount()).GetCount();
 }
 
 
@@ -311,7 +355,7 @@ typename BitArray<Size>::BitProxy& BitArray<Size>::BitProxy::operator = (bool va
 template <size_t Size>
 std::ostream& operator<< (std::ostream& os, const BitArray<Size>& arr)
 {
-    FunctorPrint op(Size, os);
+    typename BitArray<Size>::FunctorPrint op(Size, os);
 
     for_each(arr.m_vec.begin(), arr.m_vec.end(), op);
 
@@ -319,60 +363,8 @@ std::ostream& operator<< (std::ostream& os, const BitArray<Size>& arr)
 }
 
 
-// ******************************* Fanctors ***********************************
-FunctorCount::FunctorCount() : m_count(0)
-{}
-
-void FunctorCount::operator()(size_t byte)
-{
-	unsigned char tmp = 0;
-
-	while (byte)
-	{
-		tmp = static_cast<unsigned char>(byte);
-		m_count += s_lut[tmp];
-		byte >>= __CHAR_BIT__;
-	}
-}
-
-size_t FunctorCount::GetCount()
-{
-    return m_count;
-}
-
-FunctorPrint::FunctorPrint(size_t size, std::ostream& os) : m_size(size), m_os(os)
-{}
-
-void FunctorPrint::operator()(size_t byte)
-{
-    if (SIZE_T_BITS <= m_size)
-    {
-        PrintWordSize(byte, m_os);
-        m_size -= SIZE_T_BITS;
-    }
-    else
-    {
-        PrintByBit(byte, &m_size, m_os);
-    }
-
-    m_os << std::endl;
-}
-
-FunctorShiftBitsLeft::FunctorShiftBitsLeft(size_t shift) : m_shift(shift), m_overflow(0)
-{}
-
-void FunctorShiftBitsLeft::operator()(size_t& byte)
-{
-    size_t bits_in_danger = byte >> (SIZE_T_BITS - m_shift);
-
-    byte <<= m_shift;
-    byte |= m_overflow;
-
-    m_overflow = bits_in_danger;
-}
-
-
 // ******************************* Static Functions ***************************
+
 static size_t FuncAND(size_t byte1, size_t byte2)
 {
     return byte1 & byte2;
