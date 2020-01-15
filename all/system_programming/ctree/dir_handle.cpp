@@ -11,11 +11,11 @@ namespace hrd11
 {
 
 // ************************************ Declartion ****************************
-static DIR* InitHundel(const std::string& path);
+static DIR* InitHandle(const std::string& path);
 
 // ************************************ DirHundel *****************************
 
-DirHandle::DirHandle(const std::string& path) : m_handle(InitHundel(path))
+DirHandle::DirHandle(const std::string& path) : m_handle(InitHandle(path))
 {}
 
 DirHandle::~DirHandle()
@@ -23,19 +23,6 @@ DirHandle::~DirHandle()
     if (m_handle)
     {
         closedir(m_handle);
-    }
-}
-
-void DirHandle::SafeClose()
-{
-    if (m_handle)
-    {
-        int ret = closedir(m_handle);
-
-        if (ret)
-        {
-            throw std::runtime_error("closedir error - check errno");
-        }
     }
 }
 
@@ -56,7 +43,7 @@ bool DirHandle::IsOpen() const
 
 // ************************************ Static Functions **********************
 
-static DIR* InitHundel(const std::string& path)
+static DIR* InitHandle(const std::string& path)
 {
     DIR* handel = opendir(path.c_str());
 

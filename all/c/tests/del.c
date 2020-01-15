@@ -1,62 +1,50 @@
-
+#include <stdlib.h>
 #include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <unistd.h>
 #include <string.h>
+void get_home_page (int socket_fd)  {     char buffer[10000];      ssize_t number_characters_read;
+sprintf (buffer, "GET /\n");
+write (socket_fd, buffer, strlen (buffer));
 
-void PrintTabs(size_t tabs)
+while (1) {
+number_characters_read = read (socket_fd, buffer, 10000);
+
+if (number_characters_read == 0)
 {
-    while (tabs)
-    {
-        printf("\t");
-        --tabs;
+return;
+fwrite (buffer, sizeof (char), number_characters_read, stdout);
     }
 }
 
-void RecTree(size_t tabs, char *file_name)
-{
-    DIR* hundel = NULL;
-    struct dirent *entry = NULL;
-
-    hundel = opendir(file_name);
-
-    // printf("(%s)\n", file_name);
-    // printf("(%p)\n", hundel);
-    // printf("(%s)\n", entry->d_name);
-
-    if (hundel != NULL)
-    {
-        entry = readdir(hundel);
-    }
-
-    while (entry != NULL)
-    {
-        // if (strcmp(entry->d_name, ".") && strcmp(entry->d_name, ".."))
-        {
-            PrintTabs(tabs);
-            printf("%s\n", entry->d_name);
-
-            // if (DT_DIR == entry->d_type)
-            // {
-            //     RecTree(tabs + 1, entry->d_name);
-            // }
-        }
-
-        entry = readdir(hundel);
-    }
-    printf("\n");
-
-    if (hundel != NULL)
-    {
-        closedir(hundel);
-    }
-
+int main (int argc, char* const argv[])
+  {
+         int socket_fd;
+            struct sockaddr_in name;
+                struct hostent* hostinfo;
+                    /* Create the socket.   */
+                       socket_fd = socket (PF_INET, SOCK_STREAM, 0);
+                           /* Store the server's name in the socket address.   */
+                            name.sin_family = AF_INET;      /* Convert from strings to numbers.   */      hostinfo =
 }
-
-int main()
+gethostbyname (argv[1]);
+if (hostinfo == NULL)
 {
-    // char tabs[] = "\t - ";
-    RecTree(1, ".");
-
-    return 0;
+return 1;
+}      else
+{       name.sin_addr = *((struct in_addr *) hostinfo->h_addr);
+}
+/* Web servers use port 80.   */
+name.sin_port = htons (80);
+/* Connect to the Web server   */
+if (connect (socket_fd, &name, sizeof (struct sockaddr_in)) == -1)
+{
+perror ("connect");
+return 1;
+}
+/* Retrieve the server's home page.   */
+get_home_page (socket_fd);
+return 0;
 }

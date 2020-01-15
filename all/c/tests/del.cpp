@@ -1,59 +1,47 @@
 
-#include <stddef.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <assert.h>
-#include <sys/time.h>
-#include <sys/wait.h>
-#include <ctype.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-#include <pthread.h>
+#include <memory>
 #include <iostream>
 
-#include "write_print.h"
 
-class Base0
+using namespace std;
+
+class B;
+
+class A
 {
+    weak_ptr<B> sP1; // use weak_ptr instead to avoid CD
+
 public:
-	virtual ~Base0()
-	{
-		std::cout << "-- Base0 Dtor\n";
-	}
-private:
+    A() {  cout << "A()" << endl; }
+    ~A() { cout << "~A()" << endl; }
+
+    void setShared(shared_ptr<B>& p)
+    {
+        sP1 = p;
+    }
 };
 
-class Base : public Base0
+class B
 {
-public:
-	int m_a;
-private:
-	~Base()
-	{
-		std::cout << "-- Base Dtor\n";
-	}
-};
+    shared_ptr<A> sP1;
 
-class Derive : public Base
-// class Derive
-{
 public:
-	double m_b;
+    B() {  cout << "B()" << endl; }
+    ~B() { cout << "~B()" << endl; }
+
+    void setShared(shared_ptr<A>& p)
+    {
+        sP1 = p;
+    }
 };
 
 int main()
 {
-	Base0* p = new Base();
+    shared_ptr<A> aPtr(new A);
+    shared_ptr<B> bPtr(new B);
 
-	delete p;
+    aPtr->setShared(bPtr);
+    bPtr->setShared(aPtr);
 
-	return 0;
+    return 0;
 }

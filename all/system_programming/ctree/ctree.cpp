@@ -29,21 +29,19 @@ File::File(const std::string& name, std::string color) :
         m_color(color)
 {}
 
-void File::Display(std::ostream& os, size_t space) const
+void File::Display(std::ostream& os, ssize_t space) const
 {
-    int sss = space;
-
     ++s_num_of_files;
 
-    while(0 < sss - 2)
+    while(0 < space - 2)
     {
         os << "|   ";
-        --sss;
+        --space;
     }
-    while(0 < sss - 1)
+    while(0 < space - 1)
     {
         os << "|-- ";
-        --sss;
+        --space;
     }
 
     os << m_color << m_name << RESET;
@@ -51,7 +49,7 @@ void File::Display(std::ostream& os, size_t space) const
     os << std::endl;
 }
 
-const std::string& File::GetCopyOfFileName() const
+const std::string& File::GetRefrenceFileName() const
 {
     return m_name;
 }
@@ -61,11 +59,11 @@ void File::AddError(const std::string& error)
     m_error += error;
 }
 
-// ************************************ File::UseDisplay **********************
+// ************************************ File::FunctorDisplay **********************
 
-struct File::UseDisplay
+struct File::FunctorDisplay
 {
-    UseDisplay(std::ostream& os, size_t space) : m_os(os), m_space(space)
+    FunctorDisplay(std::ostream& os, ssize_t space) : m_os(os), m_space(space)
     {}
 
     void operator()(std::shared_ptr<File> file)
@@ -85,8 +83,6 @@ std::shared_ptr<const Directory> Directory::CreateInstance(const std::string& pa
 {
     std::shared_ptr<Directory> ret (new Directory(path));
 
-    // std::shared_ptr<Directory> ret = std::make_shared<Directory> (path);
-
     {
         DirHandle handle(path);
 
@@ -100,19 +96,19 @@ std::shared_ptr<const Directory> Directory::CreateInstance(const std::string& pa
         }
     }
 
-    LookAndCreateSubDirectorys(ret, path);
+    LookAndCreateSubDirectorys(ret, path); // Recursive
 
     return ret;
 }
 
-void Directory::Display(std::ostream& os, size_t space) const
+void Directory::Display(std::ostream& os, ssize_t space) const
 {
     File::Display(os, space);
 
     --s_num_of_files;
     ++s_num_of_dirs;
 
-    std::for_each(m_vec.begin(), m_vec.end(), File::UseDisplay(os, space + 1));
+    std::for_each(m_vec.begin(), m_vec.end(), File::FunctorDisplay(os, space + 1));
 
     if (1 == space)
     {
@@ -127,9 +123,9 @@ std::shared_ptr<const Directory> Directory::Find(const std::string& dir_name) co
 {
     using namespace std;
 
-    vector<shared_ptr<File>>::const_iterator start = m_vec.begin();
-    vector<shared_ptr<File>>::const_iterator end = m_vec.end();
-    shared_ptr<const Directory>* ttt = 0;
+    auto start = m_vec.begin();
+    auto end = m_vec.end();
+    shared_ptr<const Directory>* ptr_for_casting = 0;
 
     File* base = 0;
     Directory* dc_value = 0;
@@ -139,19 +135,19 @@ std::shared_ptr<const Directory> Directory::Find(const std::string& dir_name) co
         base = (*start).get();
         dc_value = dynamic_cast<Directory*> (base);
 
-        if (dc_value)
+        if (dc_value)   // if(downcast is successful)
         {
-            ttt = (std::shared_ptr<const Directory>*)&(*start);
+            ptr_for_casting = (std::shared_ptr<const Directory>*)&(*start);
 
-            if ((*start)->GetCopyOfFileName() == dir_name)
+            if ((*start)->GetRefrenceFileName() == dir_name)
             {
-                return *ttt;
+                return *ptr_for_casting;
             }
             else
             {
-                if (*ttt = (*ttt)->Find(dir_name))
+                if (*ptr_for_casting = (*ptr_for_casting)->Find(dir_name))
                 {
-                    return *ttt;
+                    return *ptr_for_casting;
                 }
             }
         }
@@ -175,7 +171,7 @@ void Directory::Add(std::shared_ptr<File> ptr)
 void Directory::AddFilesToDirectory(
     std::shared_ptr<Directory> dir, const DirHandle& handle)
 {
-    const struct dirent *entry = NULL;
+    const struct dirent *entry = 0;
 
     entry = handle.GetEntry();
 
@@ -184,7 +180,7 @@ void Directory::AddFilesToDirectory(
         dir->AddError(" [error opening dir]");
     }
 
-    while (entry != NULL)
+    while (entry)
     {
         if (strcmp(entry->d_name, ".") && strcmp(entry->d_name, ".."))
         {
@@ -218,7 +214,6 @@ void Directory::SortDirByAlpha()
 {
     using namespace std;
 
-
     sort(m_vec.begin(), m_vec.end(), SortByAlpha);
 }
 
@@ -228,9 +223,9 @@ void Directory::LookAndCreateSubDirectorys(
     using namespace std;
 
     shared_ptr<Directory>* ptr_for_casting;
+    auto start = dir->m_vec.begin();
+    auto end = dir->m_vec.end();
     string new_path;
-    vector<shared_ptr<File>>::const_iterator start = dir->m_vec.begin();
-    vector<shared_ptr<File>>::const_iterator end = dir->m_vec.end();
     File* base = 0;
     Directory* dc_value = 0;
 
@@ -245,7 +240,7 @@ void Directory::LookAndCreateSubDirectorys(
         {
             ptr_for_casting = (shared_ptr<Directory>*)(&(*start));
 
-            new_path = path + "/" + (*ptr_for_casting)->GetCopyOfFileName();
+            new_path = path + "/" + (*ptr_for_casting)->GetRefrenceFileName();
 
             Directory::AddFilesToDirectory(*ptr_for_casting, DirHandle(new_path));
 
@@ -255,6 +250,5 @@ void Directory::LookAndCreateSubDirectorys(
         ++start;
     }
 }
-
 
 }   // namespace hrd11

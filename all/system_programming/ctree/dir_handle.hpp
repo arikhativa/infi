@@ -15,9 +15,8 @@ class DirHandle
 public:
     explicit DirHandle(const std::string& path);
     ~DirHandle();
-
-    // can throw (std::runtime_error)
-    void SafeClose();
+    DirHandle(const DirHandle& other) = delete;
+    DirHandle& operator=(const DirHandle& other) = delete;
 
     // can fail - return 0;
     const struct dirent* GetEntry() const;
@@ -25,9 +24,6 @@ public:
     bool IsOpen() const;
 
 private:
-    // no cctor and copy=
-    DirHandle(const DirHandle& other);
-    DirHandle& operator=(const DirHandle& other);
 
     DIR* m_handle;
 };

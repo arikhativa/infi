@@ -3,6 +3,13 @@
     Composite Tree -
 
     Discription:    API for using composite tree
+                    ctree is imatating the application tree.
+                    it will sotre a data structure represented by tree
+                    on the heep.
+                    the data will be the directoriys and the files "under"
+                    the path the user pass to CreateInstance().
+                    the user then can print the tree and look for directoris in
+                    it using Display() and Find().
     Date:           8.1.2020
     Folder name:    system_programing/ctree
     File names:     ctree.hpp, ctree.cpp, ctree_test.cpp
@@ -31,16 +38,16 @@ class File
 {
 public:
     explicit File(const std::string& name, std::string color = RESET);
-    virtual ~File() = default; // c++11
-    File(const File& other) = delete; // c++11
-    File& operator=(const File& other) = delete; // c++11 read on '= delete'
+    virtual ~File() = default;
+    File(const File& other) = delete;
+    File& operator=(const File& other) = delete;
 
-    virtual void Display(std::ostream& os, size_t space) const;
-
-    const std::string& GetCopyOfFileName() const;
+    // 'space' should allways be 1.
+    virtual void Display(std::ostream& os, ssize_t space = 1) const;
+    const std::string& GetRefrenceFileName() const;
 
 protected:
-    struct UseDisplay;
+    struct FunctorDisplay;
 
     static bool SortByAlpha(std::shared_ptr<File> f1, std::shared_ptr<File> f2);
     void AddError(const std::string& error);
@@ -52,17 +59,17 @@ private:
 
 };
 
-class Directory : public File // read about 'final'
+class Directory : public File
 {
 public:
     // can throw(std::bad_alloc)
     static std::shared_ptr<const Directory> CreateInstance(const std::string& path);
 
     virtual ~Directory() = default;
-    // no cctor and copy=
+    // no cctor and copy= - class File is uncopyable
 
-    void Display(std::ostream& os, size_t space) const override; // c++11
-
+    // 'space' should allways be 1.
+    void Display(std::ostream& os, ssize_t space = 1) const override;
     std::shared_ptr<const Directory> Find(const std::string& dir_name) const;
 
 private:
