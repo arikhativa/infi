@@ -1,10 +1,11 @@
 
-#include "nbd_proxy.hpp"
-#include "driver_proxy.hpp"
+#include "nbd_driver_proxy.hpp"
 
 using namespace hrd11;
 
 int main()
 {
-    return 0;
+	NBDDriverProxy nbd(128, "asd");
+
+	return 0;
 }

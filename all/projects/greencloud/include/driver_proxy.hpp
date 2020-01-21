@@ -2,27 +2,28 @@
 #ifndef __HRD11_DRIVER_PROXY_HPP__
 #define __HRD11_DRIVER_PROXY_HPP__
 
+#include "driver_data.hpp"
+#include <memory>
+
 namespace hrd11
 {
-
-class Requset;
-class Replay;
+class DriverData;
 
 class DriverProxy
 {
+	public:
+	DriverProxy() = default;
+	virtual ~DriverProxy() = default;
+	// uncopiable
+	DriverProxy(const DriverProxy& other) = delete;
+	DriverProxy& operator=(const DriverProxy& other) = delete;
 
-public:
-    virtual void ReciveRequest(Requset& req) = 0;
-    virtual void SendReplay(Replay& rep) = 0;
-    virtual void Disconnect() = 0;
-    int GetSocket();
-
-private:
-    int m_sock_recv;
-    int m_sock_send;
-
+	virtual std::unique_ptr<DriverData> ReceiveRequest() = 0; // move is better than cpy
+	virtual void SendReply(std::unique_ptr<DriverData> data) = 0;
+	virtual void Disconnect() = 0;
+	virtual int GetReqFd() = 0;
 };
 
-}   // namespace hrd11
+}	// namespace hrd11
 
 #endif // __HRD11_DRIVER_PROXY_HPP__
