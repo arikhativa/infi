@@ -15,7 +15,7 @@ OBJS :=$(addprefix $(OBJ_DIR)/,$(OBJ))
 
 CC = g++
 CFLAGS = -c -std=c++11 -pedantic-errors -Wall -Wextra -g
-LFLAGS = -std=c++11 -pedantic-errors -Wall -Wextra -g -lpthread
+LFLAGS = -std=c++11 -pedantic-errors -Wall -Wextra -g -pthread
 
 .SECONDARY: $(wildcard *.o)
 .SUFFIXES:

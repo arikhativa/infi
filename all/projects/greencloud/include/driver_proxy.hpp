@@ -2,8 +2,9 @@
 #ifndef __HRD11_DRIVER_PROXY_HPP__
 #define __HRD11_DRIVER_PROXY_HPP__
 
+#include <memory>			// std::unique_ptr
+
 #include "driver_data.hpp"
-#include <memory>
 
 namespace hrd11
 {

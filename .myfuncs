@@ -32,6 +32,7 @@ alias ggt='cd /home/student/git/c/tests'
 alias ggr='cd /home/student/git/code_review'
 alias ggq='cd /home/student/git/quizzes'
 alias ggp='cd /home/student/git/projects'
+alias ggc='cd /home/student/git/projects/greencloud'
 
 #my git alias
 alias sinstall='sudo apt-get install'

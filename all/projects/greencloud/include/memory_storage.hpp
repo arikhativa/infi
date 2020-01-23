@@ -2,7 +2,11 @@
 #ifndef __HRD11_MEMORY_STORAGE_HPP__
 #define __HRD11_MEMORY_STORAGE_HPP__
 
+#include <memory>		// std::unique_ptr
+#include <vector>		// std::vector
+
 #include "storage.hpp"
+#include "driver_data.hpp"
 
 namespace hrd11
 {
@@ -12,15 +16,15 @@ class MemoryStorage : public Storage
 public:
 	// uncopiable through inheritence
 	MemoryStorage(size_t size);
-	~MemoryStorage() // maye not needed?
+	virtual ~MemoryStorage() = default;
 
-	virtual void Write(std::unique_ptr<DriverData> data);
-	virtual void Read(std::unique_ptr<DriverData> data);
+	virtual std::unique_ptr<DriverData> Write(std::unique_ptr<DriverData> data) override;
+	virtual std::unique_ptr<DriverData> Read(std::unique_ptr<DriverData> data) override;
 
 private:
-	std::array<char> m_disk; // fixed size array in size recived by ctor
+	std::vector<char> m_disk;
 };
 
-}	// namespace hrd11
+}	// end namespace hrd11
 
 #endif // __HRD11_MEMORY_STORAGE_HPP__
