@@ -15,11 +15,13 @@
 #include <string>			// std::string
 #include <memory>			// std::unique_ptr
 #include <cstring>	        // memcpy()
+#include <iostream>			// std::cout
 
 
-#include "semaphore.hpp"
+// #include "semaphore.hpp"
 #include "nbd_driver_proxy.hpp"
 #include "driver_data.hpp"
+#include "ioctl_wrapper.hpp"
 
 namespace hrd11
 {
@@ -35,7 +37,8 @@ static void SetFlags(int file_fd);
 static void SubThreadSetSignals();
 
 static void InitSockets(int* req, int* nbd);
-static void InitDevice(int* file_fd, size_t blk_size, size_t num_blks, const std::string& device_name);
+static void InitDevice(int* file_fd, size_t blk_size,
+						size_t num_blks, const std::string& device_name);
 
 enum SocketName
 {
@@ -45,28 +48,34 @@ enum SocketName
 
 // Global ---------------------------------------------------------------------
 
-static const unsigned int CONVTER_TO_MB = 1024 * 1024;
+static const unsigned int DEFAULT_NUM_BLOCKS = 1024;
 
 // Special Members ------------------------------------------------------------
 
-NBDDriverProxy::NBDDriverProxy(size_t storage_size, const std::string& device_name) :
-	NBDDriverProxy::NBDDriverProxy(1024, (storage_size * CONVTER_TO_MB) / 1024, device_name)
+NBDDriverProxy::NBDDriverProxy(
+	size_t storage_size, const std::string& device_name) :
+	NBDDriverProxy::NBDDriverProxy(
+		DEFAULT_NUM_BLOCKS , storage_size / DEFAULT_NUM_BLOCKS, device_name)
 {
 }
 
-NBDDriverProxy::NBDDriverProxy(size_t block_size, size_t num_blocks, const std::string& device_name) :
-	m_device_name(device_name)
+NBDDriverProxy::NBDDriverProxy(
+	size_t block_size, size_t num_blocks, const std::string& device_name) :
+	m_device_name(device_name),
+	m_connected(1)
 {
 	InitSockets(&m_req_fd, &m_nbd_fd);
-	InitDevice(&m_file_fd, block_size * CONVTER_TO_MB, num_blocks, device_name);
+	InitDevice(&m_file_fd, block_size , num_blocks, device_name);
 
 	m_nbd_thread = std::thread(ThreadFuncSetNBD, m_file_fd, m_nbd_fd);
 }
 
 NBDDriverProxy::~NBDDriverProxy()
 {
-	printf("--\tDtor\n");
-	// Disconnect();
+	if (m_connected)
+	{
+		Disconnect();
+	}
 }
 
 std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
@@ -80,12 +89,12 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 	bytes_read = read(m_req_fd, &request, sizeof(request));
 	if (0 > bytes_read)
 	{
-		perror("ReceiveRequest(1)\n");
+		throw std::runtime_error("fail to read() requet from socket");
 	}
 
 	if (request.magic != htonl(NBD_REQUEST_MAGIC))
 	{
-		perror("ReceiveRequest(2)\n");
+		throw std::runtime_error("invalivd magic number");
 	}
 
 	unsigned int len = ntohl(request.len);
@@ -127,8 +136,7 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 			break ;
 
 		default:
-			perror("Bad Request\n");
-			exit(0);
+			ret->m_type = BAD_REQUEST;
 	}
 
 	return std::move(ret);
@@ -159,18 +167,14 @@ void NBDDriverProxy::SendReply(std::unique_ptr<DriverData> data)
 
 void NBDDriverProxy::Disconnect()
 {
-	int stt = 0;
+	Ioctl(m_file_fd, NBD_DISCONNECT, IoctlError::NO_FLAGS);
 
-	stt = ioctl(m_file_fd, NBD_DISCONNECT);
-	if (-1 == stt)
-	{
-		perror("-- Disconnect() - ioctl(NBD_DISCONNECT)");
-	}
-
-	m_nbd_thread.join();
 	close(m_req_fd);
 	close(m_nbd_fd);
+	m_nbd_thread.join();
 	close(m_file_fd);
+	
+	m_connected = 0;
 }
 
 int NBDDriverProxy::GetReqFd()
@@ -182,30 +186,24 @@ int NBDDriverProxy::GetReqFd()
 
 static void ThreadFuncSetNBD(int file_fd, int socket_fd)
 {
-	int stt = 0;
-
 	SubThreadSetSignals();
-
-	stt = ioctl(file_fd, NBD_SET_SOCK, socket_fd);
-	if (stt)
+	// try
 	{
-		perror("NBDDriverProxy Ctor - ThreadFunc- ioctl(SET_SOCK) fail\n");
-	}
+		Ioctl(file_fd, NBD_SET_SOCK, socket_fd);
 
-	SetFlags(file_fd);
+		SetFlags(file_fd);
 
-	stt = ioctl(file_fd, NBD_DO_IT);
-	if (stt)
-	{
-		perror("NBDDriverProxy Ctor - ThreadFunc- ioctl(DO_IT) fail\n");
+		Ioctl(file_fd, NBD_DO_IT, IoctlError::NO_FLAGS);
+		Ioctl(file_fd, NBD_CLEAR_QUE, IoctlError::NO_FLAGS);
+		Ioctl(file_fd, NBD_CLEAR_SOCK, IoctlError::NO_FLAGS);
 	}
-
-	stt = ioctl(file_fd, NBD_CLEAR_QUE);
-	stt += ioctl(file_fd, NBD_CLEAR_SOCK);
-	if (stt)
-	{
-		perror("NBDDriverProxy Ctor - ThreadFunc- ioctl(CLEAR) fail\n");
-	}
+	// catch (std::runtime_error& e)
+	// {
+	// 	printf("thread here\n");
+	// 	std::cout << e.what();
+	// 	// TODO dont exit!
+	// 	exit(-1);
+	// }
 }
 
 // Static Functions -----------------------------------------------------------
@@ -239,7 +237,7 @@ static void ReadAll(int fd, char* buff, unsigned int count)
 
         if (0 > bytes_read)
         {
-            perror("ReadAll()");
+			throw std::runtime_error("ReadAll");
         }
 
         buff += bytes_read;
@@ -257,7 +255,7 @@ static void WriteAll(int fd, char* buff, unsigned int count)
 
         if (0 > bytes_written)
         {
-            perror("WriteAll()");
+			throw std::runtime_error("WriteAll");
         }
 
         buff += bytes_written;
@@ -275,7 +273,7 @@ static void SubThreadSetSignals()
 
 	if (stt)
 	{
-		perror("NBDDriverProxy SetSignal() - fail\n");
+		 throw std::runtime_error("Thread failed to mask signals");
 	}
 }
 
@@ -287,41 +285,26 @@ static void InitSockets(int* req, int* nbd)
 	stt = socketpair(AF_UNIX, SOCK_STREAM, 0, socket_pair);
 	if (stt)
 	{
-		perror("NBDDriverProxy Ctor - socketpair() fail\n");
+		throw std::runtime_error("socketpair() fail");
 	}
 
 	*req = socket_pair[REQUEST];
 	*nbd = socket_pair[NBD];
 }
 
-static void InitDevice(int* file_fd, size_t blk_size, size_t num_blks, const std::string& device_name)
+static void InitDevice(int* file_fd, size_t blk_size,
+						size_t num_blks, const std::string& device_name)
 {
-	int stt = 0;
-
 	*file_fd = open(device_name.c_str(), O_RDWR);
 
 	if (0 > *file_fd)
 	{
-		perror("NBDDriverProxy Ctor - open() fail\n");
+		throw std::runtime_error("open() fail");
 	}
 
-	stt = ioctl(*file_fd, NBD_SET_BLKSIZE, blk_size);
-	if (-1 == stt)
-	{
-		perror("NBDDriverProxy Ctor - ioctl(NBD_SET_BLKSIZE) fail\n");
-	}
-
-	stt = ioctl(*file_fd, NBD_SET_SIZE_BLOCKS, num_blks);
-	if (-1 == stt)
-	{
-		perror("NBDDriverProxy Ctor - ioctl(NBD_SET_SIZE_BLOCKS) fail\n");
-	}
-
-	stt = ioctl(*file_fd, NBD_CLEAR_SOCK);
-	if (-1 == stt)
-	{
-		perror("NBDDriverProxy Ctor - ioctl(CLEAR_SOCK) fail\n");
-	}
+	Ioctl(*file_fd, NBD_SET_BLKSIZE, blk_size);
+	Ioctl(*file_fd, NBD_SET_SIZE_BLOCKS, num_blks);
+	Ioctl(*file_fd, NBD_CLEAR_SOCK, IoctlError::NO_FLAGS);
 }
 
 static void SetFlags(int file_fd)
@@ -335,10 +318,10 @@ static void SetFlags(int file_fd)
 		#ifdef NBD_FLAG_SEND_FLUSH
 		flags |= NBD_FLAG_SEND_FLUSH;
 		#endif
-		if (flags != 0 && ioctl(file_fd, NBD_SET_FLAGS, flags) == -1)
+		if (flags != 0)
 		{
-			fprintf(stderr, "ioctl(nbd, NBD_SET_FLAGS, %d) failed.[%s]\n", flags, strerror(errno));
-			exit(1);
+			Ioctl(file_fd, NBD_SET_FLAGS, flags);
+		//	exit(1);
 		}
 	#endif
 }

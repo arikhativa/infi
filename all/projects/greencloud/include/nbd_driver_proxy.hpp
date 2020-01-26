@@ -6,7 +6,7 @@
 
 #include "driver_proxy.hpp"
 #include "driver_data.hpp"
-#include "semaphore.hpp"
+// #include "semaphore.hpp"
 
 namespace hrd11
 {
@@ -32,8 +32,11 @@ private:
 	int m_req_fd; // request
 	int m_nbd_fd;
 	int m_file_fd;
+	int connected;
 	std::thread m_nbd_thread;
-	Semaphore m_sem;
+	bool m_connected;
+	// TODO set semaphore for thread comunication
+	// Semaphore m_sem;
 
 };
 

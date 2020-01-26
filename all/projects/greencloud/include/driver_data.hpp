@@ -16,7 +16,8 @@ enum DataType
 	WRITE,
 	DISCONNECT,
 	FLUSH,
-	TRIM
+	TRIM,
+	BAD_REQUEST
 };
 
 struct DriverData
