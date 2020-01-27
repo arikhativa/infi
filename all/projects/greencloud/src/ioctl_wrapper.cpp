@@ -1,18 +1,21 @@
 
 #include <cstddef>		    // size_t
 #include <sys/ioctl.h>		// ioctl()
+#include <errno.h>          // errno
 
 #include <stdexcept>		// runtime_error
-#include <string>		// runtime_error
+#include <string>		    // sts::string
+
 
 #include "ioctl_wrapper.hpp"
 
 namespace hrd11
 {
 
-IoctlError::IoctlError(int fd, size_t macro, ssize_t flags) :
+IoctlError::IoctlError(int fd, int err, size_t macro, ssize_t flags) :
     std::runtime_error("IoctlError"),
     m_fd(fd),
+    m_errno(err),
     m_macro(macro),
     m_flags(flags),
     m_error("-- IoctlError:\n")
@@ -35,22 +38,17 @@ const char* IoctlError::what() const throw ()
     return m_error.c_str();
 }
 
-
-
-
-#include <linux/nbd.h>		// NBD macros
-
-
 void Ioctl(int fd, size_t macro, ssize_t flags)
 {
     int stt = 0;
 
+    errno = 0;
+
     stt = ioctl(fd, macro, flags);
 
-    // if (macro == NBD_SET_SOCK)
     if (stt)
     {
-        throw IoctlError(fd, macro, flags);
+        throw IoctlError(fd, errno, macro, flags);
     }
 
 }

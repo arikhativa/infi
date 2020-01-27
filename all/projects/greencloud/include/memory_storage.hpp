@@ -1,4 +1,15 @@
 
+/*
+    MemoryStorage -
+
+    Discription:    MemoryStorage is used for greencloude.0.1.
+					It is a wrapper for interacting with memory on the heep.
+
+    Date:           27.1.2020
+
+    Ver 1.0
+*/
+
 #ifndef __HRD11_MEMORY_STORAGE_HPP__
 #define __HRD11_MEMORY_STORAGE_HPP__
 

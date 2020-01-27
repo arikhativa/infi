@@ -1,4 +1,30 @@
 
+/*
+    NBDDriverProxy -
+
+    Discription:    NBDDriverProxy is a wrapper for "network block device" (nbd)
+					This mechanisim will redirect data from a spacific block
+					device to a process.
+					In greencloud it will redirect data from a shared directory
+					to the Master process.
+
+	Usage:			Create instace:
+						NBDDriverProxy(...) driver;
+						std::unique_ptr<DriverData>;
+
+					Get a request ,manipulate it and send a replay:
+						data = driver.ReceiveRequest();
+
+						// manipulate data
+						read(data) || write (data)
+
+						driver.SendReply(std::move(data));
+
+    Date:           27.1.2020
+
+    Ver 1.0
+*/
+
 #ifndef __HRD11_NBD_DRIVER_PROXY_HPP__
 #define __HRD11_NBD_DRIVER_PROXY_HPP__
 
@@ -6,7 +32,6 @@
 
 #include "driver_proxy.hpp"
 #include "driver_data.hpp"
-// #include "semaphore.hpp"
 
 namespace hrd11
 {
@@ -14,12 +39,14 @@ namespace hrd11
 class NBDDriverProxy : public DriverProxy
 {
 public:
-	// no cctor & cpy=. uncopiable through inheritence.
+	// no cctor & cpoy= uncopiable through inheritence.
 
 	// 'storage_size' is by MB
 	NBDDriverProxy(size_t storage_size, const std::string& device_name);
-	// 'block_size' is by MB
+
+	// 'block_size' is by bytes
 	NBDDriverProxy(size_t block_size, size_t num_blocks, const std::string& device_name);
+
 	~NBDDriverProxy() override;
 
 	std::unique_ptr<DriverData> ReceiveRequest() override;
@@ -29,14 +56,11 @@ public:
 
 private:
 	std::string m_device_name;
-	int m_req_fd; // request
+	int m_req_fd;
 	int m_nbd_fd;
 	int m_file_fd;
-	int connected;
 	std::thread m_nbd_thread;
 	bool m_connected;
-	// TODO set semaphore for thread comunication
-	// Semaphore m_sem;
 
 };
 

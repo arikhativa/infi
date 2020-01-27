@@ -1,4 +1,15 @@
 
+/*
+    Ioctl -
+
+    Discription:    Ioctl is a wrapper to ioctl().
+                    it can throw IoctlError().
+
+    Date:           27.1.2020
+
+    Ver 1.0
+*/
+
 #ifndef __HRD11_IOCTL_HPP__
 #define __HRD11_IOCTL_HPP__
 
@@ -17,13 +28,14 @@ class IoctlError : public std::runtime_error
 public:
     static const int NO_FLAGS = -1;
 
-    IoctlError(int fd, size_t macro, ssize_t flags);
+    IoctlError(int fd, int err ,size_t macro, ssize_t flags);
 
     virtual const char* what() const throw () override;
 
 private:
 
     int m_fd;
+    int m_errno;
     size_t m_macro;
     ssize_t m_flags;
     mutable std::string m_error;

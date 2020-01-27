@@ -1,4 +1,16 @@
 
+
+/*
+    DriverData -
+
+    Discription:    DriverData is a class that represent the data that will go
+					from socket to socket.
+
+    Date:           27.1.2020
+
+    Ver 1.0
+*/
+
 #ifndef __HRD11_DRIVER_DATA_HPP__
 #define __HRD11_DRIVER_DATA_HPP__
 

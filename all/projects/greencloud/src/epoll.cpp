@@ -11,9 +11,10 @@
 namespace hrd11
 {
 
-Epoll::Epoll(size_t num_of_events) :
-    m_epoll_fd(epoll_create1(0)),
-    m_events(num_of_events, {0, 0})
+Epoll::Epoll(size_t max_events) :
+    m_events(max_events, {0, 0}),
+    m_max_events(max_events),
+    m_epoll_fd(epoll_create1(0))
 {
     errno = 0;
 
@@ -30,14 +31,14 @@ Epoll::~Epoll()
     close(m_epoll_fd);
 }
 
-void Epoll::Add(int fd)
+void Epoll::Add(int fd, unsigned int event_type)
 {
     struct epoll_event event = {0, 0};
     int stt = 0;
 
     errno = 0;
 
-    event.events = EPOLLIN;
+    event.events = event_type;
     event.data.fd = fd;
 
     stt = epoll_ctl(m_epoll_fd, EPOLL_CTL_ADD, fd, &event);
@@ -67,10 +68,10 @@ void Epoll::Remove(int fd)
 int Epoll::Wait()
 {
     int ret = 0;
-    
+
     errno = 0;
 
-    ret = epoll_wait(m_epoll_fd, m_events.data(), 1, -1);
+    ret = epoll_wait(m_epoll_fd, m_events.data(), m_max_events, -1);
 
     if (-1 == ret)
     {
@@ -79,7 +80,7 @@ int Epoll::Wait()
         throw std::runtime_error(err);
     }
 
-    return m_events[0].data.fd;
+    return ret;
 }
 
 int Epoll::operator[](size_t index)

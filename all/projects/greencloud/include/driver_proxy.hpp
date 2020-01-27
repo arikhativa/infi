@@ -1,4 +1,15 @@
 
+/*
+    DriverProxy -
+
+    Discription:    DriverProxy is an abstruct class to represent a driver.
+					it would be an interface to work with a disc.
+
+    Date:           27.1.2020
+
+    Ver 1.0
+*/
+
 #ifndef __HRD11_DRIVER_PROXY_HPP__
 #define __HRD11_DRIVER_PROXY_HPP__
 
@@ -15,7 +26,7 @@ class DriverProxy
 	public:
 	DriverProxy() = default;
 	virtual ~DriverProxy() = default;
-	// uncopiable
+	// uncopyable
 	DriverProxy(const DriverProxy& other) = delete;
 	DriverProxy& operator=(const DriverProxy& other) = delete;
 

@@ -17,8 +17,6 @@
 #include <cstring>	        // memcpy()
 #include <iostream>			// std::cout
 
-
-// #include "semaphore.hpp"
 #include "nbd_driver_proxy.hpp"
 #include "driver_data.hpp"
 #include "ioctl_wrapper.hpp"
@@ -46,6 +44,12 @@ enum SocketName
 	NBD = 1
 };
 
+enum OffOn
+{
+	ON = 0,
+	OFF = 1
+};
+
 // Global ---------------------------------------------------------------------
 
 static const unsigned int DEFAULT_NUM_BLOCKS = 1024;
@@ -56,13 +60,12 @@ NBDDriverProxy::NBDDriverProxy(
 	size_t storage_size, const std::string& device_name) :
 	NBDDriverProxy::NBDDriverProxy(
 		DEFAULT_NUM_BLOCKS , storage_size / DEFAULT_NUM_BLOCKS, device_name)
-{
-}
+{}
 
 NBDDriverProxy::NBDDriverProxy(
 	size_t block_size, size_t num_blocks, const std::string& device_name) :
 	m_device_name(device_name),
-	m_connected(1)
+	m_connected(ON)
 {
 	InitSockets(&m_req_fd, &m_nbd_fd);
 	InitDevice(&m_file_fd, block_size , num_blocks, device_name);
@@ -89,12 +92,12 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 	bytes_read = read(m_req_fd, &request, sizeof(request));
 	if (0 > bytes_read)
 	{
-		throw std::runtime_error("fail to read() requet from socket");
+		throw std::runtime_error("ReceiveRequest()\nfail to read() requet from socket");
 	}
 
 	if (request.magic != htonl(NBD_REQUEST_MAGIC))
 	{
-		throw std::runtime_error("invalivd magic number");
+		throw std::runtime_error("ReceiveRequest()\ninvalivd magic number");
 	}
 
 	unsigned int len = ntohl(request.len);
@@ -169,11 +172,14 @@ void NBDDriverProxy::Disconnect()
 {
 	Ioctl(m_file_fd, NBD_DISCONNECT, IoctlError::NO_FLAGS);
 
+	// the order is crucial. closing the fds will help the thread to exit.
 	close(m_req_fd);
 	close(m_nbd_fd);
+
 	m_nbd_thread.join();
+
 	close(m_file_fd);
-	
+
 	m_connected = 0;
 }
 
@@ -187,7 +193,7 @@ int NBDDriverProxy::GetReqFd()
 static void ThreadFuncSetNBD(int file_fd, int socket_fd)
 {
 	SubThreadSetSignals();
-	// try
+	try
 	{
 		Ioctl(file_fd, NBD_SET_SOCK, socket_fd);
 
@@ -197,13 +203,12 @@ static void ThreadFuncSetNBD(int file_fd, int socket_fd)
 		Ioctl(file_fd, NBD_CLEAR_QUE, IoctlError::NO_FLAGS);
 		Ioctl(file_fd, NBD_CLEAR_SOCK, IoctlError::NO_FLAGS);
 	}
-	// catch (std::runtime_error& e)
-	// {
-	// 	printf("thread here\n");
-	// 	std::cout << e.what();
-	// 	// TODO dont exit!
-	// 	exit(-1);
-	// }
+	catch (std::runtime_error& e)
+	{
+		std::cout << e.what();
+		// TODO Before Exit let the main thread know.
+		exit(-1);
+	}
 }
 
 // Static Functions -----------------------------------------------------------
@@ -237,7 +242,7 @@ static void ReadAll(int fd, char* buff, unsigned int count)
 
         if (0 > bytes_read)
         {
-			throw std::runtime_error("ReadAll");
+			throw std::runtime_error("ReadAll()");
         }
 
         buff += bytes_read;
@@ -255,7 +260,7 @@ static void WriteAll(int fd, char* buff, unsigned int count)
 
         if (0 > bytes_written)
         {
-			throw std::runtime_error("WriteAll");
+			throw std::runtime_error("WriteAll()");
         }
 
         buff += bytes_written;
@@ -299,7 +304,7 @@ static void InitDevice(int* file_fd, size_t blk_size,
 
 	if (0 > *file_fd)
 	{
-		throw std::runtime_error("open() fail");
+		throw std::runtime_error("InitDevice()\nopen() fail");
 	}
 
 	Ioctl(*file_fd, NBD_SET_BLKSIZE, blk_size);
@@ -321,7 +326,6 @@ static void SetFlags(int file_fd)
 		if (flags != 0)
 		{
 			Ioctl(file_fd, NBD_SET_FLAGS, flags);
-		//	exit(1);
 		}
 	#endif
 }

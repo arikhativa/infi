@@ -14,7 +14,7 @@ MemoryStorage::MemoryStorage(size_t size) : m_disk(size)
 
 std::unique_ptr<DriverData> MemoryStorage::Write(std::unique_ptr<DriverData> data)
 {
-    // printf("Request for write of size %d\n", data->m_len);
+    printf("Request for write of size %d\n", data->m_len);
 
     std::vector<char>::iterator disk_ptr = m_disk.begin();
 
@@ -27,7 +27,7 @@ std::unique_ptr<DriverData> MemoryStorage::Write(std::unique_ptr<DriverData> dat
 
 std::unique_ptr<DriverData> MemoryStorage::Read(std::unique_ptr<DriverData> data)
 {
-    // printf("Request for read of size %d\n", data->m_len);
+    printf("Request for read of size %d\n", data->m_len);
 
     std::vector<char>::iterator disk_start = m_disk.begin();
     std::vector<char>::iterator disk_end = m_disk.begin();
