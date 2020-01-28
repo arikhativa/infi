@@ -12,6 +12,9 @@
 #include "memory_storage.hpp"
 #include "epoll.hpp"
 #include "monitor.hpp"
+#include "handleton.hpp"
+#include "logger.hpp"
+#include "globals.hpp"
 
 using namespace hrd11;
 
@@ -115,6 +118,7 @@ int main(int ac, char* av[])
 					}
 					case DISCONNECT:
 					{
+
 						driver->Disconnect();
 						goto exit_safe;
 					}
@@ -230,6 +234,9 @@ static void SetSigMask()
 
 static void MainThreadSetSignals()
 {
+	Logger* log = Handleton<Logger>::GetInstance(LOG_PATH, LOG_LVL);
+	log->Write(LOG_INFO, "main thread signls are set", __FILE__, __LINE__);
+
 	struct sigaction act;
 
 	SetSigMask();

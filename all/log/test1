@@ -1,0 +1,5 @@
+Data & Time			ID	Source File		Line	Type	Massage
+Tue Jan 28 09:40:46 2020	4053	logger_test.cpp		12	Error	msg
+Tue Jan 28 09:40:46 2020	4053	logger_test.cpp		13	Debug	msg
+Tue Jan 28 09:40:46 2020	4053	logger_test.cpp		14	Error	msg
+Tue Jan 28 09:40:46 2020	4053	logger_test.cpp		15	Info	msg

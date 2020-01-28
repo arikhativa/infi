@@ -1,7 +1,6 @@
 
 #include <memory>		// std::unique_ptr
 #include <vector>		// std::vector
-#include <cstring>		// memcpy()
 
 #include "memory_storage.hpp"
 #include "driver_data.hpp"

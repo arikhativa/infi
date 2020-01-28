@@ -1,8 +1,4 @@
 
-// del this
-#include <stdio.h>
-
-
 #include <unistd.h>			// close()
 #include <sys/types.h>		// socketpair(), open()
 #include <sys/socket.h>		// socketpair()
@@ -75,7 +71,7 @@ NBDDriverProxy::NBDDriverProxy(
 
 NBDDriverProxy::~NBDDriverProxy()
 {
-	if (m_connected)
+	if (ON == m_connected)
 	{
 		Disconnect();
 	}
@@ -92,7 +88,8 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 	bytes_read = read(m_req_fd, &request, sizeof(request));
 	if (0 > bytes_read)
 	{
-		throw std::runtime_error("ReceiveRequest()\nfail to read() requet from socket");
+		throw std::runtime_error(
+			"ReceiveRequest()\nfail to read() requet from socket");
 	}
 
 	if (request.magic != htonl(NBD_REQUEST_MAGIC))
@@ -145,20 +142,21 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 	return std::move(ret);
 }
 
-static void InitReaply(struct nbd_reply* reply)
+static void InitReaply(struct nbd_reply* reply, int status,
+						char handler[HANDLE_SIZE])
 {
 	memset(reply, 0, sizeof(struct nbd_reply));
 	reply->magic = htonl(NBD_REPLY_MAGIC);
+
+	reply->error = status;
+	memcpy(reply->handle, handler, HANDLE_SIZE);
 }
 
 void NBDDriverProxy::SendReply(std::unique_ptr<DriverData> data)
 {
 	struct nbd_reply reply;
 
-	InitReaply(&reply);
-
-	reply.error = data->m_status;
-	memcpy(reply.handle, data->m_handler, sizeof(reply.handle));
+	InitReaply(&reply, data->m_status, data->m_handler);
 
 	WriteAll(m_req_fd, (char*)&reply, sizeof(struct nbd_reply));
 
@@ -180,7 +178,7 @@ void NBDDriverProxy::Disconnect()
 
 	close(m_file_fd);
 
-	m_connected = 0;
+	m_connected = OFF;
 }
 
 int NBDDriverProxy::GetReqFd()
@@ -205,6 +203,7 @@ static void ThreadFuncSetNBD(int file_fd, int socket_fd)
 	}
 	catch (std::runtime_error& e)
 	{
+		printf("here\n");
 		std::cout << e.what();
 		// TODO Before Exit let the main thread know.
 		exit(-1);
@@ -274,7 +273,7 @@ static void SubThreadSetSignals()
 	int stt = 0;
 
 	stt = sigfillset(&sigset);
-	stt += pthread_sigmask(SIG_SETMASK, &sigset, NULL);
+	stt += pthread_sigmask(SIG_SETMASK, &sigset, nullptr);
 
 	if (stt)
 	{
