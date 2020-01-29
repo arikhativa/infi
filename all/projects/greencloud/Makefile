@@ -64,6 +64,9 @@ ton: $(GLOBAL_LIB)
 logger:
 	$(CC) $(LFLAGS) ./src/logger.cpp ./test/logger_test.cpp -o $@.out -ldl -I $(HED_DIR)
 
+fac:
+	$(CC) $(LFLAGS) ./test/factory_test.cpp -o $@.out -I $(HED_DIR)
+
 
 clean:
 	rm *.out

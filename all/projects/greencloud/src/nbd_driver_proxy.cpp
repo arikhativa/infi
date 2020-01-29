@@ -1,4 +1,5 @@
 
+// C Includes -----------------------------------------------------------------
 #include <unistd.h>			// close()
 #include <sys/types.h>		// socketpair(), open()
 #include <sys/socket.h>		// socketpair()
@@ -8,14 +9,22 @@
 #include <sys/stat.h>		// open()
 #include <fcntl.h>			// open()
 #include <arpa/inet.h>		// ntohl(), htonl()
+
+// C++ Includes ---------------------------------------------------------------
 #include <string>			// std::string
 #include <memory>			// std::unique_ptr
 #include <cstring>	        // memcpy()
 #include <iostream>			// std::cout
 
+// Local Include --------------------------------------------------------------
 #include "nbd_driver_proxy.hpp"
 #include "driver_data.hpp"
 #include "ioctl_wrapper.hpp"
+#include "logger.hpp"
+#include "handleton.hpp"
+#include "globals.hpp"
+
+#define LOG(lvl, msg) s_log->Write(lvl, msg, __FILE__, __LINE__)
 
 namespace hrd11
 {
@@ -47,7 +56,7 @@ enum OffOn
 };
 
 // Global ---------------------------------------------------------------------
-
+static Logger* s_log = Handleton<Logger>::GetInstance(LOG_PATH, LOG_LVL);
 static const unsigned int DEFAULT_NUM_BLOCKS = 1024;
 
 // Special Members ------------------------------------------------------------
@@ -67,14 +76,19 @@ NBDDriverProxy::NBDDriverProxy(
 	InitDevice(&m_file_fd, block_size , num_blocks, device_name);
 
 	m_nbd_thread = std::thread(ThreadFuncSetNBD, m_file_fd, m_nbd_fd);
+
+	LOG(LOG_INFO, "NBDDriverProxy() ctor is done");
 }
 
 NBDDriverProxy::~NBDDriverProxy()
 {
 	if (ON == m_connected)
 	{
+		LOG(LOG_INFO, "NBDDriverProxy() dtor is calling Disconnect()");
+
 		Disconnect();
 	}
+	LOG(LOG_INFO, "NBDDriverProxy() dtor is done");
 }
 
 std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
@@ -88,13 +102,18 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 	bytes_read = read(m_req_fd, &request, sizeof(request));
 	if (0 > bytes_read)
 	{
+		s_log->Write(LOG_ERROR,
+			"ReceiveRequest() fail to read() request from socket",
+			__FILE__, __LINE__);
+
 		throw std::runtime_error(
 			"ReceiveRequest()\nfail to read() requet from socket");
 	}
 
 	if (request.magic != htonl(NBD_REQUEST_MAGIC))
 	{
-		throw std::runtime_error("ReceiveRequest()\ninvalivd magic number");
+		throw NBDBadMagic("ReceiveRequest() invalivd magic number",
+		 					request.magic);
 	}
 
 	unsigned int len = ntohl(request.len);
@@ -136,6 +155,9 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 			break ;
 
 		default:
+			s_log->Write(LOG_ERROR,
+				"ReceiveRequest() resived an unknown request from nbd",
+							__FILE__, __LINE__);
 			ret->m_type = BAD_REQUEST;
 	}
 
@@ -145,6 +167,7 @@ std::unique_ptr<DriverData> NBDDriverProxy::ReceiveRequest()
 static void InitReaply(struct nbd_reply* reply, int status,
 						char handler[HANDLE_SIZE])
 {
+
 	memset(reply, 0, sizeof(struct nbd_reply));
 	reply->magic = htonl(NBD_REPLY_MAGIC);
 
@@ -168,17 +191,22 @@ void NBDDriverProxy::SendReply(std::unique_ptr<DriverData> data)
 
 void NBDDriverProxy::Disconnect()
 {
+	LOG(LOG_DEBUG, "NBDDriverProxy::Disconnect() begin");
+
 	Ioctl(m_file_fd, NBD_DISCONNECT, IoctlError::NO_FLAGS);
 
 	// the order is crucial. closing the fds will help the thread to exit.
 	close(m_req_fd);
 	close(m_nbd_fd);
 
+	LOG(LOG_DEBUG, "NBDDriverProxy::Disconnect() joining thread");
 	m_nbd_thread.join();
+	LOG(LOG_DEBUG, "NBDDriverProxy::Disconnect() joined thread");
 
 	close(m_file_fd);
 
 	m_connected = OFF;
+	LOG(LOG_INFO, "NBDDriverProxy::Disconnect() done");
 }
 
 int NBDDriverProxy::GetReqFd()
@@ -190,6 +218,8 @@ int NBDDriverProxy::GetReqFd()
 
 static void ThreadFuncSetNBD(int file_fd, int socket_fd)
 {
+	LOG(LOG_INFO, "ThreadFuncSetNBD() begin");
+
 	SubThreadSetSignals();
 	try
 	{
@@ -201,13 +231,18 @@ static void ThreadFuncSetNBD(int file_fd, int socket_fd)
 		Ioctl(file_fd, NBD_CLEAR_QUE, IoctlError::NO_FLAGS);
 		Ioctl(file_fd, NBD_CLEAR_SOCK, IoctlError::NO_FLAGS);
 	}
-	catch (std::runtime_error& e)
+	catch (IoctlError& e)
 	{
-		printf("here\n");
-		std::cout << e.what();
+		std::string msg = "ThreadFuncSetNBD() thread fail to setup nbd";
+		msg += e.what();
+
+		LOG(LOG_ERROR, msg);
+
 		// TODO Before Exit let the main thread know.
 		exit(-1);
 	}
+
+	LOG(LOG_INFO, "ThreadFuncSetNBD() done");
 }
 
 // Static Functions -----------------------------------------------------------
@@ -241,7 +276,11 @@ static void ReadAll(int fd, char* buff, unsigned int count)
 
         if (0 > bytes_read)
         {
-			throw std::runtime_error("ReadAll()");
+			const char* msg = "ReadAll() fail to read() from fd";
+
+			s_log->Write(LOG_ERROR, msg, __FILE__, __LINE__);
+
+			throw std::runtime_error(msg);
         }
 
         buff += bytes_read;
@@ -259,7 +298,11 @@ static void WriteAll(int fd, char* buff, unsigned int count)
 
         if (0 > bytes_written)
         {
-			throw std::runtime_error("WriteAll()");
+			const char* msg = "WriteAll() fail to write() to fd";
+
+			s_log->Write(LOG_ERROR, msg, __FILE__, __LINE__);
+
+			throw std::runtime_error(msg);
         }
 
         buff += bytes_written;
@@ -289,7 +332,11 @@ static void InitSockets(int* req, int* nbd)
 	stt = socketpair(AF_UNIX, SOCK_STREAM, 0, socket_pair);
 	if (stt)
 	{
-		throw std::runtime_error("socketpair() fail");
+		const char* msg = "InitSockets() socketpair() fail";
+
+		s_log->Write(LOG_ERROR, msg, __FILE__, __LINE__);
+
+		throw std::runtime_error(msg);
 	}
 
 	*req = socket_pair[REQUEST];
@@ -303,7 +350,11 @@ static void InitDevice(int* file_fd, size_t blk_size,
 
 	if (0 > *file_fd)
 	{
-		throw std::runtime_error("InitDevice()\nopen() fail");
+		const char* msg = "InitDevice() open() fail";
+
+		s_log->Write(LOG_ERROR, msg, __FILE__, __LINE__);
+
+		throw std::runtime_error(msg);
 	}
 
 	Ioctl(*file_fd, NBD_SET_BLKSIZE, blk_size);

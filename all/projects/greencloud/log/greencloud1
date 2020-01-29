@@ -1,2 +1,11 @@
-Data & Time			ID	Source File		Line	Type	Massage
-Tue Jan 28 18:41:24 2020	10939	release/greencloud.0.1.cpp		238	Info	main thread signls are set
+Data & Time                ID      Source File                  Line  Type   Massage
+Wed Jan 29 18:54:30 2020   22505   greencloud.0.1.cpp           295   Debug  setting main thread signls
+Wed Jan 29 18:54:30 2020   22505   greencloud.0.1.cpp           306   Info   main thread signls are set
+Wed Jan 29 18:54:30 2020   22505   nbd_driver_proxy.cpp         80    Info   NBDDriverProxy() ctor is done
+Wed Jan 29 18:54:34 2020   22505   nbd_driver_proxy.cpp         221   Info   ThreadFuncSetNBD() begin
+Wed Jan 29 18:54:35 2020   22505   nbd_driver_proxy.cpp         194   Debug  NBDDriverProxy::Disconnect() begin
+Wed Jan 29 18:54:35 2020   22505   nbd_driver_proxy.cpp         202   Debug  NBDDriverProxy::Disconnect() joining thread
+Wed Jan 29 18:54:35 2020   22505   nbd_driver_proxy.cpp         245   Info   ThreadFuncSetNBD() done
+Wed Jan 29 18:54:35 2020   22505   nbd_driver_proxy.cpp         204   Debug  NBDDriverProxy::Disconnect() joined thread
+Wed Jan 29 18:54:35 2020   22505   nbd_driver_proxy.cpp         209   Info   NBDDriverProxy::Disconnect() done
+Wed Jan 29 18:54:36 2020   22505   nbd_driver_proxy.cpp         91    Info   NBDDriverProxy() dtor is done

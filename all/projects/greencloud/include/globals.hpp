@@ -10,5 +10,4 @@
     #define LOG_PATH "./log/greencloud"
 #endif
 
-
 #endif // __HRD11_GLOBALS_HPP__

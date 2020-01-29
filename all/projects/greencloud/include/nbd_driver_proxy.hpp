@@ -20,6 +20,10 @@
 
 						driver.SendReply(std::move(data));
 
+	Exceptions:		std::bad_alloc
+					std::runtime_error
+					NBDBadMagic
+
     Date:           27.1.2020
 
     Ver 1.0
@@ -29,13 +33,13 @@
 #define __HRD11_NBD_DRIVER_PROXY_HPP__
 
 #include <thread>			//std::thread
+#include <stdexcept>		//std::runtime_error
 
 #include "driver_proxy.hpp"
 #include "driver_data.hpp"
 
 namespace hrd11
 {
-
 class NBDDriverProxy : public DriverProxy
 {
 public:
@@ -64,6 +68,18 @@ private:
 
 };
 
+
+// Exception Classes --------------------------------------------------------------
+
+struct NBDBadMagic : std::runtime_error
+{
+	NBDBadMagic(const std::string& msg, unsigned int bad_magic) :
+	std::runtime_error(msg),
+	m_bad_magic(bad_magic)
+	{}
+
+		unsigned int m_bad_magic;
+	};
 
 }   // namespace hrd11
 
