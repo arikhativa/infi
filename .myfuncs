@@ -36,7 +36,7 @@ alias ggc='cd /home/student/git/projects/greencloud'
 
 #my git alias
 alias sinstall='sudo apt-get install'
-alias farinfirep='git clone http://31.168.84.220:918/irld/haifa/hrd11/yoav-rabby.git'
+alias farinfirep='git clone http://31.168.84.220:918/ilrd/haifa/hrd11/yoav-rabby.git'
 alias infirep='git clone http://git.ilrd/ilrd/haifa/hrd11/yoav-rabby.git'
 alias arikrep='git clone https://github.com/arikhativa/infi.git'
 alias stt='git status'
@@ -52,4 +52,3 @@ alias gc='gcc -ansi -pedantic-errors -Wall -Wextra -DNDEBUG -O3'
 alias gd9='gcc -std=c99 -pedantic-errors -Wall -Wextra -g'
 alias gc9='gcc -std=c99 -pedantic-errors -Wall -Wextra -DNDEBUG -O3'
 alias vlg='valgrind --leak-check=yes --track-origins=yes'
-
